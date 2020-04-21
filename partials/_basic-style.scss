@@ -13,77 +13,25 @@ html * {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-html {
-	font-size: 62.5%;
-}
-
 body {
-	font-size: 1.6rem;
-	font-family: $primary-font;
     width: 100%;
 	margin: 0 auto;
 	padding: 1rem;
-	@include MQ(M){
-		padding: 2rem;
-
-	}
 	
 }
+main {
+	width: 100%;
 
-a {
-	text-decoration: none;
 }
 
 header {
 	width: 100%;
 
-
-	nav {
-		display: inline-block;
-	}
-
-	@include MQ(M) {
-		height: 80px;
-		@include clearfix;
-	}
 }
-
-main {
-	width: 90%;
-	max-width: $M;
-	margin: 0 auto;
-	padding: 50px 0;
-
-	> h1 {
-		text-align: right;
-		margin: 3em 0 .5em 0;
-	}
-	> h2 {
-		text-align: right;
-		margin: 0 0 3em 0;
-	}
-
-	@include MQ(M) {
-		padding-top: 80px;
-	}
-
-	@include MQ(L) {
-		max-width: none;
-		padding: 120px 0 50px;
-
-		> h1 {
-			position: fixed;
-			top: 0;
-			left: 50%;
-			height: 80px;
-			line-height: 80px;
-			width: 400px;
-			margin: 0 0 0 -200px;
-			font-size: 2.6rem;
-			z-index: 20;
-		}
-	}
+li{
+	padding:.5rem 1rem;
 }
-
-
+footer{
+	width:100%;
+}
 //end basic-styles.scss
