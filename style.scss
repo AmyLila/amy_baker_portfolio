@@ -1,0 +1,14 @@
+@import 'partials/reset';
+@import 'partials/variables'; // variables
+@import 'partials/prefix-mixins';
+@import 'partials/layout'; // responsive grid and media queries
+@import 'partials/fonts' ;   // fonts
+@import 'partials/header'; // Header
+@import 'partials/body'; // body
+@import 'partials/navigation'; // navigation
+@import 'partials/containers'; //containers
+@import 'partials/page-title'; // page title
+@import 'partials/typography'; // Typography
+@import 'partials/basic-style';
+@import 'partials/animations.scss'; //animations
+@import 'partials/footer'; // footer

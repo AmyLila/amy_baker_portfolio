@@ -1,0 +1,80 @@
+/* -------------------------------- 
+
+xTypography 
+
+-------------------------------- */
+//typography.scss
+h1,
+h2 {
+  font-family: $display-font;
+  color: $color-accent;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 300;
+  line-height: 1.2;
+  margin: 0 0 0.4em;
+
+  @include MQ(S) {
+    font-size: 3.2rem;
+  }
+
+  @include MQ(M) {
+    font-size: 4rem;
+  }
+}
+
+h2 {
+  font-weight: 300;
+  text-transform: uppercase;
+  margin: 1em 0;
+
+  @include MQ(S) {
+    font-size: 2.5rem;
+    margin: 1em 0 1.4em;
+  }
+}
+
+h3{
+    font-family: $display-font;
+    font-size: 3rem;
+    font-weight: 300;
+    text-decoration: none;
+    color: $color-accent;
+}
+.select, .archives{
+  color:$color-light;
+  font-size: 3rem;
+  padding: 1rem;
+}
+section > h2::before {
+  /* number before each section title */
+  color: $color-darkest;
+}
+
+p {
+  font-size: 1.4rem;
+  line-height: 1.4;
+  color: $color-darkest;
+
+  a {
+    color: $color-darkest;
+    text-decoration: none;
+    @include transition(0.5s);
+      
+      &:hover{
+          font-size: 1.5em;
+          color: $color-accent;
+      }
+  }
+    
+
+
+  @include MQ(S) {
+    font-size: 1.6rem;
+    line-height: 1.6;
+  }
+    
+}
+//end typography.scss

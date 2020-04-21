@@ -1,0 +1,63 @@
+
+/* -------------------------------- 
+
+Colors
+
+-------------------------------- */
+$color-accent: #89010F; // Red - Action color
+$color-darkest: #1f110b; // Dark Brown
+$color-dark: #412312; // brown
+$color-med: #5F3916; // medium brown
+$color-light: #C7B299; // light brown
+
+/* -------------------------------- 
+
+gradients
+
+-------------------------------- */
+$gradient-small-view: linear-gradient(to bottom, rgba(0, 0, 0 ,0.5), rgba(0, 0, 0, 0.05) 30%, rgba(0, 0, 0,0.7) 80%);
+$gradient-large-view: linear-gradient(to right, rgba(0, 0, 0 ,0.8), rgba(0, 0, 0, 0.4), rgba(0, 0, 0,0.8));
+
+/* -------------------------------- 
+
+Sherlock and smoke variables
+
+-------------------------------- */
+$sherlock-width: -1px;
+$sherlock-height:70px;
+// $ring-width: $sherlock-width + 330px;
+// $ring-height: $sherlock-height + 450px;
+
+/* -------------------------------- 
+
+3 cloumn grid layout
+
+-------------------------------- */
+$num-columns : 3;
+$one-column : 100% / $num_columns;
+
+//mixins
+@mixin col($span-num) {
+ flex: 0 0 $one-column * $span-num;
+}
+
+@mixin offset($offset-num) {
+ margin-left: $one-column * $offset-num;
+}
+
+/* -------------------------------- 
+
+12 cloumn grid layout
+
+-------------------------------- */
+$nav-num-columns : 12;
+$nav-one-column : 100% / $nav-num_columns;
+
+//mixins
+@mixin navCol($span-num) {
+ flex: 1 0 $nav-one-column * $span-num;
+}
+
+@mixin navOffset($offset-num) {
+ margin-left: $nav-one-column * $offset-num;
+}
