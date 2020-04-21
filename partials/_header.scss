@@ -20,13 +20,12 @@ header {
     margin:2%;
     shape-outside: circle();
     
-  
   }  
   .pic-wraper{
     filter: drop-shadow(-3px 20px 15px rgba(0, 0, 0, 0.5));
     -webkit-filter: drop-shadow(-3px 20px 15px rgba(0, 0, 0, 0.5));
   }
-  // filter: drop-shadow(-1px 6px 3px rgba(50, 50, 0, 0.5));
+  
   }
 
   //end header.scss
