@@ -61,10 +61,6 @@ Colors
 -------------------------------- */
 /* -------------------------------- 
 
-box shadow
--------------------------------- */
-/* -------------------------------- 
-
 Fonts
 
 -------------------------------- */
@@ -171,19 +167,21 @@ footer {
 Header
 
 -------------------------------- */
-header {
-  padding: 1rem;
-}
 header section {
   background-color: #9BB1BF;
   padding: 1rem;
 }
 header img {
   float: left;
+  width: 47%;
   clip-path: circle();
   -webkit-clip-path: circle();
   margin: 2%;
   shape-outside: circle();
+}
+header .pic-wraper {
+  filter: drop-shadow(-3px 20px 15px rgba(0, 0, 0, 0.5));
+  -webkit-filter: drop-shadow(-3px 20px 15px rgba(0, 0, 0, 0.5));
 }
 
 /* -------------------------------- 
