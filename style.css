@@ -101,7 +101,8 @@ h3 {
 }
 
 p {
-  color: #DFEBF2;
+  color: #9BB1BF;
+  padding-top: 0.2rem;
 }
 
 a {
@@ -173,7 +174,7 @@ header section {
 }
 header img {
   float: left;
-  width: 47%;
+  width: 40%;
   clip-path: circle();
   -webkit-clip-path: circle();
   margin: 2%;
