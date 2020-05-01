@@ -27,7 +27,7 @@ window.onload = function() {
       // Set the questions
       const quiz = [
           ["What is Superman's real name?","Clark Kent"],
-          ["What is Wonderwoman's real name?","Dianna Prince"],
+          ["What is Wonder Woman's real name?","Dianna Prince"],
           ["What is Batman's real name?","Bruce Wayne"]
         ];
   
