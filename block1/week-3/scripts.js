@@ -37,10 +37,7 @@ const game = {
     }
 }
 
-  
-
-// Chapter 6 Code Example
-
+// Chapter 6 and 7 Quiz Ninja Project
 // View Object
 const view = {
     score: document.querySelector('#score strong'),
@@ -52,6 +49,13 @@ const view = {
             target.setAttribute(key, attributes[key]);
         }
         target.innerHTML = content;
+    },
+    start: document.getElementById('start'),
+    show(element){
+        element.style.display = 'block';
+    },
+    hide(element){
+        element.style.display = 'none';
     }
 };
 
@@ -63,6 +67,7 @@ const game2 = {
         for(const question of this.questions){
         this.question = question;
         this.ask();
+        view.hide(view.start);
         }
         // end of main game loop
         this.gameOver();
@@ -87,8 +92,90 @@ const game2 = {
     },
     gameOver(){
         view.render(view.info,`Game Over, you scored ${this.score} point${this.score !== 1 ? 's' : ''}`);
+        view.show(view.start);
     }
+
 }
+view.start.addEventListener('click', () => game2.start(quiz), false);
+
+
+//Chapter 7
+//This function tells you where the mouse was when it clicked
+// function doSomething(event){
+//     console.log(`screen: (${event.screenX},${event.screenY}), page: (${event.pageX},${event.pageY}), client: (${event.screenX},${event.screenY})`)
+// }
+// addEventListener('click', doSomething);
+
+//Mouse event examples
+const clickParagraph = document.getElementById('click');
+clickParagraph.addEventListener('click',() => console.log('click') );
+clickParagraph.addEventListener('mousedown',() => console.log('down') );
+clickParagraph.addEventListener('mouseup',() => console.log('up') );
+
+const dblclickParagraph = document.getElementById('dblclick');
+dblclickParagraph.addEventListener('click', highlight);
+function highlight(event){
+    event.target.classList.toggle('highlight');
+}
+
+const mouseParagraph = document.getElementById('mouse');
+mouseParagraph.addEventListener('mouseover', highlight);
+mouseParagraph.addEventListener('mouseout', highlight);
+mouseParagraph.addEventListener('mousemove', () =>  console.log('You Moved!') );
+
+// Keyboard events
+//addEventListener('keydown',highlight);
+addEventListener('keyup', (event) => console.log(`You stopped pressing the key on ${new Date}`));
+addEventListener('keypress', (event) => console.log(`You pressed the ${event.key} character`));
+//modifier keys
+addEventListener('keydown', (event) => console.log(`You pressed the ${event.key} character`));
+addEventListener('keydown', (event) => {
+    if (event.key === 'c' && event.ctrlKey) {
+            console.log('Action canceled!');
+        }
+    });
+addEventListener('click', (event) => {
+    if (event.shiftKey) {
+        console.log('A Shifty Click!');
+     }
+});    
+
+// Removing Event Listeners
+const onceParagraph = document.getElementById('once');
+onceParagraph.addEventListener('click', remove);
+function remove(event) {
+    console.log('Enjoy this while it lasts!');
+    onceParagraph.style.backgroundColor = 'pink';
+    onceParagraph.removeEventListener('click',remove);
+}
+
+//Stopping Default Behavior
+const brokenLink = document.getElementById('broken');
+brokenLink.addEventListener('click',(event) => {
+    event.preventDefault();
+    console.log('Broken Link!');
+});
+
+//Event Propagation
+// capturing
+ulElement.addEventListener('click', (event) =>
+console.log('Clicked on ul'),true);
+liElement.addEventListener('click', (event) =>
+console.log('Clicked on li'),true);
+
+// bubbling
+ulElement.addEventListener('click', (event) =>
+console.log('Clicked on ul'),false );
+liElement.addEventListener('click', (event) =>
+console.log('Clicked on li'),false );
+
+//Event Delegation
+const delExe = document.getElementById('list1');
+delExe.addEventListener('click',highlight);
+
+
+
+
 
 
 // Callback NASA example
@@ -124,3 +211,9 @@ function helloAPODV2() {
     })
     .catch(error => console.error('error:', error));
 }
+
+WebFont.load({
+    google: {
+      families: ['Arvo', 'Open+Sans' , 'Merriweather' , 'Special+Elite']
+    }
+  });

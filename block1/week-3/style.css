@@ -135,6 +135,21 @@ a:hover {
   color: #26211F;
 }
 
+.highlight {
+  background-color: red !important;
+}
+
+#click, #dblclick, #mouse, #once {
+  width: 200px;
+  height: 200px;
+  padding:.5rem;
+  margin: .5rem 1rem;
+  background-color: #DFEBF2;
+  
+}
+div{
+  margin:1rem;
+}
 
 /* -------------------------------- 
 
