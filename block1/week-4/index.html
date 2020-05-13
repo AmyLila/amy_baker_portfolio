@@ -23,20 +23,22 @@
           <li><p>The focus event occurs when an element is focused on. </p></li>
           <li><p>The blur event occurs when the user moves the focus away from the form element.</p></li>
           <li><p>The change event occurs when the user moves the focus away from the form elementafter changing it</p></li>
-          <li><p>"The submit event occurs when the form is submitted.</p>
-          <p>"The submit event occurs when the form is submitted. Usually, this will send the content of the form to the server to be processed, but we can use JavaScript to intercept the form before it's sent by adding a submit event listener."</p></li>
+          <li><p>The submit event occurs when the form is submitted.</p>
+          <p>"Usually, this will send the content of the form to the server to be processed, but we can use JavaScript to intercept the form before it's sent by adding a submit event listener."</p></li>
         </ul>
 
         <h4>Form Controls</h4>
         <ul>
-          <li><h5>Input</h5>fields, including text, passwords, check boxes, radio buttons, and file uploads
+          <li><h5>Input</h5>
             <ul>
               <li><h5>Types Of Input Fields</h5></li>
               <li>The default is text</li>
               <li>Passwords</li>
               <li>Checkbox</li>
-
-
+              <li>Radio Button</li>
+              <li>Hidden Input Field</li>
+              <li>File Input Fields</li>
+              <li>There are other inputs such as number telephone and calendar that aren't as widely supported. Use them still because they will just show a text input if they aren't supported</li>
             </ul>
           </li>
           <li><h5>select</h5> menus for drop-down lists of options</li>
@@ -81,6 +83,39 @@
           <label for='telekinesis'>Telekinesis:
               <input type='checkbox' id='telekinesis' value='Telekinesis' name='powers'>
           </label>
+
+          <!-- Radio Button Example -->
+          <p>What type of hero are you?</p>
+          <label for='hero'>Hero:<input type='radio' name='category' value='Hero' id='hero'>
+          </label>
+          <label for='villain'>Villain:<input type='radio' name='category' value='Villain' id='villain'>
+          </label>
+          <label for='anti-hero'>Anti-Hero: <input type='radio' name='category' value='Antihero' id='anti-hero'>
+          </label>
+
+          <!-- Number Example -->
+          <label for='age'>Age:
+            <input type='number' id='age' name='age' min=0 step=1></label>
+
+            <!-- drop-down menu example -->
+            <label for='City'>Base of Operations:
+              <select name='city' id='city'>
+                  <option value='' selected>Choose a City</option>
+                  <option value='Metropolis'>Metropolis</option>
+                  <option value='Gotham City'>Gotham City</option>
+                  <option value='Keystone City'>Keystone City</option>
+                  <option value='Coast City'>Coast City</option>
+                  <option value='Star City'>Star City</option>
+              </select>
+            </label>
+
+            <!-- Text Area Example -->
+            <label for='origin'>Origin Story:
+              <textarea name='origin' rows='20' cols='60'>Born as Kal-El on the planet Krypton...</textarea>
+          </label>
+
+
+
           <button type='submit'>Submit</button>
         </form>
 
