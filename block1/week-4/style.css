@@ -112,31 +112,41 @@ a:hover {
   color: #9BB1BF;
 }
 
-#score, #question, #result, #info {
-  width:50%;
-  padding:.5rem;
-  margin:.5rem 1rem;
-  border-radius: 5px;
-  background-color: #9BB1BF;
-  color: #26211F;
-}
 
-.highlight {
-  background-color: red !important;
-}
-
-#click, #dblclick, #mouse, #once {
-  width: 200px;
-  height: 200px;
-  padding:.5rem;
-  margin: .5rem 1rem;
-  background-color: #DFEBF2;
-  
-}
 div{
   margin:1rem;
 }
+.error{
+  background: #f99;
+  border: #900 1px solid;
+  display: none;
+}
 
+/* Quiz Ninja Styling */
+.quiz-body{
+  background: rgba(255,255,255,1);
+  margin: 150px 33%;
+  padding: 10px 20px 50px 20px;
+  -webkit-box-shadow: 4px 4px 11px 3px rgba(0,0,0,0.3);
+  -moz-box-shadow: 4px 4px 11px 3px rgba(0,0,0,0.3);
+  box-shadow: 4px 4px 11px 3px rgba(0,0,0,0.3);
+}
+#question {
+  font-size: 24px;
+}
+#result{
+  color: #fff;
+  margin: 0.2em 0;
+  width: 100%;
+  text-align: center;
+}
+.correct {
+  background-color: #0c0;
+}
+.wrong {
+  color: #fff;
+  background-color: #c00;
+}
 /* -------------------------------- 
 
 xBasic style

@@ -60,7 +60,7 @@
         <form id='hero'>
           <!-- Text Input Example -->
           <label for='heroName'>Name:
-              <input type='text' id='heroName' name='heroName' autofocus placeholder='Your Super Hero Name' maxlength=32>
+            <input type='text' id='heroName' name='heroName' autofocus placeholder='Your Super Hero Name' maxlength=32 required>
           </label>
 
           <!-- Password Example -->
@@ -113,13 +113,28 @@
             <label for='origin'>Origin Story:
               <textarea name='origin' rows='20' cols='60'>Born as Kal-El on the planet Krypton...</textarea>
           </label>
-
-
-
           <button type='submit'>Submit</button>
         </form>
+      </div>
 
-
+      <!-- Quiz Ninja -->
+      <div>
+        <section class='dojo'>
+          <div class='quiz-body'>
+          <header>
+            <h1>Quiz Ninja!</h1>
+            <div id='score'>Score: <strong>0</strong></div>
+          </header>
+          <div id='question'></div>
+          <form id='response'>
+            <input name='answer' type='text'>
+            <button type='submit'>Submit Answer</button>
+        </form>
+          <div id='result'></div>
+          <div id='info'></div>
+          <button id='start'>Click to Start</button>
+          </div>
+        </section>
       </div>
       </section>
    
