@@ -11,6 +11,82 @@
         <h1>Week 4</h1>
     </header>
     <main>
+      <!-- Chapter 8 notes and code examples -->
+      <section>
+        <div>
+        <h2>Chapter 8 Forms</h2>
+        <h3>Notes</h3>
+        <P>You don't have to only process form information on the backend. It's becoming more common to process information in a form on the front end with JavaScript.</P>
+
+        <h4>Events</h4>
+        <ul>
+          <li><p>The focus event occurs when an element is focused on. </p></li>
+          <li><p>The blur event occurs when the user moves the focus away from the form element.</p></li>
+          <li><p>The change event occurs when the user moves the focus away from the form elementafter changing it</p></li>
+          <li><p>"The submit event occurs when the form is submitted.</p>
+          <p>"The submit event occurs when the form is submitted. Usually, this will send the content of the form to the server to be processed, but we can use JavaScript to intercept the form before it's sent by adding a submit event listener."</p></li>
+        </ul>
+
+        <h4>Form Controls</h4>
+        <ul>
+          <li><h5>Input</h5>fields, including text, passwords, check boxes, radio buttons, and file uploads
+            <ul>
+              <li><h5>Types Of Input Fields</h5></li>
+              <li>The default is text</li>
+              <li>Passwords</li>
+              <li>Checkbox</li>
+
+
+            </ul>
+          </li>
+          <li><h5>select</h5> menus for drop-down lists of options</li>
+          <li><h5>textarea</h5> elements for longer text entry</li>
+          <li><h5>button</h5> elements for submitting and resetting forms</li>
+        </ul>
+      </div>
+
+
+      <div>
+        <h3>Code Examples</h3>
+        <h4>Search Bar</h4>
+        <form name='search' action='/search'>
+          <input name='searchInput'>
+          <button type='submit'>Search</button>
+        </form>
+
+        <h4>Form Control Example</h4>
+        <form id='hero'>
+          <!-- Text Input Example -->
+          <label for='heroName'>Name:
+              <input type='text' id='heroName' name='heroName' autofocus placeholder='Your Super Hero Name' maxlength=32>
+          </label>
+
+          <!-- Password Example -->
+          <label for='realName'>Real Name:<input type='password' name='realName' id='realName'></label>
+          
+          <!-- Checkbox Example -->
+          <p>Super Powers:</p>
+          <label for='flight'>Flight:
+              <input type='checkbox' id='flight' value='Flight' name='powers'>
+          </label>
+          <label for='strength'>Super Strength:
+              <input type='checkbox' id='strength' value='Strength' name='powers'>
+          </label>
+          <label for='speed'>Super Speed:
+          <input type='checkbox' id='speed' value='Super Speed' name='powers'>
+          </label>
+          <label for='energy'>Energy Blasts:
+              <input type='checkbox' id='energy' value='Energy Blasts' name='powers'>
+              </label>
+          <label for='telekinesis'>Telekinesis:
+              <input type='checkbox' id='telekinesis' value='Telekinesis' name='powers'>
+          </label>
+          <button type='submit'>Submit</button>
+        </form>
+
+
+      </div>
+      </section>
    
 
     </main>
