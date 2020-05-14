@@ -192,7 +192,31 @@ const quiz = [
 
 
 
-// Chapter 6 Code Example
+// Chapter 12 Code Examples
+//Prototypal Inheritance
+class Turtle {
+    constructor(name) {
+        this.name = name;
+        this.weapon = 'hands';
+    }
+    sayHi() {
+        return `Hi dude, my name is ${this.name}`;
+    }
+    attack(){
+        return `Feel the power of my ${this.weapon}!`;
+    }
+}
+// make a new turtle
+const leo = new Turtle('Leonardo');
+
+// How do I get these in the HTML?
+document.getElementById('turtle').innerHTML = leo.name;
+document.getElementById ('turtleName').innerHTML = leo.sayHi();
+
+// How do I get these into the HTML with a button?
+let dis = func => document.getElementById ('turtleName2') .innerHTML = func;
+const tButton = document.querySelector(`#turtleButton`);
+tButton.addEventListener('click', dis(leo.attack()));
 
 
 
