@@ -215,8 +215,10 @@ document.getElementById ('turtleName').innerHTML = leo.sayHi();
 
 // How do I get these into the HTML with a button?
 let dis = func => document.getElementById ('turtleName2') .innerHTML = func;
-const tButton = document.querySelector(`#turtleButton`);
-tButton.addEventListener('click', dis(leo.attack()));
+
+// How do I get the event listener to work?
+// const tButton = document.querySelector(`#turtleButton`);
+// tButton.addEventListener('click', dis(leo.attack()));
 
 
 
