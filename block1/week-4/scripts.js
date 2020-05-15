@@ -221,6 +221,147 @@ let dis = func => document.getElementById ('turtleName2') .innerHTML = func;
 // tButton.addEventListener('click', dis(leo.attack()));
 
 
+//Mixin Example That Creates Deep Copy of an Object
+function mixin(target,...objects) {
+    for (const object of objects) {   
+    if(typeof object === 'object') {
+        for (const key of Object.keys(object)) {
+            if (typeof object[key] === 'object') {
+            target[key] = Array.isArray(object[key]) ? [] : {};
+            mixin(target[key],object[key]);
+            } else {
+            Object.assign(target,object);  
+            }
+        }
+        }
+    }
+    return target;
+}
+//Chapter 12 Quiz Ninja Project
+const quiz2 = [
+    { name2: "Superman",realName2: "Clark Kent" },
+    { name2: "Wonder Woman",realName2: "Diana Prince" },
+    { name2: "Batman",realName2: "Bruce Wayne" },
+    { name2: "The Hulk",realName2: "Bruce Banner" },
+    { name2: "Spider-man",realName2: "Peter Parker" },
+    { name2: "Cyclops",realName2: "Scott Summers" }
+];
+// Utility functions
+function random(a,b=1) {
+    // if only 1 argument is provided, we need to swap the values of a and b
+      if (b === 1) {
+          [a,b] = [b,a];
+      }
+      return Math.floor((b-a+1) * Math.random()) + a;
+    }
+    
+function shuffle(array) {
+    for (let i = array.length; i; i--) {
+          let j = random(i)-1;
+          [array[i - 1], array[j]] = [array[j], array[i - 1]];
+     }
+ }
+    
+    // View Object
+const view2 = {
+      score2: document.querySelector('#score2 strong'),
+      question2: document.querySelector('#question2'),
+      result2: document.querySelector('#result2'),
+      info2: document.querySelector('#info2'),
+      start2: document.querySelector('#start2'),
+      response2: document.querySelector('#response2'),
+      timer: document.querySelector('#timer strong'),
+      render2(target,content,attributes) {
+          for(const key in attributes) {
+            target.setAttribute(key, attributes[key]);
+          }
+          target.innerHTML = content;
+      },
+      show2(element){
+        element.style.display = 'block';
+      },
+      hide2(element){
+        element.style.display = 'none';
+      },
+
+      setup2(){
+          this.show2(this.question2);
+          this.show2(this.response2);
+          this.show2(this.result2);
+          this.hide2(this.start2);
+          this.render2(this.score2,game2.score2);
+          this.render2(this.result2,'');
+          this.render2(this.info2,'');
+      },
+      teardown2(){
+        this.hide2(this.question2);
+        this.hide2(this.response2);
+        this.show2(this.start2);
+      },
+      buttons(array){
+        return array.map(value => `<button>${value}</button>`).join('');
+    }
+    };
+    
+const game2 = {
+      start(quiz2){
+        console.log('start() invoked');
+        this.score2 = 0;
+        this.questions2 = [...quiz2];
+        view2.setup2();
+        this.secondsRemaining = 20;
+        this.timer = setInterval( this.countdown , 1000 );
+        this.ask2();
+      },
+      countdown() {
+        game2.secondsRemaining--;
+        view2.render2(view2.timer,game2.secondsRemaining);
+        if(game2.secondsRemaining <= 0) {
+          game2.gameOver2();
+        }
+      },
+      ask2(name){
+        console.log('ask() invoked');
+        if(this.questions2.length > 2) {
+        shuffle(this.questions2);
+        this.question2 = this.questions2.pop();
+        const options = [this.questions2[0].realName2, this.questions2[1].realName2, this.question2.realName2];
+        shuffle(options);
+        const question2 = `What is ${this.question2.name2}'s real name?`;
+        view2.render2(view2.question2,question2);
+        view2.render2(view2.response2,view2.buttons(options));
+        }
+        else {
+        this.gameOver2();
+        }
+    },
+    check2(event){
+        console.log('check(event) invoked');
+        const response2 = event.target.textContent;
+        const answer2 = this.question2.realName2;
+        if(response2 === answer2){
+        view2.render2(view2.result2,'Correct!',{'class':'correct'});
+        this.score2++;
+        view2.render2(view2.score2,this.score2);
+        } else {
+        view2.render2(view2.result2,`Wrong! The correct answer was ${answer2}`,{'class':'wrong'});
+        }
+        this.ask2();
+    },
+      gameOver2(){
+        console.log('gameOver() invoked');
+        view2.render2(view2.info2,`Game Over, you scored ${this.score2} point${this.score2 !== 1 ? 's' : ''}`);
+        view2.teardown2();
+        clearInterval(this.timer);
+      }
+    }
+    
+    view2.start2.addEventListener('click', () => game2.start(quiz2), false);
+    view2.response2.addEventListener('click', (event) => game2.check2(event), false);
+ 
+
+
+
 
 
 //Chapter 7

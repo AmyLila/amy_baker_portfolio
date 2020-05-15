@@ -113,6 +113,7 @@
             <label for='origin'>Origin Story:
               <textarea name='origin' rows='20' cols='60'>Born as Kal-El on the planet Krypton...</textarea>
           </label>
+          
           <button type='submit'>Submit</button>
         </form>
       </div>
@@ -148,16 +149,71 @@
             greenDice instanceOf Dice
             true</p>
           <p>"The prototype can be used to add any new properties and methods after the class has been declared. It should be used to define any properties that will remain the same for every instance of the class."</p>
-            
-
+          <p>Using mixins in JavaScript is quite different than how I have used them before. The name is a good description of what they do; "A mixin is a way of adding properties and methods of some objects to another object without using inheritance. It allows more complex objects to be created by 'mixing' basic objects together."</p>
+          <p>This paragraph explains when to use a mixin and when to use inheritance well. :
+            "One way to think about the difference between prototypal inheritance and inheritance from mixin objects is to consider whether an object is something or whether it has something. For example, a tank is a vehicle, so it might inherit from a Vehicle prototype. The tank also has a gun, so this functionality could be added using a gun mixin object. This gives us extra flexibility, since other objects might also use a gun, but not be a vehicle, for example, a soldier object. The soldier object might inherit from a Human prototype and also have the gun mixin."</p>
+          <p>I can use the return statement: return this; When I do, it allows me to chain methods together on one line. 
+            "It's worth keeping in mind that if a method lacks a meaningful return value, it might as well return this so that chaining is possible."</p>
+          <h4>Dealing with global scope when using this:</h4>
+          <ul>
+            <li>
+              <p>One solution is to set the variable  "that"  to equal "this" before the nested function. </p>
+              <p>superman.findFriends = function(){
+                const that = this;
+                this.friends.forEach(function(friend) {
+                    console.log(`${friend.name} is friends with ${that.name}`);
+                } ); }</p>
+            </li>
+            <li>
+              <p>Another solution is to use the bind() method, here is an example:</p>
+              <p>superman.findFriends = function() {
+                this.friends.forEach(function(friend) {
+                    console.log(`${friend.name} is friends with ${this.name}`);
+                }.bind(this);)}</p>
+            </li>
+            <li>
+              <p>Alternatively, I could use for-of instead of forEach(), for-of does not require a nested function to be used, so "this" remains bound to the superman object:</p>
+              <p>superman.findFriends = function() {
+                for(const friend of this.friends) {
+                    console.log(`${friend.name} is friends with ${this.name}`);
+                };}</p>
+            </li>
+            <li>
+              <p>Lastly, I could use an arrow function because they don't have their own "this" context. "So this remains bound to the original object making the function call:"</p>
+              <p>superman.findFriends = function() {
+                this.friends.forEach((friend) => {
+                    console.log(`${friend.name} is friends with ${this.name}`);
+                } );}</p>
+            </li>
+            </ul>
+            <p>The author advocates "creating small objects that describe single tasks or behaviors" and using a mixin function to combine them into more complex objects if needed. </p>
+            <p>He also recommends keeping inheritance chains short: "A good rule of thumb is only to inherit once, keeping the inheritance chain to just two objects makes unpicking any issues far easier."</p>
         </div>
+        
         <div>
           <h3>Code Examples</h3>
           <!-- Make an object -->
-          <button id = "turtleButton" onclick="dis(leo.attack())">New Turtle</button>
-          <div id = "turtle"></div>
-          <div id = "turtleName"></div>
-          <div id = "turtleName2"></div>
+          <div>
+            <h4>Make An Object</h4>
+            <button id = "turtleButton" onclick="dis(leo.attack())">New Turtle</button>
+            <div id = "turtle"></div>
+            <div id = "turtleName"></div>
+            <div id = "turtleName2"></div>
+          </div>
+          
+          <div>
+            <h1>Quiz Ninja!</h1>
+            <div id='timer'>Time: <strong>20</strong></div>
+            <div id='score2'>Score: <strong>0</strong></div>
+            <div id='question2'></div>
+            <div id='response2'></div>  
+            <div id='result2'></div>
+            <div id='info2'></div>
+            <button id='start2'>Click to Start</button>
+          </div>
+        </div>
+          
+
           
         </div>
 
