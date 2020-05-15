@@ -43,7 +43,7 @@ input.addEventListener('focus', function(){
         input.value = '' 
     }
 }, false); // What does this "false" do?
-input.addEventListener('blur', function(){
+input.addEventListener('blur', () => {
     if(input.value === '') {
         input.value = 'Search Here';
     } }, false);
@@ -205,6 +205,9 @@ class Turtle {
     attack(){
         return `Feel the power of my ${this.weapon}!`;
     }
+    sayGoodbye (ele) {
+        document.getElementById (ele) .innerHTML += "<br>" + `Goodbye my name is ${leo.name}`;
+    }
 }
 // make a new turtle
 const leo = new Turtle('Leonardo');
@@ -214,11 +217,12 @@ document.getElementById('turtle').innerHTML = leo.name;
 document.getElementById ('turtleName').innerHTML = leo.sayHi();
 
 // How do I get these into the HTML with a button?
-let dis = func => document.getElementById ('turtleName2') .innerHTML = func;
+let dis = (func) => document.getElementById ('turtleName2') .innerHTML += "<br>" + func; 
 
 // How do I get the event listener to work?
-// const tButton = document.querySelector(`#turtleButton`);
-// tButton.addEventListener('click', dis(leo.attack()));
+const tButton = document.querySelector(`#turtleButton`);
+tButton.addEventListener('click', () => dis(leo.sayHi()));
+tButton.addEventListener('click', () => leo.sayGoodbye(`turtleName2`, leo.sayHi));
 
 
 //Mixin Example That Creates Deep Copy of an Object
@@ -301,7 +305,7 @@ const view2 = {
       buttons(array){
         return array.map(value => `<button>${value}</button>`).join('');
     }
-    };
+};
     
 const game2 = {
       start(quiz2){
@@ -358,13 +362,13 @@ const game2 = {
     
     view2.start2.addEventListener('click', () => game2.start(quiz2), false);
     view2.response2.addEventListener('click', (event) => game2.check2(event), false);
- 
+ // End Chapter 12
 
 
 
 
 
-//Chapter 7
+//Chapter 15
 
 
 WebFont.load({
