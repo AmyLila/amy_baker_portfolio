@@ -362,13 +362,10 @@ const game2 = {
     
     view2.start2.addEventListener('click', () => game2.start(quiz2), false);
     view2.response2.addEventListener('click', (event) => game2.check2(event), false);
- // End Chapter 12
+// End Chapter 12
 
 
-
-
-
-//Chapter 15
+//Chapter 15 Modular Javascript
 
 
 WebFont.load({

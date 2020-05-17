@@ -31,7 +31,9 @@ footer, header, hgroup, menu, nav, section, main {
 }
 
 body {
+  max-width: 80%;
   line-height: 1;
+  margin:0 auto;
 }
 
 ol, ul {
@@ -79,14 +81,19 @@ h2 {
   color:#26211F;
 }
 
-h3 {
+h3,h4,h5 {
   font-family: "Merriweather", cursive;
   font-size: 1.5rem;
   font-weight: 300;
   color: #9BB1BF;
-  padding: 1rem;
+  padding: 1rem 1rem .5rem 1rem;
 }
-
+h4{
+  font-size: 1.3rem;
+}
+h5{
+  font-size: 1.1rem;
+}
 p {
   color: #26211F;
   padding-top: 0.2rem;
@@ -111,7 +118,6 @@ a:hover {
   font-size: 1.2em;
   color: #9BB1BF;
 }
-
 
 div{
   margin:1rem;
@@ -163,19 +169,27 @@ html * {
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  width: 100%;
-  margin: 0 1rem;
-}
-
-main {
-  width: 100%;
-}
-
 header {
   width: 100%;
 }
 
 li {
   padding: 0.5rem 1rem;
+}
+fieldset{
+  margin:1rem .5rem .2rem .5rem;
+  padding: .5rem;
+}
+form p {
+  padding:.5rem;
+  margin:.5rem;
+}
+label{
+  padding:.5rem;
+  margin:.5rem;
+}
+textarea, input{
+  border: 2px solid #9BB1BF;
+  background-color: #DFEBF2;
+  border-radius: 5px;
 }

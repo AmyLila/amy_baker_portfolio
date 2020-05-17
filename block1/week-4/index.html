@@ -58,17 +58,24 @@
 
         <h4>Form Control Example</h4>
         <form id='hero'>
-          <!-- Text Input Example -->
-          <label for='heroName'>Name:
-            <input type='text' id='heroName' name='heroName' autofocus placeholder='Your Super Hero Name' maxlength=32 required>
-          </label>
+          <fieldset>
+            <legend>Hero Info</legend>
+            <!-- Text Input Example -->
+            <label for='heroName'>Name: 
+              <input type='text' id='heroName' name='heroName' autofocus placeholder='Your Super Hero Name' maxlength=32 required>
+            </label>
+                      <!-- Password Example -->
+            <label for='realName'>Real Name:  
+              <input type='password' name='realName' id='realName'></label>  
+                      <!-- Number Example -->
+            <label for='age'>Age: 
+            <input type='number' id='age' name='age' min=0 step=1></label>
+          </fieldset>
 
-          <!-- Password Example -->
-          <label for='realName'>Real Name:<input type='password' name='realName' id='realName'></label>
-          
-          <!-- Checkbox Example -->
-          <p>Super Powers:</p>
-          <label for='flight'>Flight:
+                    <!-- Checkbox Example -->
+          <fieldset>
+            <legend>Super Powers:</legend>
+            <label for='flight'>Flight:
               <input type='checkbox' id='flight' value='Flight' name='powers'>
           </label>
           <label for='strength'>Super Strength:
@@ -83,37 +90,41 @@
           <label for='telekinesis'>Telekinesis:
               <input type='checkbox' id='telekinesis' value='Telekinesis' name='powers'>
           </label>
+          </fieldset>
 
           <!-- Radio Button Example -->
-          <p>What type of hero are you?</p>
-          <label for='hero'>Hero:<input type='radio' name='category' value='Hero' id='hero'>
-          </label>
-          <label for='villain'>Villain:<input type='radio' name='category' value='Villain' id='villain'>
-          </label>
-          <label for='anti-hero'>Anti-Hero: <input type='radio' name='category' value='Antihero' id='anti-hero'>
-          </label>
-
-          <!-- Number Example -->
-          <label for='age'>Age:
-            <input type='number' id='age' name='age' min=0 step=1></label>
-
-            <!-- drop-down menu example -->
-            <label for='City'>Base of Operations:
-              <select name='city' id='city'>
-                  <option value='' selected>Choose a City</option>
-                  <option value='Metropolis'>Metropolis</option>
-                  <option value='Gotham City'>Gotham City</option>
-                  <option value='Keystone City'>Keystone City</option>
-                  <option value='Coast City'>Coast City</option>
-                  <option value='Star City'>Star City</option>
-              </select>
+          <fieldset>
+            <legend>What type of hero are you?</legend>
+            <label for='hero'>Hero:<input type='radio' name='category' value='Hero' id='hero'>
             </label>
-
-            <!-- Text Area Example -->
-            <label for='origin'>Origin Story:
-              <textarea name='origin' rows='20' cols='60'>Born as Kal-El on the planet Krypton...</textarea>
-          </label>
+            <label for='villain'>Villain:<input type='radio' name='category' value='Villain' id='villain'>
+            </label>
+            <label for='anti-hero'>Anti-Hero: <input type='radio' name='category' value='Antihero' id='anti-hero'>
+            </label>
+          </fieldset>
           
+           <!-- drop-down menu example -->
+         <fieldset>
+           <legend>Base of Operations:</legend>
+           <label for='City'>
+            <select name='city' id='city'>
+                <option value='' selected>Choose a City</option>
+                <option value='Metropolis'>Metropolis</option>
+                <option value='Gotham City'>Gotham City</option>
+                <option value='Keystone City'>Keystone City</option>
+                <option value='Coast City'>Coast City</option>
+                <option value='Star City'>Star City</option>
+            </select>
+          </label>
+         </fieldset>
+
+                     <!-- Text Area Example -->
+         <fieldset>
+           <legend>Origin Story:</legend>
+           <label for='origin'>
+            <textarea name='origin' rows='20' cols='60'>Born as Kal-El on the planet Krypton...</textarea>
+        </label>
+         </fieldset>
           <button type='submit'>Submit</button>
         </form>
       </div>
@@ -214,9 +225,22 @@
         </div>
       </section>
 
-        <!-- Chapter 15 Modern JavaScript -->
+        <!-- Chapter 15 Modular Javascript -->
         <section>
-          <h2>Chapter 15: Modern JavaScript</h2>
+          <h2>Chapter 15: Modular Javascript</h2>
+          <p>"A module is a self-contained piece of code that provides functions and methods that can then be used in other files and by other modules. This helps to keep code organized in separate, reusable files, which improves code maintainability. The code in a module should have a single purpose, and group together functions with distinct functionality."</p>
+          <ul>
+            <li><h4>Importing and Exporting Modules</h4></li>
+            <li><p>functions in a module have to be exported to be used by another file like this: export const PI = 3.1415926;
+              Then they have to be imported like this:</p>
+              <p>import { PI } from './pi.js';</p></li>
+            <li><p>I can also export single variables as a default value like this:</p>
+              <p>const PI = 3.145926;</p>
+              <p>export default PI;</p>
+              <p>They are imported like this: import PI from './pi.js';</p></li>
+            <li><p>"The big difference with default exports is that you don't need to use curly braces or make any mention of the value that is being imported, making the statement read more elegantly."</p></li>
+
+          </ul>
 
         </section>
           
