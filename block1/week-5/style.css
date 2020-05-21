@@ -169,27 +169,4 @@ html * {
   -moz-osx-font-smoothing: grayscale;
 }
 
-header {
-  width: 100%;
-}
 
-li {
-  padding: 0.5rem 1rem;
-}
-fieldset{
-  margin:1rem .5rem .2rem .5rem;
-  padding: .5rem;
-}
-form p {
-  padding:.5rem;
-  margin:.5rem;
-}
-label{
-  padding:.5rem;
-  margin:.5rem;
-}
-textarea, input{
-  border: 2px solid #9BB1BF;
-  background-color: #DFEBF2;
-  border-radius: 5px;
-}
