@@ -21,39 +21,20 @@ Filter tasks (complete/incomplete) -->
     </header>
     <main>
         <!-- Top section where tasks are displayed -->
-        <section>
-            <!-- Checkbox Example -->
-          <fieldset>
-            <legend>Super Powers:</legend>
-            <label for='flight'>Flight:
-              <input type='checkbox' id='flight' value='Flight' name='powers'>
-          </label>
-          <label for='strength'>Super Strength:
-              <input type='checkbox' id='strength' value='Strength' name='powers'>
-          </label>
-          <label for='speed'>Super Speed:
-          <input type='checkbox' id='speed' value='Super Speed' name='powers'>
-          </label>
-          <label for='energy'>Energy Blasts:
-              <input type='checkbox' id='energy' value='Energy Blasts' name='powers'>
-              </label>
-          <label for='telekinesis'>Telekinesis:
-              <input type='checkbox' id='telekinesis' value='Telekinesis' name='powers'>
-          </label>
-          </fieldset>
-
+        <section id = "todo_container">
+          <ul class = "todo_list"></ul>
         </section>
-
     </main>
     Bottom section where input is recieved
     <footer>
-      <div>
-            <!-- Text Input Example -->
-            <label for='heroName'>Name: 
-                <input type='text' id='heroName' name='heroName' autofocus placeholder='Your Super Hero Name' maxlength=32 required>
-            </label>
-            <button type='submit'>Submit</button>
+      <!-- ToDo Input -->
+      <div class = "todo_input">
+        <form class = "todo">
+          <input type='text' id='heroName' name='heroName' autofocus placeholder='Your Super Hero Name' maxlength=32 required>
+          <button type='submit'>Submit</button>
+        </form>
       </div>
+      <!-- End ToDo Input -->
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
     <script src="main.js"></script>
