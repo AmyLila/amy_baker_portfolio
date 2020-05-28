@@ -133,7 +133,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 // Variables
 var toDoForm = document.querySelector(".toDo");
 var tasks = document.querySelector(".todo_list");
-var toDoList = [];
+var toDoList = []; // Function to collect user input, save it to the to do list array and add it to the html
 
 function submitTask(event) {
   // Stop default submit
@@ -156,7 +156,8 @@ function submitTask(event) {
   // Can write this using current target or getElementById
   //event.currentTarget.task.value = ``;
 
-  document.getElementById("task").value = "";
+  document.getElementById("task").value = ""; //Create a custom task sumbitted event 
+
   toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
 } //End Submit task function
 // Function to display the tasks
@@ -165,12 +166,17 @@ function submitTask(event) {
 function displayTasks() {
   // loop through all items in the to do list array and make them into html list items
   var listItems = toDoList.map(function (toDo) {
-    return "<li class = \"todo_item\">\n        <input type = \"checkbox\">\n        <span class = \"todo_item_name\"> ".concat(toDo.content, " </span>\n        <button aria-label = \"Remove ").concat(toDo.content, "\">&times;</button> \n        </li>");
+    return "<li class = \"todo_item\">\n        <input type = \"checkbox\">\n        <span class = \"todo_item_name\"> ".concat(toDo.content, " </span>\n        <button aria-label = \"Remove ").concat(toDo.content, "\" value = \"").concat(toDo.id, "\" >&times;</button> \n        </li>");
   }).join(""); // Add the list items to the html
 
   tasks.innerHTML = listItems;
 } //End Display Function
 //Stuff for the local storage file
+//I didn't know how to use local storage, 
+//so I used information from Wes Bos' beginner 
+//JavaScript class. There is a walkthrough in the 
+//class that explains how to use it. 
+//Here is the link: https://beginnerjavascript.com
 // Save user input to local storage
 
 
@@ -186,15 +192,38 @@ function getTasks() {
   var lsTasks = JSON.parse(localStorage.getItem("toDoList"));
 
   if (lsTasks.length >= 0) {
-    toDoList.push.apply(toDoList, _toConsumableArray(lsTasks));
+    var _toDoList;
+
+    (_toDoList = toDoList).push.apply(_toDoList, _toConsumableArray(lsTasks));
+
     toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
   }
+} // saves the delete item information to local storage
+
+
+function deleteItem(id) {
+  console.log("Deleting Item", id); //This needs to filter the array into checked and not checked and delete the checked one
+
+  toDoList = toDoList.filter(function (toDo) {
+    return toDo.id !== id;
+  });
+  console.log(toDoList); //Event that calls display tasks and save to local storage
+
+  toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted")); // need to split the array into complete and not complete
 } //Event Listeners
+//I used information from Wes Bos' beginner JavaScript 
+//course to learn how to create custom listening events. 
+//Here is the link: https://beginnerjavascript.com
 
 
-toDoForm.addEventListener('submit', submitTask);
+toDoForm.addEventListener("submit", submitTask);
 toDoForm.addEventListener("tasksSubmitted", displayTasks);
 toDoForm.addEventListener("tasksSubmitted", saveToLs);
+tasks.addEventListener("click", function (event) {
+  if (event.target.matches("button")) {
+    deleteItem(parseInt(event.target.value));
+  }
+});
 getTasks();
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
