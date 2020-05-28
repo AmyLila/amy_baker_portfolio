@@ -4,10 +4,6 @@
 // Remove a task
 // Filter tasks (complete/incomplete)
 
-
-
-
-
 WebFont.load({
     google: {
       families: ['Arvo', 'Open+Sans' , 'Merriweather' , 'Special+Elite']
