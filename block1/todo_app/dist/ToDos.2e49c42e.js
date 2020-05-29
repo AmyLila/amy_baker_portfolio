@@ -133,7 +133,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 // Variables
 var toDoForm = document.querySelector(".toDo");
 var tasks = document.querySelector(".todo_list");
-var toDoList = []; // Function to collect user input, save it to the to do list array and add it to the html
+var toDoList = [];
+var completedList = [];
+var needToDo = [];
+var toDo = {}; // Function to collect user input, save it to the to do list array and add it to the html
 
 function submitTask(event) {
   // Stop default submit
@@ -160,13 +163,19 @@ function submitTask(event) {
 
   toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
 } //End Submit task function
-// Function to display the tasks
+//Function to split the to do list into two arrays, one for completed items and one for not completed items
 
+
+completedList = toDoList.filter(function (toDo) {
+  return toDo.completed == true;
+});
+console.table(completedList);
+console.log(completedList); // Function to display all the tasks
 
 function displayTasks() {
   // loop through all items in the to do list array and make them into html list items
   var listItems = toDoList.map(function (toDo) {
-    return "<li class = \"todo_item\">\n        <input type = \"checkbox\">\n        <span class = \"todo_item_name\"> ".concat(toDo.content, " </span>\n        <button aria-label = \"Remove ").concat(toDo.content, "\" value = \"").concat(toDo.id, "\" >&times;</button> \n        </li>");
+    return "<li class = \"todo_item\">\n        <input type = \"checkbox\" ".concat(toDo.completed && "checked", " value = \"").concat(toDo.id, "\">\n        <span class = \"todo_item_name\"> ").concat(toDo.content, " </span>\n        <button aria-label = \"Remove ").concat(toDo.content, "\" value = \"").concat(toDo.id, "\" >&times;</button> \n        </li>");
   }).join(""); // Add the list items to the html
 
   tasks.innerHTML = listItems;
@@ -198,32 +207,65 @@ function getTasks() {
 
     toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
   }
-} // saves the delete item information to local storage
+} //end ls file
+//Utilities file
+// removes tasks from the list
 
 
 function deleteItem(id) {
-  console.log("Deleting Item", id); //This needs to filter the array into checked and not checked and delete the checked one
-
+  //This filters the array into checked and not checked and delete the checked ones
   toDoList = toDoList.filter(function (toDo) {
     return toDo.id !== id;
   });
   console.log(toDoList); //Event that calls display tasks and save to local storage
 
-  toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted")); // need to split the array into complete and not complete
-} //Event Listeners
+  toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
+} //End Delete Item function
+// gathers and saves completed tasks
+
+
+function completedTasks(id) {
+  // this looks through the to do list array 
+  //and finds the todo with an id that matches the one that was clicked
+  var taskRef = toDoList.find(function (toDo) {
+    return toDo.id === id;
+  }); //This changes completed from false to true when clicked
+
+  taskRef.completed = !taskRef.completed;
+  console.log("It works", taskRef); //Event that calls display tasks and save to local storage
+
+  toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
+} // end completed tasks
+//end utilities
+
+
+console.log("It works global", toDoList); //Stuff for the main.js file
+//Event Listeners
 //I used information from Wes Bos' beginner JavaScript 
 //course to learn how to create custom listening events. 
 //Here is the link: https://beginnerjavascript.com
 
-
 toDoForm.addEventListener("submit", submitTask);
 toDoForm.addEventListener("tasksSubmitted", displayTasks);
-toDoForm.addEventListener("tasksSubmitted", saveToLs);
+toDoForm.addEventListener("tasksSubmitted", saveToLs); // This event listener is listening for a click anywhere in tasks.
+//Then it calls either the delete item function or the completed task function depending on what is clicked. 
+
 tasks.addEventListener("click", function (event) {
+  var id = parseInt(event.target.value);
+
   if (event.target.matches("button")) {
-    deleteItem(parseInt(event.target.value));
+    deleteItem(id);
   }
-});
+
+  ;
+
+  if (event.target.matches("input[type = 'checkbox']")) {
+    completedTasks(id);
+  }
+
+  ;
+}); //This is calling the get tasks function that retrieves information from local storage
+
 getTasks();
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];

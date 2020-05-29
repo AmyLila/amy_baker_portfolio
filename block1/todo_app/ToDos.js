@@ -2,6 +2,9 @@
 const toDoForm = document.querySelector(`.toDo`);
 const tasks = document.querySelector(`.todo_list`);
 let toDoList = [];
+let completedList = [];
+let needToDo = [];
+const toDo = {};
 
 // Function to collect user input, save it to the to do list array and add it to the html
 function submitTask(event){
@@ -35,20 +38,26 @@ function submitTask(event){
     toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
 } //End Submit task function
 
+//Function to split the to do list into two arrays, one for completed items and one for not completed items
 
-// Function to display the tasks
+completedList = toDoList.filter(toDo => (toDo.completed == true));
+console.table(completedList)
+console.log(completedList)
+
+// Function to display all the tasks
 function displayTasks(){
     
     // loop through all items in the to do list array and make them into html list items
     const listItems = toDoList.map(toDo => 
         `<li class = "todo_item">
-        <input type = "checkbox">
+        <input type = "checkbox" ${toDo.completed && "checked"} value = "${toDo.id}">
         <span class = "todo_item_name"> ${toDo.content} </span>
         <button aria-label = "Remove ${toDo.content}" value = "${toDo.id}" >&times;</button> 
         </li>`).join(``);
 
     // Add the list items to the html
     tasks.innerHTML = listItems;
+
 } //End Display Function
 
 
@@ -75,23 +84,41 @@ function getTasks(){
     if (lsTasks.length >= 0){
         toDoList.push(...lsTasks);
         toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
-
     }
 }
+//end ls file
 
-// saves the delete item information to local storage
+
+//Utilities file
+// removes tasks from the list
 function deleteItem(id){
-    console.log(`Deleting Item`, id);
-
-    //This needs to filter the array into checked and not checked and delete the checked one
+    //This filters the array into checked and not checked and delete the checked ones
     toDoList = toDoList.filter(toDo => toDo.id !== id);
-    console.log(toDoList);
+    console.log(toDoList)
+
     //Event that calls display tasks and save to local storage
     toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
 
-    // need to split the array into complete and not complete
-}
+} //End Delete Item function
 
+// gathers and saves completed tasks
+function completedTasks(id){
+    // this looks through the to do list array 
+    //and finds the todo with an id that matches the one that was clicked
+    const taskRef = toDoList.find(toDo => toDo.id === id);
+
+    //This changes completed from false to true when clicked
+    taskRef.completed = !taskRef.completed;
+    console.log(`It works`,taskRef)
+
+    //Event that calls display tasks and save to local storage
+    toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
+    
+}// end completed tasks
+//end utilities
+console.log(`It works global`,toDoList);
+
+//Stuff for the main.js file
 //Event Listeners
 
 //I used information from Wes Bos' beginner JavaScript 
@@ -101,14 +128,22 @@ toDoForm.addEventListener("submit", submitTask);
 toDoForm.addEventListener("tasksSubmitted", displayTasks);
 toDoForm.addEventListener("tasksSubmitted", saveToLs);
 
+// This event listener is listening for a click anywhere in tasks.
+//Then it calls either the delete item function or the completed task function depending on what is clicked. 
 tasks.addEventListener("click", function(event){
+    const id = parseInt(event.target.value);
     if(event.target.matches("button")) {
-        deleteItem(parseInt(event.target.value));
+        deleteItem(id);
+    };
 
-    }
+    if(event.target.matches("input[type = 'checkbox']")) {
+        completedTasks(id);
+
+    };
 });
 
 
-
+//This is calling the get tasks function that retrieves information from local storage
 getTasks(); 
+
 
