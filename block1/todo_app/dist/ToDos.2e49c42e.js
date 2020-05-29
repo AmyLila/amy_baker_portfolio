@@ -133,15 +133,13 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 // Variables
 var toDoForm = document.querySelector(".toDo");
 var tasks = document.querySelector(".todo_list");
-var toDoList = [];
-var completedList = [];
-var needToDo = [];
-var toDo = {}; // Function to collect user input, save it to the to do list array and add it to the html
+var bottomButtons = document.querySelector(".bottomButtons");
+var toDoList = []; //const toDo = {};
+// Function to collect user input, save it to the to do list array and add it to the html
 
 function submitTask(event) {
   // Stop default submit
-  event.preventDefault();
-  console.log("Submitted"); // Get task from user input
+  event.preventDefault(); // Get task from user input
   // Can write this using current target or getElementById
   //const taskName = event.currentTarget.task.value;
 
@@ -163,14 +161,8 @@ function submitTask(event) {
 
   toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
 } //End Submit task function
-//Function to split the to do list into two arrays, one for completed items and one for not completed items
+// Function to display tasks 
 
-
-completedList = toDoList.filter(function (toDo) {
-  return toDo.completed == true;
-});
-console.table(completedList);
-console.log(completedList); // Function to display all the tasks
 
 function displayTasks() {
   // loop through all items in the to do list array and make them into html list items
@@ -228,7 +220,7 @@ function completedTasks(id) {
   // this looks through the to do list array 
   //and finds the todo with an id that matches the one that was clicked
   var taskRef = toDoList.find(function (toDo) {
-    return toDo.id === id;
+    return toDo.id == id;
   }); //This changes completed from false to true when clicked
 
   taskRef.completed = !taskRef.completed;
@@ -264,9 +256,40 @@ tasks.addEventListener("click", function (event) {
   }
 
   ;
-}); //This is calling the get tasks function that retrieves information from local storage
+}); // bottomButtons.addEventListener("click", function(event){
+//     const id = event.target.value;
+//     if(event.target.matches("button")) {
+//         console.log(`button all`);
+//     };
+//     if(event.target.matches("input[type = 'checkbox']")) {
+//         completedTasks(id);
+//     };
+// });
+//This is calling the get tasks function that retrieves information from local storage
 
-getTasks();
+getTasks(); //Function to split the to do list into a new array for completed items
+
+function filterFinished() {
+  var toDoList1 = toDoList.filter(function (toDoSingle) {
+    return toDoSingle.completed == true;
+  });
+  console.log("Filter works", toDoList1); //Event that calls display tasks and save to local storage
+
+  toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
+}
+
+filterFinished();
+
+function filterNotFinished() {
+  var toDoList2 = toDoList.filter(function (toDoSingle) {
+    return toDoSingle.completed == false;
+  });
+  console.log("Filter2 works", toDoList2); //Event that calls display tasks and save to local storage
+
+  toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
+}
+
+filterNotFinished();
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
