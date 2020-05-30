@@ -134,7 +134,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 var toDoForm = document.querySelector(".toDo");
 var tasks = document.querySelector(".todo_list");
 var bottomButtons = document.querySelector(".bottomButtons");
-var toDoList = []; //const toDo = {};
+var toDoList = [];
+var finishedList = [];
+var unfinishedList = []; //const toDo = {};
 // Function to collect user input, save it to the to do list array and add it to the html
 
 function submitTask(event) {
@@ -164,9 +166,9 @@ function submitTask(event) {
 // Function to display tasks 
 
 
-function displayTasks() {
+function displayTasks(arrayName) {
   // loop through all items in the to do list array and make them into html list items
-  var listItems = toDoList.map(function (toDo) {
+  var listItems = arrayName.map(function (toDo) {
     return "<li class = \"todo_item\">\n        <input type = \"checkbox\" ".concat(toDo.completed && "checked", " value = \"").concat(toDo.id, "\">\n        <span class = \"todo_item_name\"> ").concat(toDo.content, " </span>\n        <button aria-label = \"Remove ").concat(toDo.content, "\" value = \"").concat(toDo.id, "\" >&times;</button> \n        </li>");
   }).join(""); // Add the list items to the html
 
@@ -209,7 +211,7 @@ function deleteItem(id) {
   toDoList = toDoList.filter(function (toDo) {
     return toDo.id !== id;
   });
-  console.log(toDoList); //Event that calls display tasks and save to local storage
+  console.log(toDoList, "deleted item"); //Event that calls display tasks and save to local storage
 
   toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
 } //End Delete Item function
@@ -238,7 +240,9 @@ console.log("It works global", toDoList); //Stuff for the main.js file
 //Here is the link: https://beginnerjavascript.com
 
 toDoForm.addEventListener("submit", submitTask);
-toDoForm.addEventListener("tasksSubmitted", displayTasks);
+toDoForm.addEventListener("tasksSubmitted", function () {
+  return displayTasks(toDoList);
+});
 toDoForm.addEventListener("tasksSubmitted", saveToLs); // This event listener is listening for a click anywhere in tasks.
 //here is the article where I found it:
 // https://gomakethings.com/checking-event-target-selectors-with-event-bubbling-in-vanilla-javascript/
@@ -263,21 +267,23 @@ tasks.addEventListener("click", function (event) {
 bottomButtons.addEventListener("click", function (event) {
   if (event.target.matches("#all")) {
     console.log("button all");
-    displayTasks();
+    displayTasks(toDoList);
   }
 
   ;
 
   if (event.target.matches("#active")) {
     console.log("button active");
-    filterFinished();
+    filterNotFinished();
+    displayTasks(unfinishedList);
   }
 
   ;
 
   if (event.target.matches("#completed")) {
     console.log("button completed");
-    filterNotFinished();
+    filterFinished();
+    displayTasks(finishedList);
   }
 
   ;
@@ -286,22 +292,18 @@ bottomButtons.addEventListener("click", function (event) {
 getTasks(); //Function to split the to do list into a new array for completed items
 
 function filterFinished() {
-  var finishedList = toDoList.filter(function (toDoSingle) {
+  finishedList = toDoList.filter(function (toDoSingle) {
     return toDoSingle.completed == true;
   });
-  console.log("Filter works", finishedList); //Event that calls display tasks and save to local storage
-
-  toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
+  console.log("Filter works", finishedList);
 } //Function to split the to do list into a new array for uncompleted items
 
 
 function filterNotFinished() {
-  var unfinishedList = toDoList.filter(function (toDoSingle) {
+  unfinishedList = toDoList.filter(function (toDoSingle) {
     return toDoSingle.completed == false;
   });
-  console.log("Filter2 works", unfinishedList); //Event that calls display tasks and save to local storage
-
-  toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
+  console.log("Filter2 works", unfinishedList);
 }
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];

@@ -3,6 +3,8 @@ const toDoForm = document.querySelector(`.toDo`);
 const tasks = document.querySelector(`.todo_list`);
 const bottomButtons = document.querySelector(`.bottomButtons`);
 let toDoList = [];
+let finishedList = [];
+let unfinishedList = [];
 //const toDo = {};
 
 // Function to collect user input, save it to the to do list array and add it to the html
@@ -38,9 +40,9 @@ function submitTask(event){
 
 
 // Function to display tasks 
-function displayTasks(){
+function displayTasks(arrayName){
     // loop through all items in the to do list array and make them into html list items
-    const listItems = toDoList.map(toDo => 
+    const listItems = arrayName.map(toDo => 
         `<li class = "todo_item">
         <input type = "checkbox" ${toDo.completed && "checked"} value = "${toDo.id}">
         <span class = "todo_item_name"> ${toDo.content} </span>
@@ -86,7 +88,7 @@ function getTasks(){
 function deleteItem(id){
     //This filters the array into checked and not checked and delete the checked ones
     toDoList = toDoList.filter(toDo => toDo.id !== id);
-    console.log(toDoList)
+    console.log(toDoList,"deleted item")
 
     //Event that calls display tasks and save to local storage
     toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
@@ -118,8 +120,9 @@ console.log(`It works global`,toDoList);
 //course to learn how to create custom listening events. 
 //Here is the link: https://beginnerjavascript.com
 toDoForm.addEventListener("submit", submitTask);
-toDoForm.addEventListener("tasksSubmitted", displayTasks);
+toDoForm.addEventListener("tasksSubmitted", () => displayTasks(toDoList));
 toDoForm.addEventListener("tasksSubmitted", saveToLs);
+
 
 // This event listener is listening for a click anywhere in tasks.
 //here is the article where I found it:
@@ -141,15 +144,18 @@ tasks.addEventListener("click", function(event){
 bottomButtons.addEventListener("click", function(event){
     if(event.target.matches("#all")) {
         console.log(`button all`);
-        displayTasks()
+        displayTasks(toDoList)
     };
     if(event.target.matches("#active")) {
         console.log(`button active`);
-        filterFinished()
+        filterNotFinished()
+        displayTasks(unfinishedList)
+
     };
     if(event.target.matches("#completed")) {
         console.log(`button completed`);
-        filterNotFinished()
+        filterFinished()
+        displayTasks(finishedList)
     };
 });
 
@@ -158,22 +164,17 @@ getTasks();
 
 //Function to split the to do list into a new array for completed items
 function filterFinished(){
-    const finishedList = toDoList.filter(toDoSingle => toDoSingle.completed == true);
+    finishedList = toDoList.filter(toDoSingle => toDoSingle.completed == true);
     console.log("Filter works", finishedList)
-
-    //Event that calls display tasks and save to local storage
-    toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
 
 }
 
 
 //Function to split the to do list into a new array for uncompleted items
 function filterNotFinished(){
-    const unfinishedList = toDoList.filter(toDoSingle => toDoSingle.completed == false);
+    unfinishedList = toDoList.filter(toDoSingle => toDoSingle.completed == false);
     console.log("Filter2 works", unfinishedList)
 
-    //Event that calls display tasks and save to local storage
-    toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
 
 }
 

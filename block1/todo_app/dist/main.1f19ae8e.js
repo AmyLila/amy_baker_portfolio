@@ -123,11 +123,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 // Complete a task
 // Remove a task
 // Filter tasks (complete/incomplete)
+// Webfonts
 WebFont.load({
   google: {
     families: ['Arvo', 'Open+Sans', 'Merriweather', 'Special+Elite']
   }
-});
+}); // Load dates
 
 function loadDate() {
   var dateObject = new Date();
