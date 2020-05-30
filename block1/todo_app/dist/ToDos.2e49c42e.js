@@ -240,6 +240,8 @@ console.log("It works global", toDoList); //Stuff for the main.js file
 toDoForm.addEventListener("submit", submitTask);
 toDoForm.addEventListener("tasksSubmitted", displayTasks);
 toDoForm.addEventListener("tasksSubmitted", saveToLs); // This event listener is listening for a click anywhere in tasks.
+//here is the article where I found it:
+// https://gomakethings.com/checking-event-target-selectors-with-event-bubbling-in-vanilla-javascript/
 //Then it calls either the delete item function or the completed task function depending on what is clicked. 
 
 tasks.addEventListener("click", function (event) {
@@ -256,40 +258,51 @@ tasks.addEventListener("click", function (event) {
   }
 
   ;
-}); // bottomButtons.addEventListener("click", function(event){
-//     const id = event.target.value;
-//     if(event.target.matches("button")) {
-//         console.log(`button all`);
-//     };
-//     if(event.target.matches("input[type = 'checkbox']")) {
-//         completedTasks(id);
-//     };
-// });
-//This is calling the get tasks function that retrieves information from local storage
+}); // This listens for any click in the bottom buttons div and then calls functions depending on what is clicked. 
+
+bottomButtons.addEventListener("click", function (event) {
+  if (event.target.matches("#all")) {
+    console.log("button all");
+    displayTasks();
+  }
+
+  ;
+
+  if (event.target.matches("#active")) {
+    console.log("button active");
+    filterFinished();
+  }
+
+  ;
+
+  if (event.target.matches("#completed")) {
+    console.log("button completed");
+    filterNotFinished();
+  }
+
+  ;
+}); //This is calling the get tasks function that retrieves information from local storage
 
 getTasks(); //Function to split the to do list into a new array for completed items
 
 function filterFinished() {
-  var toDoList1 = toDoList.filter(function (toDoSingle) {
+  var finishedList = toDoList.filter(function (toDoSingle) {
     return toDoSingle.completed == true;
   });
-  console.log("Filter works", toDoList1); //Event that calls display tasks and save to local storage
+  console.log("Filter works", finishedList); //Event that calls display tasks and save to local storage
 
   toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
-}
+} //Function to split the to do list into a new array for uncompleted items
 
-filterFinished();
 
 function filterNotFinished() {
-  var toDoList2 = toDoList.filter(function (toDoSingle) {
+  var unfinishedList = toDoList.filter(function (toDoSingle) {
     return toDoSingle.completed == false;
   });
-  console.log("Filter2 works", toDoList2); //Event that calls display tasks and save to local storage
+  console.log("Filter2 works", unfinishedList); //Event that calls display tasks and save to local storage
 
   toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
 }
-
-filterNotFinished();
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
