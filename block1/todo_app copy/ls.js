@@ -1,4 +1,4 @@
-//Stuff for the local storage file
+import {toDoList, toDoForm} from './todos.js'
 
 //I didn't know how to use local storage, 
 //so I used information from Wes Bos' beginner 
@@ -10,12 +10,10 @@
 function saveToLs(){
     // Convert our array object to JSON so local storage can read it and save it
     localStorage.setItem("toDoList", JSON.stringify(toDoList));
-    console.info(`Saving items to localstorage`);
 }
 
 //Get user input from local storage
 function getTasks(){
-    console.info(`restoring from localstorage`);
     const lsTasks = JSON.parse(localStorage.getItem("toDoList"));
     if (lsTasks.length >= 0){
         toDoList.push(...lsTasks);

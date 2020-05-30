@@ -1,11 +1,9 @@
-//import { saveToLs, getTasks } from './ls.js';
 // Variables
-const toDoForm = document.querySelector(`.toDo`);
-const tasks = document.querySelector(`.todo_list`);
-const bottomButtons = document.querySelector(`.bottomButtons`);
-let toDoList = [];
-let finishedList = [];
-let unfinishedList = [];
+export const tasks = document.querySelector(`.todo_list`);
+export const toDoForm = document.querySelector(`.toDo`);
+export let toDoList = [];
+export let finishedList = [];
+export let unfinishedList = [];
 
 // Function to collect user input, save it to the to do list array and add it to the html
 function submitTask(event){
@@ -16,8 +14,7 @@ function submitTask(event){
     // Can write this using current target or getElementById
     //const taskName = event.currentTarget.task.value;
     const taskName = document.getElementById(`task`).value
-    console.log(taskName)
-
+    
     //Save task information about the task to toDo
     const toDo = { 
         id : Date.now(), 
@@ -27,7 +24,6 @@ function submitTask(event){
 
     //Push toDo into toDoList array
     toDoList.push(toDo);
-    console.log(`There are ${toDoList.length} in my array`);
 
     //Clear form
     // Can write this using current target or getElementById
@@ -54,58 +50,44 @@ function displayTasks(arrayName){
 
 } //End Display Function
 
+// removes tasks from the list
+function deleteItem(id){
+    //This filters the array into checked and not checked and delete the checked ones
+    toDoList = toDoList.filter(toDo => toDo.id !== id);
 
-// console.log(`It works global`,toDoList);
+    //Event that calls display tasks and save to local storage
+    toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
 
-// //Stuff for the main.js file
+} //End Delete Item function
 
-// //Event Listeners
+// gathers and saves completed tasks
+function completedTasks(id){
+    // this looks through the to do list array 
+    //and finds the todo with an id that matches the one that was clicked
+    const taskRef = toDoList.find(toDo => toDo.id == id);
 
-// //I used information from Wes Bos' beginner JavaScript 
-// //course to learn how to create custom listening events. 
-// //Here is the link: https://beginnerjavascript.com
-// toDoForm.addEventListener("submit", submitTask);
-// toDoForm.addEventListener("tasksSubmitted", () => displayTasks(toDoList));
-// toDoForm.addEventListener("tasksSubmitted", saveToLs);
+    //This changes completed from false to true when clicked
+    taskRef.completed = !taskRef.completed;
+
+    //Event that calls display tasks and save to local storage
+    toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
+    
+}// end completed tasks
+
+//Function to split the to do list into a new array for completed items
+function filterFinished(){
+    finishedList = toDoList.filter(toDoSingle => toDoSingle.completed == true);
+}
 
 
-// This event listener is listening for a click anywhere in tasks.
-//here is the article where I found it:
-// https://gomakethings.com/checking-event-target-selectors-with-event-bubbling-in-vanilla-javascript/
-//Then it calls either the delete item function or the completed task function depending on what is clicked. 
-// tasks.addEventListener("click", function(event){
-//     const id = parseInt(event.target.value);
-//     if(event.target.matches("button")) {
-//         deleteItem(id);
-//     };
+//Function to split the to do list into a new array for uncompleted items
+function filterNotFinished(){
+    unfinishedList = toDoList.filter(toDoSingle => toDoSingle.completed == false);
 
-//     if(event.target.matches("input[type = 'checkbox']")) {
-//         completedTasks(id);
+}
 
-//     };
-// });
 
-// // This listens for any click in the bottom buttons div and then calls functions depending on what is clicked. 
-// bottomButtons.addEventListener("click", function(event){
-//     if(event.target.matches("#all")) {
-//         console.log(`button all`);
-//         displayTasks(toDoList)
-//     };
-//     if(event.target.matches("#active")) {
-//         console.log(`button active`);
-//         filterNotFinished()
-//         displayTasks(unfinishedList)
-
-//     };
-//     if(event.target.matches("#completed")) {
-//         console.log(`button completed`);
-//         filterFinished()
-//         displayTasks(finishedList)
-//     };
-// });
-
-// //This is calling the get tasks function that retrieves information from local storage
-// getTasks(); 
+export { submitTask,displayTasks, deleteItem, completedTasks, filterFinished, filterNotFinished};
 
 
 

@@ -117,22 +117,31 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"webfonts.js":[function(require,module,exports) {
-// Webfonts
-WebFont.load({
-  google: {
-    families: ['Arvo', 'Open+Sans', 'Merriweather', 'Special+Elite']
-  }
+})({"todos.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
 });
-},{}],"ToDos.js":[function(require,module,exports) {
-//import { saveToLs, getTasks } from './ls.js';
+exports.submitTask = submitTask;
+exports.displayTasks = displayTasks;
+exports.deleteItem = deleteItem;
+exports.completedTasks = completedTasks;
+exports.filterFinished = filterFinished;
+exports.filterNotFinished = filterNotFinished;
+exports.unfinishedList = exports.finishedList = exports.toDoList = exports.toDoForm = exports.tasks = void 0;
 // Variables
-var toDoForm = document.querySelector(".toDo");
 var tasks = document.querySelector(".todo_list");
-var bottomButtons = document.querySelector(".bottomButtons");
+exports.tasks = tasks;
+var toDoForm = document.querySelector(".toDo");
+exports.toDoForm = toDoForm;
 var toDoList = [];
+exports.toDoList = toDoList;
 var finishedList = [];
+exports.finishedList = finishedList;
 var unfinishedList = []; // Function to collect user input, save it to the to do list array and add it to the html
+
+exports.unfinishedList = unfinishedList;
 
 function submitTask(event) {
   // Stop default submit
@@ -140,8 +149,7 @@ function submitTask(event) {
   // Can write this using current target or getElementById
   //const taskName = event.currentTarget.task.value;
 
-  var taskName = document.getElementById("task").value;
-  console.log(taskName); //Save task information about the task to toDo
+  var taskName = document.getElementById("task").value; //Save task information about the task to toDo
 
   var toDo = {
     id: Date.now(),
@@ -149,8 +157,7 @@ function submitTask(event) {
     completed: false
   }; //Push toDo into toDoList array
 
-  toDoList.push(toDo);
-  console.log("There are ".concat(toDoList.length, " in my array")); //Clear form
+  toDoList.push(toDo); //Clear form
   // Can write this using current target or getElementById
   //event.currentTarget.task.value = ``;
 
@@ -169,113 +176,14 @@ function displayTasks(arrayName) {
 
   tasks.innerHTML = listItems;
 } //End Display Function
-// console.log(`It works global`,toDoList);
-// //Stuff for the main.js file
-// //Event Listeners
-// //I used information from Wes Bos' beginner JavaScript 
-// //course to learn how to create custom listening events. 
-// //Here is the link: https://beginnerjavascript.com
-// toDoForm.addEventListener("submit", submitTask);
-// toDoForm.addEventListener("tasksSubmitted", () => displayTasks(toDoList));
-// toDoForm.addEventListener("tasksSubmitted", saveToLs);
-// This event listener is listening for a click anywhere in tasks.
-//here is the article where I found it:
-// https://gomakethings.com/checking-event-target-selectors-with-event-bubbling-in-vanilla-javascript/
-//Then it calls either the delete item function or the completed task function depending on what is clicked. 
-// tasks.addEventListener("click", function(event){
-//     const id = parseInt(event.target.value);
-//     if(event.target.matches("button")) {
-//         deleteItem(id);
-//     };
-//     if(event.target.matches("input[type = 'checkbox']")) {
-//         completedTasks(id);
-//     };
-// });
-// // This listens for any click in the bottom buttons div and then calls functions depending on what is clicked. 
-// bottomButtons.addEventListener("click", function(event){
-//     if(event.target.matches("#all")) {
-//         console.log(`button all`);
-//         displayTasks(toDoList)
-//     };
-//     if(event.target.matches("#active")) {
-//         console.log(`button active`);
-//         filterNotFinished()
-//         displayTasks(unfinishedList)
-//     };
-//     if(event.target.matches("#completed")) {
-//         console.log(`button completed`);
-//         filterFinished()
-//         displayTasks(finishedList)
-//     };
-// });
-// //This is calling the get tasks function that retrieves information from local storage
-// getTasks();
-},{}],"ls.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.saveToLs = saveToLs;
-exports.getTasks = getTasks;
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-//Stuff for the local storage file
-//I didn't know how to use local storage, 
-//so I used information from Wes Bos' beginner 
-//JavaScript class. There is a walkthrough in the 
-//class that explains how to use it. 
-//Here is the link: https://beginnerjavascript.com
-// Save user input to local storage
-function saveToLs() {
-  // Convert our array object to JSON so local storage can read it and save it
-  localStorage.setItem("toDoList", JSON.stringify(toDoList));
-  console.info("Saving items to localstorage");
-} //Get user input from local storage
-
-
-function getTasks() {
-  console.info("restoring from localstorage");
-  var lsTasks = JSON.parse(localStorage.getItem("toDoList"));
-
-  if (lsTasks.length >= 0) {
-    var _toDoList;
-
-    (_toDoList = toDoList).push.apply(_toDoList, _toConsumableArray(lsTasks));
-
-    toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
-  }
-} //end ls file
-},{}],"utilities.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.deleteItem = deleteItem;
-exports.completedTasks = completedTasks;
-exports.filterFinished = filterFinished;
-exports.filterNotFinished = filterNotFinished;
-
-//Utilities file
 // removes tasks from the list
+
+
 function deleteItem(id) {
   //This filters the array into checked and not checked and delete the checked ones
-  toDoList = toDoList.filter(function (toDo) {
+  exports.toDoList = toDoList = toDoList.filter(function (toDo) {
     return toDo.id !== id;
-  });
-  console.log(toDoList, "deleted item"); //Event that calls display tasks and save to local storage
+  }); //Event that calls display tasks and save to local storage
 
   toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
 } //End Delete Item function
@@ -289,8 +197,7 @@ function completedTasks(id) {
     return toDo.id == id;
   }); //This changes completed from false to true when clicked
 
-  taskRef.completed = !taskRef.completed;
-  console.log("It works", taskRef); //Event that calls display tasks and save to local storage
+  taskRef.completed = !taskRef.completed; //Event that calls display tasks and save to local storage
 
   toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
 } // end completed tasks
@@ -298,27 +205,75 @@ function completedTasks(id) {
 
 
 function filterFinished() {
-  finishedList = toDoList.filter(function (toDoSingle) {
+  exports.finishedList = finishedList = toDoList.filter(function (toDoSingle) {
     return toDoSingle.completed == true;
   });
-  console.log("Filter works", finishedList);
 } //Function to split the to do list into a new array for uncompleted items
 
 
 function filterNotFinished() {
-  unfinishedList = toDoList.filter(function (toDoSingle) {
+  exports.unfinishedList = unfinishedList = toDoList.filter(function (toDoSingle) {
     return toDoSingle.completed == false;
   });
-  console.log("Filter2 works", unfinishedList);
-} //end utilities
+}
+},{}],"ls.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.saveToLs = saveToLs;
+exports.getTasks = getTasks;
+
+var _todos = require("./todos.js");
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+//I didn't know how to use local storage, 
+//so I used information from Wes Bos' beginner 
+//JavaScript class. There is a walkthrough in the 
+//class that explains how to use it. 
+//Here is the link: https://beginnerjavascript.com
+// Save user input to local storage
+function saveToLs() {
+  // Convert our array object to JSON so local storage can read it and save it
+  localStorage.setItem("toDoList", JSON.stringify(_todos.toDoList));
+} //Get user input from local storage
+
+
+function getTasks() {
+  var lsTasks = JSON.parse(localStorage.getItem("toDoList"));
+
+  if (lsTasks.length >= 0) {
+    _todos.toDoList.push.apply(_todos.toDoList, _toConsumableArray(lsTasks));
+
+    _todos.toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
+  }
+} //end ls file
+},{"./todos.js":"todos.js"}],"utilities.js":[function(require,module,exports) {
+//Utilities file
+// Webfonts
+WebFont.load({
+  google: {
+    families: ['Arvo', 'Open+Sans', 'Merriweather', 'Special+Elite']
+  }
+}); //end utilities
 },{}],"main.js":[function(require,module,exports) {
 "use strict";
 
-var fonts = _interopRequireWildcard(require("./webfonts.js"));
+var _todos = require("./todos.js");
 
-var toDos = _interopRequireWildcard(require("./ToDos.js"));
-
-var ls = _interopRequireWildcard(require("./ls.js"));
+var _ls = require("./ls.js");
 
 var util = _interopRequireWildcard(require("./utilities.js"));
 
@@ -326,64 +281,70 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-//import {deleteItem, completedTasks,filterFinished, filterNotFinished} from './utilities';
-//Stuff for the main.js file
-//Event Listeners
+// Imports
+//import * as fonts from './webfonts.js';
+//Variables
+var bottomButtons = document.querySelector(".bottomButtons"); //Event Listeners
 //I used information from Wes Bos' beginner JavaScript 
 //course to learn how to create custom listening events. 
 //Here is the link: https://beginnerjavascript.com
-toDoForm.addEventListener("submit", submitTask);
-toDoForm.addEventListener("tasksSubmitted", function () {
-  return displayTasks(toDoList);
+
+_todos.toDoForm.addEventListener("submit", _todos.submitTask);
+
+_todos.toDoForm.addEventListener("tasksSubmitted", function () {
+  return (0, _todos.displayTasks)(_todos.toDoList);
 });
-toDoForm.addEventListener("tasksSubmitted", ls.saveToLs); // This event listener is listening for a click anywhere in tasks.
+
+_todos.toDoForm.addEventListener("tasksSubmitted", _ls.saveToLs); // This event listener is listening for a click anywhere in tasks.
 //here is the article where I found it:
 // https://gomakethings.com/checking-event-target-selectors-with-event-bubbling-in-vanilla-javascript/
 //Then it calls either the delete item function or the completed task function depending on what is clicked. 
 
-tasks.addEventListener("click", function (event) {
+
+_todos.tasks.addEventListener("click", function (event) {
   var id = parseInt(event.target.value);
 
   if (event.target.matches("button")) {
-    deleteItem(id);
+    (0, _todos.deleteItem)(id);
   }
 
   ;
 
   if (event.target.matches("input[type = 'checkbox']")) {
-    completedTasks(id);
+    (0, _todos.completedTasks)(id);
   }
 
   ;
 }); // This listens for any click in the bottom buttons div and then calls functions depending on what is clicked. 
 
+
 bottomButtons.addEventListener("click", function (event) {
   if (event.target.matches("#all")) {
     console.log("button all");
-    displayTasks(toDoList);
+    (0, _todos.displayTasks)(_todos.toDoList);
   }
 
   ;
 
   if (event.target.matches("#active")) {
     console.log("button active");
-    filterNotFinished();
-    displayTasks(unfinishedList);
+    (0, _todos.filterNotFinished)();
+    (0, _todos.displayTasks)(_todos.unfinishedList);
   }
 
   ;
 
   if (event.target.matches("#completed")) {
     console.log("button completed");
-    filterFinished();
-    displayTasks(finishedList);
+    (0, _todos.filterFinished)();
+    (0, _todos.displayTasks)(_todos.finishedList);
   }
 
   ;
 }); //This is calling the get tasks function that retrieves information from local storage
 
-(0, ls.getTasks)();
-},{"./webfonts.js":"webfonts.js","./ToDos.js":"ToDos.js","./ls.js":"ls.js","./utilities.js":"utilities.js"}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+(0, _ls.getTasks)();
+},{"./todos.js":"todos.js","./ls.js":"ls.js","./utilities.js":"utilities.js"}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;

@@ -1,17 +1,13 @@
-
-
-
-import * as fonts from './webfonts.js';
-import * as toDos from './ToDos.js';
+// Imports
+//import * as fonts from './webfonts.js';
+import { toDoList, toDoForm, tasks, unfinishedList, finishedList, submitTask,displayTasks, deleteItem, completedTasks, filterFinished, filterNotFinished} from './todos.js';
 import { saveToLs, getTasks } from './ls.js';
-//import {deleteItem, completedTasks,filterFinished, filterNotFinished} from './utilities';
-import * as ls from './ls.js';
 import * as util from './utilities.js';
 
-//Stuff for the main.js file
+//Variables
+const bottomButtons = document.querySelector(`.bottomButtons`);
 
 //Event Listeners
-
 //I used information from Wes Bos' beginner JavaScript 
 //course to learn how to create custom listening events. 
 //Here is the link: https://beginnerjavascript.com
