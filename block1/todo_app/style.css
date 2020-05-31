@@ -76,7 +76,7 @@ body {
 h1,
 h2 {
   font-family: "Merriweather", cursive;
-  color: #DFEBF2;
+  color: #7fffd4;
 }
 
 h1 {
@@ -106,7 +106,7 @@ p {
 }
 
 a {
-  color: #26211F;
+  color: #3a435e;
   text-decoration: none;
   -webkit-transition: 0.5s;
   -moz-transition: 0.5s;
@@ -156,24 +156,62 @@ footer {
 
 /* -------------------------------- 
 
-Header
+buttons
 
 -------------------------------- */
-header section {
-  background-color: #9BB1BF;
+.bottomButtons {
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+#task, #submit, #all, #active, #completed {
+  margin: 0 0.5rem;
   padding: 1rem;
+  border-radius: 30px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #3a435e;
+  background-color: #fff;
+  border: none;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
 }
-header img {
-  float: left;
-  width: 40%;
-  clip-path: circle();
-  -webkit-clip-path: circle();
-  margin: 2%;
-  shape-outside: circle();
+
+#submit:hover, #task:hover, #all:hover, #active:hover, #completed:hover {
+  background-color: #7fffd4;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  transform: translateY(-7px);
 }
-header .pic-wraper {
-  filter: drop-shadow(-3px 20px 15px rgba(0, 0, 0, 0.5));
-  -webkit-filter: drop-shadow(-3px 20px 15px rgba(0, 0, 0, 0.5));
+
+input.checkbox {
+  margin: 0;
+  border-radius: 30px;
+  padding: 0.5rem;
+  border: none;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+input.checkbox label {
+  cursor: pointer;
+  background: linear-gradient(top, #222 0%, #45484d 100%);
+  border-radius: 50px;
+}
+input.checkbox input[type=checkbox] {
+  visibility: hidden;
+}
+input.checkbox input[type=checkbox]:checked + label:after {
+  opacity: 1;
+}
+
+.fa-trash {
+  color: pink;
+  margin: 0.5rem;
 }
 
 /* -------------------------------- 
@@ -181,9 +219,9 @@ header .pic-wraper {
 Main Styling
 
 -------------------------------- */
-.container {
+.todo_item {
   display: flex;
-  flex-flow: row wrap;
+  justify-content: space-between;
 }
 
 /* -------------------------------- 
@@ -200,34 +238,6 @@ footer {
 .toDo {
   display: flex;
   justify-content: space-between;
-}
-
-#task, #submit {
-  margin: 0 0.5rem;
-  padding: 1rem;
-  border-radius: 20px;
-  text-transform: uppercase;
-  letter-spacing: 2.5px;
-  font-weight: 500;
-  color: #26211F;
-  background-color: #fff;
-  border: none;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease 0s;
-  cursor: pointer;
-  outline: none;
-}
-
-#submit:hover {
-  background-color: #2EE59D;
-  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
-  color: #fff;
-  transform: translateY(-7px);
-}
-
-footer p {
-  font-size: 1rem;
-  color: #26211F;
 }
 
 /*# sourceMappingURL=style.css.map */

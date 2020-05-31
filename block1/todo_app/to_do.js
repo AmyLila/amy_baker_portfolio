@@ -40,9 +40,9 @@ function displayTasks(arrayName){
     // loop through all items in the to do list array and make them into html list items
     const listItems = arrayName.map(toDo => 
         `<li class = "todo_item">
-        <input type = "checkbox" ${toDo.completed && "checked"} value = "${toDo.id}">
+        <input type = "checkbox" ${toDo.completed && "checked"} value = "${toDo.id}" class = "checkbox">
         <span class = "todo_item_name"> ${toDo.content} </span>
-        <button aria-label = "Remove ${toDo.content}" value = "${toDo.id}" >&times;</button> 
+        <button aria-label = "Remove ${toDo.content}" value = "${toDo.id}" ><i class="fas fa-trash"></i></button> 
         </li>`).join(``);
 
     // Add the list items to the html

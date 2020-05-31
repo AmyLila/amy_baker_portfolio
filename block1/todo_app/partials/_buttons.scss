@@ -1,0 +1,63 @@
+
+/* -------------------------------- 
+
+buttons
+
+-------------------------------- */
+.bottomButtons{
+  padding: 0 1rem;
+  display:flex;
+  justify-content: space-between;
+}
+// large button styling
+#task, #submit, #all, #active, #completed{
+  margin: 0 .5rem;
+  padding: 1rem;
+  border-radius: 30px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: $color-darkest;
+  background-color: #fff;
+  border: none;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+
+}
+#submit:hover, #task:hover, #all:hover, #active:hover, #completed:hover {
+  background-color: $color-accent;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  transform: translateY(-7px);
+}
+//small button styling
+input.checkbox{
+  margin:0;
+  border-radius: 30px;
+  padding:.5rem;
+  border: none;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  label {
+    cursor: pointer;
+    background: linear-gradient(top, #222 0%, #45484d 100%);
+    border-radius: 50px;
+
+  }
+  input[type=checkbox] {
+    visibility: hidden;
+    &:checked + label:after {
+      opacity: 1;
+    }
+  }    
+}
+
+// delete buton
+.fa-trash{
+  color:pink;
+  margin:.5rem;
+}
+

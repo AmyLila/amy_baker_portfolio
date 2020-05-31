@@ -171,7 +171,7 @@ function submitTask(event) {
 function displayTasks(arrayName) {
   // loop through all items in the to do list array and make them into html list items
   var listItems = arrayName.map(function (toDo) {
-    return "<li class = \"todo_item\">\n        <input type = \"checkbox\" ".concat(toDo.completed && "checked", " value = \"").concat(toDo.id, "\">\n        <span class = \"todo_item_name\"> ").concat(toDo.content, " </span>\n        <button aria-label = \"Remove ").concat(toDo.content, "\" value = \"").concat(toDo.id, "\" >&times;</button> \n        </li>");
+    return "<li class = \"todo_item\">\n        <input type = \"checkbox\" ".concat(toDo.completed && "checked", " value = \"").concat(toDo.id, "\" class = \"checkbox\">\n        <span class = \"todo_item_name\"> ").concat(toDo.content, " </span>\n        <button aria-label = \"Remove ").concat(toDo.content, "\" value = \"").concat(toDo.id, "\" ><i class=\"fas fa-trash\"></i></button> \n        </li>");
   }).join(""); // Add the list items to the html
 
   tasks.innerHTML = listItems;
