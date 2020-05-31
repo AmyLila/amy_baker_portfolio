@@ -324,7 +324,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.saveToLs = saveToLs;
 exports.getTasks = getTasks;
 
-var _todo = require("./todo.js");
+var _to_do = require("./to_do.js");
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -346,7 +346,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 // Save user input to local storage
 function saveToLs() {
   // Convert our array object to JSON so local storage can read it and save it
-  localStorage.setItem("toDoList", JSON.stringify(_todo.toDoList));
+  localStorage.setItem("toDoList", JSON.stringify(_to_do.toDoList));
 } //Get user input from local storage
 
 
@@ -354,12 +354,12 @@ function getTasks() {
   var lsTasks = JSON.parse(localStorage.getItem("toDoList"));
 
   if (lsTasks.length >= 0) {
-    _todo.toDoList.push.apply(_todo.toDoList, _toConsumableArray(lsTasks));
+    _to_do.toDoList.push.apply(_to_do.toDoList, _toConsumableArray(lsTasks));
 
-    _todo.toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
+    _to_do.toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
   }
 } //end ls file
-},{"./todo.js":"todo.js"}],"utilities.js":[function(require,module,exports) {
+},{"./to_do.js":"to_do.js"}],"utilities.js":[function(require,module,exports) {
 //Utilities file
 // Webfonts
 WebFont.load({
