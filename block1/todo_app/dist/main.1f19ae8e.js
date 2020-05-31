@@ -117,7 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"todos.js":[function(require,module,exports) {
+})({"todo.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -225,7 +225,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.saveToLs = saveToLs;
 exports.getTasks = getTasks;
 
-var _todos = require("./todos.js");
+var _todo = require("./todo.js");
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -247,7 +247,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 // Save user input to local storage
 function saveToLs() {
   // Convert our array object to JSON so local storage can read it and save it
-  localStorage.setItem("toDoList", JSON.stringify(_todos.toDoList));
+  localStorage.setItem("toDoList", JSON.stringify(_todo.toDoList));
 } //Get user input from local storage
 
 
@@ -255,12 +255,12 @@ function getTasks() {
   var lsTasks = JSON.parse(localStorage.getItem("toDoList"));
 
   if (lsTasks.length >= 0) {
-    _todos.toDoList.push.apply(_todos.toDoList, _toConsumableArray(lsTasks));
+    _todo.toDoList.push.apply(_todo.toDoList, _toConsumableArray(lsTasks));
 
-    _todos.toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
+    _todo.toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
   }
 } //end ls file
-},{"./todos.js":"todos.js"}],"utilities.js":[function(require,module,exports) {
+},{"./todo.js":"todo.js"}],"utilities.js":[function(require,module,exports) {
 //Utilities file
 // Webfonts
 WebFont.load({
@@ -271,7 +271,7 @@ WebFont.load({
 },{}],"main.js":[function(require,module,exports) {
 "use strict";
 
-var _todos = require("./todos.js");
+var _todo = require("./todo.js");
 
 var _ls = require("./ls.js");
 
@@ -289,29 +289,29 @@ var bottomButtons = document.querySelector(".bottomButtons"); //Event Listeners
 //course to learn how to create custom listening events. 
 //Here is the link: https://beginnerjavascript.com
 
-_todos.toDoForm.addEventListener("submit", _todos.submitTask);
+_todo.toDoForm.addEventListener("submit", _todo.submitTask);
 
-_todos.toDoForm.addEventListener("tasksSubmitted", function () {
-  return (0, _todos.displayTasks)(_todos.toDoList);
+_todo.toDoForm.addEventListener("tasksSubmitted", function () {
+  return (0, _todo.displayTasks)(_todo.toDoList);
 });
 
-_todos.toDoForm.addEventListener("tasksSubmitted", _ls.saveToLs); // This event listener is listening for a click anywhere in tasks.
+_todo.toDoForm.addEventListener("tasksSubmitted", _ls.saveToLs); // This event listener is listening for a click anywhere in tasks.
 //here is the article where I found it:
 // https://gomakethings.com/checking-event-target-selectors-with-event-bubbling-in-vanilla-javascript/
 //Then it calls either the delete item function or the completed task function depending on what is clicked. 
 
 
-_todos.tasks.addEventListener("click", function (event) {
+_todo.tasks.addEventListener("click", function (event) {
   var id = parseInt(event.target.value);
 
   if (event.target.matches("button")) {
-    (0, _todos.deleteItem)(id);
+    (0, _todo.deleteItem)(id);
   }
 
   ;
 
   if (event.target.matches("input[type = 'checkbox']")) {
-    (0, _todos.completedTasks)(id);
+    (0, _todo.completedTasks)(id);
   }
 
   ;
@@ -321,30 +321,30 @@ _todos.tasks.addEventListener("click", function (event) {
 bottomButtons.addEventListener("click", function (event) {
   if (event.target.matches("#all")) {
     console.log("button all");
-    (0, _todos.displayTasks)(_todos.toDoList);
+    (0, _todo.displayTasks)(_todo.toDoList);
   }
 
   ;
 
   if (event.target.matches("#active")) {
     console.log("button active");
-    (0, _todos.filterNotFinished)();
-    (0, _todos.displayTasks)(_todos.unfinishedList);
+    (0, _todo.filterNotFinished)();
+    (0, _todo.displayTasks)(_todo.unfinishedList);
   }
 
   ;
 
   if (event.target.matches("#completed")) {
     console.log("button completed");
-    (0, _todos.filterFinished)();
-    (0, _todos.displayTasks)(_todos.finishedList);
+    (0, _todo.filterFinished)();
+    (0, _todo.displayTasks)(_todo.finishedList);
   }
 
   ;
 }); //This is calling the get tasks function that retrieves information from local storage
 
 (0, _ls.getTasks)();
-},{"./todos.js":"todos.js","./ls.js":"ls.js","./utilities.js":"utilities.js"}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./todo.js":"todo.js","./ls.js":"ls.js","./utilities.js":"utilities.js"}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
