@@ -117,7 +117,106 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"todo.js":[function(require,module,exports) {
+})({"to_do.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.submitTask = submitTask;
+exports.displayTasks = displayTasks;
+exports.deleteItem = deleteItem;
+exports.completedTasks = completedTasks;
+exports.filterFinished = filterFinished;
+exports.filterNotFinished = filterNotFinished;
+exports.unfinishedList = exports.finishedList = exports.toDoList = exports.toDoForm = exports.tasks = void 0;
+// Variables
+var tasks = document.querySelector(".todo_list");
+exports.tasks = tasks;
+var toDoForm = document.querySelector(".toDo");
+exports.toDoForm = toDoForm;
+var toDoList = [];
+exports.toDoList = toDoList;
+var finishedList = [];
+exports.finishedList = finishedList;
+var unfinishedList = []; // Function to collect user input, save it to the to do list array and add it to the html
+
+exports.unfinishedList = unfinishedList;
+
+function submitTask(event) {
+  // Stop default submit
+  event.preventDefault(); // Get task from user input
+  // Can write this using current target or getElementById
+  //const taskName = event.currentTarget.task.value;
+
+  var taskName = document.getElementById("task").value; //Save task information about the task to toDo
+
+  var toDo = {
+    id: Date.now(),
+    content: taskName,
+    completed: false
+  }; //Push toDo into toDoList array
+
+  toDoList.push(toDo); //Clear form
+  // Can write this using current target or getElementById
+  //event.currentTarget.task.value = ``;
+
+  document.getElementById("task").value = ""; //Create a custom task sumbitted event 
+
+  toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
+} //End Submit task function
+// Function to display tasks 
+
+
+function displayTasks(arrayName) {
+  // loop through all items in the to do list array and make them into html list items
+  var listItems = arrayName.map(function (toDo) {
+    return "<li class = \"todo_item\">\n        <input type = \"checkbox\" ".concat(toDo.completed && "checked", " value = \"").concat(toDo.id, "\">\n        <span class = \"todo_item_name\"> ").concat(toDo.content, " </span>\n        <button aria-label = \"Remove ").concat(toDo.content, "\" value = \"").concat(toDo.id, "\" >&times;</button> \n        </li>");
+  }).join(""); // Add the list items to the html
+
+  tasks.innerHTML = listItems;
+} //End Display Function
+// removes tasks from the list
+
+
+function deleteItem(id) {
+  //This filters the array into checked and not checked and delete the checked ones
+  exports.toDoList = toDoList = toDoList.filter(function (toDo) {
+    return toDo.id !== id;
+  }); //Event that calls display tasks and save to local storage
+
+  toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
+} //End Delete Item function
+// gathers and saves completed tasks
+
+
+function completedTasks(id) {
+  // this looks through the to do list array 
+  //and finds the todo with an id that matches the one that was clicked
+  var taskRef = toDoList.find(function (toDo) {
+    return toDo.id == id;
+  }); //This changes completed from false to true when clicked
+
+  taskRef.completed = !taskRef.completed; //Event that calls display tasks and save to local storage
+
+  toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
+} // end completed tasks
+//Function to split the to do list into a new array for completed items
+
+
+function filterFinished() {
+  exports.finishedList = finishedList = toDoList.filter(function (toDoSingle) {
+    return toDoSingle.completed == true;
+  });
+} //Function to split the to do list into a new array for uncompleted items
+
+
+function filterNotFinished() {
+  exports.unfinishedList = unfinishedList = toDoList.filter(function (toDoSingle) {
+    return toDoSingle.completed == false;
+  });
+}
+},{}],"todo.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -271,7 +370,7 @@ WebFont.load({
 },{}],"main.js":[function(require,module,exports) {
 "use strict";
 
-var _todo = require("./todo.js");
+var _to_do = require("./to_do.js");
 
 var _ls = require("./ls.js");
 
@@ -289,29 +388,29 @@ var bottomButtons = document.querySelector(".bottomButtons"); //Event Listeners
 //course to learn how to create custom listening events. 
 //Here is the link: https://beginnerjavascript.com
 
-_todo.toDoForm.addEventListener("submit", _todo.submitTask);
+_to_do.toDoForm.addEventListener("submit", _to_do.submitTask);
 
-_todo.toDoForm.addEventListener("tasksSubmitted", function () {
-  return (0, _todo.displayTasks)(_todo.toDoList);
+_to_do.toDoForm.addEventListener("tasksSubmitted", function () {
+  return (0, _to_do.displayTasks)(_to_do.toDoList);
 });
 
-_todo.toDoForm.addEventListener("tasksSubmitted", _ls.saveToLs); // This event listener is listening for a click anywhere in tasks.
+_to_do.toDoForm.addEventListener("tasksSubmitted", _ls.saveToLs); // This event listener is listening for a click anywhere in tasks.
 //here is the article where I found it:
 // https://gomakethings.com/checking-event-target-selectors-with-event-bubbling-in-vanilla-javascript/
 //Then it calls either the delete item function or the completed task function depending on what is clicked. 
 
 
-_todo.tasks.addEventListener("click", function (event) {
+_to_do.tasks.addEventListener("click", function (event) {
   var id = parseInt(event.target.value);
 
   if (event.target.matches("button")) {
-    (0, _todo.deleteItem)(id);
+    (0, _to_do.deleteItem)(id);
   }
 
   ;
 
   if (event.target.matches("input[type = 'checkbox']")) {
-    (0, _todo.completedTasks)(id);
+    (0, _to_do.completedTasks)(id);
   }
 
   ;
@@ -321,30 +420,30 @@ _todo.tasks.addEventListener("click", function (event) {
 bottomButtons.addEventListener("click", function (event) {
   if (event.target.matches("#all")) {
     console.log("button all");
-    (0, _todo.displayTasks)(_todo.toDoList);
+    (0, _to_do.displayTasks)(_to_do.toDoList);
   }
 
   ;
 
   if (event.target.matches("#active")) {
     console.log("button active");
-    (0, _todo.filterNotFinished)();
-    (0, _todo.displayTasks)(_todo.unfinishedList);
+    (0, _to_do.filterNotFinished)();
+    (0, _to_do.displayTasks)(_to_do.unfinishedList);
   }
 
   ;
 
   if (event.target.matches("#completed")) {
     console.log("button completed");
-    (0, _todo.filterFinished)();
-    (0, _todo.displayTasks)(_todo.finishedList);
+    (0, _to_do.filterFinished)();
+    (0, _to_do.displayTasks)(_to_do.finishedList);
   }
 
   ;
 }); //This is calling the get tasks function that retrieves information from local storage
 
 (0, _ls.getTasks)();
-},{"./todo.js":"todo.js","./ls.js":"ls.js","./utilities.js":"utilities.js"}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./to_do.js":"to_do.js","./ls.js":"ls.js","./utilities.js":"utilities.js"}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
