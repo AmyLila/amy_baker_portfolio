@@ -171,7 +171,7 @@ function submitTask(event) {
 function displayTasks(arrayName) {
   // loop through all items in the to do list array and make them into html list items
   var listItems = arrayName.map(function (toDo) {
-    return "<li class = \"todo_item\">\n        <input type = \"checkbox\" ".concat(toDo.completed && "checked", " value = \"").concat(toDo.id, "\" class = \"checkbox\">\n        <span class = \"todo_item_name\"> ").concat(toDo.content, " </span>\n        <button aria-label = \"Remove ").concat(toDo.content, "\" value = \"").concat(toDo.id, "\" ><i class=\"fas fa-trash\"></i></button> \n        </li>");
+    return "<li class = \"todo_item\">\n        <input type = \"checkbox\" ".concat(toDo.completed && "checked", " value = \"").concat(toDo.id, "\" >\n        <span class = \"todo_item_name\"> <p>").concat(toDo.content, " </p></span>\n        <button aria-label = \"Remove ").concat(toDo.content, "\" value = \"").concat(toDo.id, "\" class=\"fas fa-trash\"></button> \n        </li>");
   }).join(""); // Add the list items to the html
 
   tasks.innerHTML = listItems;
@@ -200,6 +200,7 @@ function completedTasks(id) {
   taskRef.completed = !taskRef.completed; //Event that calls display tasks and save to local storage
 
   toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
+  console.log("CHeckbox clicked");
 } // end completed tasks
 //Function to split the to do list into a new array for completed items
 
@@ -265,7 +266,7 @@ function getTasks() {
 // Webfonts
 WebFont.load({
   google: {
-    families: ['Arvo', 'Open+Sans', 'Merriweather', 'Special+Elite']
+    families: ['Source Sans Pro', 'Abril Fatface']
   }
 }); //end utilities
 },{}],"main.js":[function(require,module,exports) {
@@ -319,14 +320,12 @@ _to_do.tasks.addEventListener("click", function (event) {
 
 bottomButtons.addEventListener("click", function (event) {
   if (event.target.matches("#all")) {
-    console.log("button all");
     (0, _to_do.displayTasks)(_to_do.toDoList);
   }
 
   ;
 
   if (event.target.matches("#active")) {
-    console.log("button active");
     (0, _to_do.filterNotFinished)();
     (0, _to_do.displayTasks)(_to_do.unfinishedList);
   }
@@ -334,7 +333,6 @@ bottomButtons.addEventListener("click", function (event) {
   ;
 
   if (event.target.matches("#completed")) {
-    console.log("button completed");
     (0, _to_do.filterFinished)();
     (0, _to_do.displayTasks)(_to_do.finishedList);
   }

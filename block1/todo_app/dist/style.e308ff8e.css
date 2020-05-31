@@ -70,51 +70,28 @@ xTypography
 
 -------------------------------- */
 body {
-  font-family: "Open+Sans", sans-serif;
-}
-
-h1,
-h2 {
-  font-family: "Merriweather", cursive;
-  color: #7fffd4;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 h1 {
+  font-family: "Abril Fatface", cursive;
+  color: #FBFBF2;
+  letter-spacing: 2.5px;
   font-size: 3rem;
   font-weight: 300;
   line-height: 1.2;
   padding: 1rem;
+  text-align: center;
 }
 
-h2 {
-  font-weight: 300;
-  font-size: 2rem;
-  padding: 0 1rem;
-}
-
-h3 {
-  font-family: "Merriweather", cursive;
-  font-size: 1.5rem;
-  font-weight: 300;
-  color: #9BB1BF;
-  padding: 1rem;
+input {
+  text-align: center;
 }
 
 p {
-  color: #9BB1BF;
-  padding-top: 0.2rem;
-}
-
-a {
   color: #3a435e;
-  text-decoration: none;
-  -webkit-transition: 0.5s;
-  -moz-transition: 0.5s;
-  transition: 0.5s;
-}
-a:hover {
-  font-size: 1.2em;
-  color: #9BB1BF;
+  font-size: 1.1rem;
+  text-transform: capitalize;
 }
 
 /* -------------------------------- 
@@ -160,6 +137,7 @@ buttons
 
 -------------------------------- */
 .bottomButtons {
+  margin: 2rem 0 0.5rem 0;
   padding: 0 1rem;
   display: flex;
   justify-content: space-between;
@@ -170,8 +148,7 @@ buttons
   padding: 1rem;
   border-radius: 30px;
   text-transform: uppercase;
-  letter-spacing: 2.5px;
-  font-weight: 500;
+  letter-spacing: 2.1px;
   color: #3a435e;
   background-color: #fff;
   border: none;
@@ -187,31 +164,14 @@ buttons
   transform: translateY(-7px);
 }
 
-input.checkbox {
-  margin: 0;
-  border-radius: 30px;
-  padding: 0.5rem;
-  border: none;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease 0s;
-  cursor: pointer;
-  outline: none;
-}
-input.checkbox label {
-  cursor: pointer;
-  background: linear-gradient(top, #222 0%, #45484d 100%);
-  border-radius: 50px;
-}
-input.checkbox input[type=checkbox] {
-  visibility: hidden;
-}
-input.checkbox input[type=checkbox]:checked + label:after {
-  opacity: 1;
-}
-
 .fa-trash {
-  color: pink;
+  color: #FBFBF2;
+  font-size: 0.9rem;
   margin: 0.5rem;
+  padding: 0.5rem;
+  background-color: #3a435e;
+  border: none;
+  border-radius: 30px;
 }
 
 /* -------------------------------- 
@@ -219,9 +179,39 @@ input.checkbox input[type=checkbox]:checked + label:after {
 Main Styling
 
 -------------------------------- */
+header {
+  background-color: #3a435e;
+  padding: 1rem;
+  margin: auto;
+}
+
+main {
+  background-color: #FBFBF2;
+  padding: 2rem 0 2.5rem 0;
+}
+
+.todo_list {
+  max-width: 90%;
+  padding: 0 1rem;
+  margin: auto;
+  border-radius: 30px;
+}
+
 .todo_item {
-  display: flex;
-  justify-content: space-between;
+  background-color: white;
+  margin: 0.6rem 0;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  justify-items: stretch;
+  align-items: center;
+  border-radius: 10px;
+  border-bottom: 5px solid #3a435e;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.todo_item_name {
+  justify-self: start;
+  text-align: left;
 }
 
 /* -------------------------------- 
@@ -230,9 +220,9 @@ footer
 
 -------------------------------- */
 footer {
-  background-color: #9BB1BF;
+  background-color: #3a435e;
   padding: 1rem;
-  margin: 1rem 0;
+  margin: auto;
 }
 
 .toDo {

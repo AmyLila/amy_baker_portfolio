@@ -2,10 +2,8 @@
 
 // Webfonts
 WebFont.load({
-    google: {
-      families: ['Arvo', 'Open+Sans' , 'Merriweather' , 'Special+Elite']
-    }
-  });
-
-
+  google: {
+    families: ['Source Sans Pro', 'Abril Fatface']
+  }
+});
 //end utilities

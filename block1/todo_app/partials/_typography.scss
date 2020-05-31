@@ -4,9 +4,8 @@ Fonts
 
 -------------------------------- */
 
-$primary-font: 'Open+Sans', sans-serif;
-$display-font: 'Merriweather', cursive;
-
+$primary-font: 'Source Sans Pro', sans-serif;
+$display-font: 'Abril Fatface', cursive;
 
 /* -------------------------------- 
 
@@ -16,53 +15,26 @@ xTypography
 body{
   font-family: $primary-font;
 }
-h1,
-h2 {
+h1{
   font-family: $display-font;
-  color: $color-accent;
-}
-
-h1 {
+  color:$color-light;
+  letter-spacing: 2.5px;
   font-size: 3rem;
   font-weight: 300;
   line-height: 1.2;
   padding:1rem;
-
+  text-align: center;
 }
 
-h2 {
-  font-weight: 300;
-  font-size: 2rem;
-  padding:0 1rem;
-  
-}
 
-h3{
-    font-family: $display-font;
-    font-size: 1.5rem;
-    font-weight: 300;
-    color: $color-med;
-    padding:1rem;
+input{
+  text-align: center;
 }
-
 p {
-  color: $color-med;
-  padding-top:.2rem;
+  color:$color-darkest;
+  font-size: 1.1rem;
+  text-transform: capitalize;
     
 }
-
-a {
-  color: $color-darkest;
-  text-decoration: none;
-  @include transition(0.5s);
-    
-    &:hover{
-        font-size: 1.2em;
-        color: $color-med;
-    }
-}
-
-
-
 
 //end typography.scss

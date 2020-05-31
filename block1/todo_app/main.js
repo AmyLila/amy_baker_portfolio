@@ -34,19 +34,16 @@ tasks.addEventListener("click", function(event){
 // This listens for any click in the bottom buttons div and then calls functions depending on what is clicked. 
 bottomButtons.addEventListener("click", function(event){
     if(event.target.matches("#all")) {
-        console.log(`button all`);
-        displayTasks(toDoList)
+        displayTasks(toDoList);
     };
     if(event.target.matches("#active")) {
-        console.log(`button active`);
-        filterNotFinished()
-        displayTasks(unfinishedList)
+        filterNotFinished();
+        displayTasks(unfinishedList);
 
     };
     if(event.target.matches("#completed")) {
-        console.log(`button completed`);
-        filterFinished()
-        displayTasks(finishedList)
+        filterFinished();
+        displayTasks(finishedList);
     };
 });
 

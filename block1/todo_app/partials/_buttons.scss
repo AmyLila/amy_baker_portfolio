@@ -5,6 +5,7 @@ buttons
 
 -------------------------------- */
 .bottomButtons{
+  margin:2rem 0 .5rem 0;
   padding: 0 1rem;
   display:flex;
   justify-content: space-between;
@@ -15,8 +16,7 @@ buttons
   padding: 1rem;
   border-radius: 30px;
   text-transform: uppercase;
-  letter-spacing: 2.5px;
-  font-weight: 500;
+  letter-spacing: 2.1px;
   color: $color-darkest;
   background-color: #fff;
   border: none;
@@ -31,33 +31,14 @@ buttons
   box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
   transform: translateY(-7px);
 }
-//small button styling
-input.checkbox{
-  margin:0;
-  border-radius: 30px;
-  padding:.5rem;
-  border: none;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease 0s;
-  cursor: pointer;
-  outline: none;
-  label {
-    cursor: pointer;
-    background: linear-gradient(top, #222 0%, #45484d 100%);
-    border-radius: 50px;
-
-  }
-  input[type=checkbox] {
-    visibility: hidden;
-    &:checked + label:after {
-      opacity: 1;
-    }
-  }    
-}
 
 // delete buton
 .fa-trash{
-  color:pink;
+  color:$color-light;
+  font-size: .9rem;
   margin:.5rem;
+  padding:.5rem;
+  background-color: $color-darkest;
+  border: none;
+  border-radius: 30px;
 }
-
