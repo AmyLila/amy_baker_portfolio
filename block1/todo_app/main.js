@@ -1,6 +1,6 @@
 // Imports
 //import * as fonts from './webfonts.js';
-import { toDoList, toDoForm, tasks, unfinishedList, finishedList, submitTask,displayTasks, deleteItem, completedTasks, filterFinished, filterNotFinished} from './todos.js';
+import { toDoList, toDoForm, tasks, unfinishedList, finishedList, submitTask,displayTasks, deleteItem, completedTasks, filterFinished, filterNotFinished} from './todo.js';
 import { saveToLs, getTasks } from './ls.js';
 import * as util from './utilities.js';
 
