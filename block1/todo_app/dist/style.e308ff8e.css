@@ -137,10 +137,23 @@ buttons
 
 -------------------------------- */
 .bottomButtons {
+  margin: auto;
   margin: 2rem 0 0.5rem 0;
   padding: 0 1rem;
   display: flex;
   justify-content: space-between;
+}
+@media only screen and (min-width: 46.8em) {
+  .bottomButtons {
+    margin: auto;
+    max-width: 80%;
+    justify-content: space-around;
+  }
+}
+@media only screen and (min-width: 50em) {
+  .bottomButtons {
+    max-width: 60%;
+  }
 }
 
 #task, #submit, #all, #active, #completed {
@@ -156,6 +169,7 @@ buttons
   transition: all 0.3s ease 0s;
   cursor: pointer;
   outline: none;
+  flex: 1 1 auto;
 }
 
 #submit:hover, #task:hover, #all:hover, #active:hover, #completed:hover {
@@ -196,6 +210,16 @@ main {
   margin: auto;
   border-radius: 30px;
 }
+@media only screen and (min-width: 46.8em) {
+  .todo_list {
+    max-width: 80%;
+  }
+}
+@media only screen and (min-width: 50em) {
+  .todo_list {
+    max-width: 60%;
+  }
+}
 
 .todo_item {
   background-color: white;
@@ -226,8 +250,20 @@ footer {
 }
 
 .toDo {
+  margin: auto;
   display: flex;
   justify-content: space-between;
+}
+@media only screen and (min-width: 46.8em) {
+  .toDo {
+    max-width: 80%;
+    justify-content: space-around;
+  }
+}
+@media only screen and (min-width: 50em) {
+  .toDo {
+    max-width: 60%;
+  }
 }
 
 

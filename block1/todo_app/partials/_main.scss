@@ -20,6 +20,14 @@ main{
   padding:0 1rem;
   margin: auto;
   border-radius: 30px;
+
+  @include MQ(M){
+    max-width: 80%;
+  }
+
+  @include MQ(L){
+    max-width: 60%;
+  }
   
 }
 .todo_item{

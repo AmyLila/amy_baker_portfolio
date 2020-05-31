@@ -5,10 +5,22 @@ buttons
 
 -------------------------------- */
 .bottomButtons{
+  margin: auto;
   margin:2rem 0 .5rem 0;
   padding: 0 1rem;
   display:flex;
   justify-content: space-between;
+
+  @include MQ(M){
+    margin: auto;
+    max-width: 80%;
+    justify-content: space-around;
+    
+  }
+
+  @include MQ(L){
+    max-width: 60%;
+  }
 }
 // large button styling
 #task, #submit, #all, #active, #completed{
@@ -24,6 +36,7 @@ buttons
   transition: all 0.3s ease 0s;
   cursor: pointer;
   outline: none;
+  flex: 1 1 auto;
 
 }
 #submit:hover, #task:hover, #all:hover, #active:hover, #completed:hover {
