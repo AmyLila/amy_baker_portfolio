@@ -15,7 +15,7 @@ function saveToLs(){
 //Get user input from local storage
 function getTasks(){
     const lsTasks = JSON.parse(localStorage.getItem("toDoList"));
-    if (lsTasks.length >= 0){
+    if (lsTasks.length >= 1){
         toDoList.push(...lsTasks);
         toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
     }

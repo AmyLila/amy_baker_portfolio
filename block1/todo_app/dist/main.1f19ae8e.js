@@ -254,7 +254,7 @@ function saveToLs() {
 function getTasks() {
   var lsTasks = JSON.parse(localStorage.getItem("toDoList"));
 
-  if (lsTasks.length >= 0) {
+  if (lsTasks.length >= 1) {
     _to_do.toDoList.push.apply(_to_do.toDoList, _toConsumableArray(lsTasks));
 
     _to_do.toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
