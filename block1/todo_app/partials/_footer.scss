@@ -8,3 +8,12 @@ footer{
     padding:1rem;
     margin:1rem 0;   
 }
+.toDo{
+    display:flex;
+    justify-content: space-between;
+}
+#task, #button{
+    margin: 0 .5rem;
+    padding: 1rem;
+    border-radius: 10px;
+}
