@@ -61,19 +61,8 @@ a {
         color: $color-med;
     }
 }
-footer{
-  p, a{
-    font-size: .9rem;
-    color:brown;
-    padding:1rem;
-  } 
-  a{
-    &:hover{
-      font-size: 1.2em;
-      color: $color-darkest;
-  }
-}
-}
+
+
 
 
 //end typography.scss

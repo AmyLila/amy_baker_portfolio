@@ -16,4 +16,14 @@ footer{
     margin: 0 .5rem;
     padding: 1rem;
     border-radius: 10px;
+    filter: drop-shadow(-3px 20px 15px rgba(0, 0, 0, 0.5));
+    -webkit-filter: drop-shadow(-3px 20px 15px rgba(0, 0, 0, 0.5));
 }
+
+footer{
+    p{
+      font-size: 1rem;
+      color:$color-darkest;
+      padding:1rem;
+    } 
+  }

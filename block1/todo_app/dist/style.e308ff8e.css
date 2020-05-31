@@ -117,16 +117,6 @@ a:hover {
   color: #9BB1BF;
 }
 
-footer p, footer a {
-  font-size: 0.9rem;
-  color: brown;
-  padding: 1rem;
-}
-footer a:hover {
-  font-size: 1.2em;
-  color: #26211F;
-}
-
 /* -------------------------------- 
 
 xBasic style
@@ -216,6 +206,14 @@ footer {
   margin: 0 0.5rem;
   padding: 1rem;
   border-radius: 10px;
+  filter: drop-shadow(-3px 20px 15px rgba(0, 0, 0, 0.5));
+  -webkit-filter: drop-shadow(-3px 20px 15px rgba(0, 0, 0, 0.5));
+}
+
+footer p {
+  font-size: 1rem;
+  color: #26211F;
+  padding: 1rem;
 }
 
 
