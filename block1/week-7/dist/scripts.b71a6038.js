@@ -117,14 +117,144 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/foooter-dates.js":[function(require,module,exports) {
-function loadDate() {
-  var dateObject = new Date();
-  var year = dateObject.getFullYear();
-  document.getElementById("year").innerHTML = year;
-  document.getElementById("lastModified").innerHTML += document.lastModified;
-}
-},{}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+})({"scripts.js":[function(require,module,exports) {
+'use strict'; // Quiz Ninja Code
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var quiz = [{
+  name: "Superman",
+  realName: "Clark Kent"
+}, {
+  name: "Wonderwoman",
+  realName: "Diana Prince"
+}, {
+  name: "Batman",
+  realName: "Bruce Wayne"
+}]; // View Object
+
+var view = {
+  score: document.querySelector('#score strong'),
+  question: document.querySelector('#question'),
+  result: document.querySelector('#result'),
+  info: document.querySelector('#info'),
+  start: document.querySelector('#start'),
+  response: document.querySelector('#response'),
+  timer: document.querySelector('#timer strong'),
+  render: function render(target, content, attributes) {
+    for (var key in attributes) {
+      target.setAttribute(key, attributes[key]);
+    }
+
+    target.innerHTML = content;
+  },
+  show: function show(element) {
+    element.style.display = 'block';
+  },
+  hide: function hide(element) {
+    element.style.display = 'none';
+  },
+  resetForm: function resetForm() {
+    this.response.answer.value = '';
+    this.response.answer.focus();
+  },
+  setup: function setup() {
+    this.show(this.question);
+    this.show(this.response);
+    this.show(this.result);
+    this.hide(this.start);
+    this.render(this.score, game.score);
+    this.render(this.result, '');
+    this.render(this.info, '');
+    this.resetForm();
+  },
+  teardown: function teardown() {
+    this.hide(this.question);
+    this.hide(this.response);
+    this.show(this.start);
+  }
+};
+var game = {
+  start: function start(quiz) {
+    this.score = 0;
+    this.questions = _toConsumableArray(quiz);
+    view.setup();
+    this.secondsRemaining = 20;
+    this.timer = setInterval(this.countdown, 1000);
+    this.ask();
+  },
+  countdown: function countdown() {
+    game.secondsRemaining--;
+    view.render(view.timer, game.secondsRemaining);
+
+    if (game.secondsRemaining < 0) {
+      game.gameOver();
+    }
+  },
+  ask: function ask(name) {
+    if (this.questions.length > 0) {
+      this.question = this.questions.pop();
+      var question = "What is ".concat(this.question.name, "'s real name?");
+      view.render(view.question, question);
+    } else {
+      this.gameOver();
+    }
+  },
+  check: function check(event) {
+    event.preventDefault();
+    var response = view.response.answer.value;
+    var answer = this.question.realName;
+
+    if (response === answer) {
+      view.render(view.result, 'Correct!', {
+        'class': 'correct'
+      });
+      this.score++;
+      view.render(view.score, this.score);
+    } else {
+      view.render(view.result, "Wrong! The correct answer was ".concat(answer), {
+        'class': 'wrong'
+      });
+    }
+
+    view.resetForm();
+    this.ask();
+  },
+  gameOver: function gameOver() {
+    view.render(view.info, "Game Over, you scored ".concat(this.score, " point").concat(this.score !== 1 ? 's' : ''));
+    view.teardown();
+    clearInterval(this.timer);
+  }
+};
+view.start.addEventListener('click', function () {
+  return game.start(quiz);
+}, false);
+view.response.addEventListener('submit', function (event) {
+  return game.check(event);
+}, false);
+view.hide(view.response); // NEW QUIZ NINJA CODE!!!!!!!!
+
+console.log('start() invoked');
+console.log('ask() invoked');
+console.log('check(event) invoked');
+console.log('gameOver() invoked'); // end quiz Ninja!
+
+WebFont.load({
+  google: {
+    families: ['Arvo', 'Open+Sans', 'Merriweather', 'Special+Elite']
+  }
+});
+},{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -152,7 +282,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56710" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56750" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -328,5 +458,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/foooter-dates.js"], null)
-//# sourceMappingURL=/foooter-dates.2727a1cf.js.map
+},{}]},{},["../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","scripts.js"], null)
+//# sourceMappingURL=/scripts.b71a6038.js.map
