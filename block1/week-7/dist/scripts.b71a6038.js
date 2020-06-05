@@ -118,7 +118,18 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"scripts.js":[function(require,module,exports) {
-'use strict'; // Quiz Ninja Code
+'use strict'; //Call and Apply Methods
+// I can't get the imput to read and work. 
+//It just flashes and leaves the screen. This would be a good thing to figure out
+//
+// const nameDisplay = document.querySelector(`#displayName`)
+// const nameInput = document.getElementById(`name`).value;
+// const amy = {name: nameInput}
+// const nameExample = document.querySelector(`.nameExample`)
+// nameExample.addEventListener("submit", () => sayHello.call(name));
+// nameExample.addEventListener("submit", displayName);
+// console.log(sayHello.call(amy));
+// nameDisplay.innerHTML = sayHello.call(amy);
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -131,6 +142,213 @@ function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.it
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var nameDisplay1 = document.querySelector("#displayName1");
+var nameDisplay2 = document.querySelector("#displayName2");
+var clark = {
+  name: 'Clark'
+};
+var bruce = {
+  name: 'Bruce'
+};
+
+function sayHello() {
+  // "There is nothing to stop you adding your own properties to functions in the same way 
+  // that you can add properties to any object in JavaScript. For example, you could add 
+  // a description property to a function that describes what it does:"
+  sayHello.description = 'returns a greeting';
+  return "Hello, my name is ".concat(this.name);
+}
+
+;
+console.log(sayHello.call(clark));
+console.log(sayHello.call(bruce));
+nameDisplay1.innerHTML = sayHello.call(clark);
+nameDisplay2.innerHTML = sayHello.call(bruce); //With Arguments
+
+function sayHello1() {
+  var greeting = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Hello';
+  return "".concat(greeting, ", my name is ").concat(this.name);
+}
+
+console.log(sayHello1.call(clark, 'How do you do'));
+console.log(sayHello1.call(bruce)); //Immediately Invoked function expressions
+
+(function () {
+  var temp = 'World';
+  console.log("Hello ".concat(temp));
+})(); // "An IIFE can be used to set up any initialization code that there’ll be no need for again. Because the code is only run once, there’s no need to create any reusable, named functions, and all the variables will also be temporary. An IIFE will be invoked once, and can set up any variables, objects and event handlers when the page loads. The following example logs a welcome message to the console, then eliminates all the temporary variables used in putting the message together:"
+
+
+(function () {
+  var name = 'Peter Parker'; // This might be obtained from a cookie in reality
+
+  var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  var date = new Date(),
+      today = days[date.getDay()];
+  console.log("Welcome back ".concat(name, ". Today is ").concat(today));
+})(); //You don't really need to do that in ES6, putting the code in a block works the same. 
+// A block is {}
+// This is a good example of local scope as well
+
+
+{
+  var name = 'Peter Parker'; // This might be obtained from a cookie in reality
+
+  var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  var date = new Date(),
+      today = days[date.getDay()];
+  console.log("Welcome back ".concat(name, ". Today is ").concat(today));
+} //Creating Self-contained Code Blocks
+
+(function () {
+  // block A
+  var name = 'Block A';
+  console.log("Hello from ".concat(name));
+})();
+
+(function () {
+  // block B
+  var name = 'Block B';
+  console.log("Hello from ".concat(name));
+})(); //Self defining functions
+//(this is cool)
+
+
+function party() {
+  console.log('Wow this is amazing!');
+
+  party = function party() {
+    console.log('Been there, got the T-Shirt');
+  };
+}
+
+party();
+party(); //recursive functions
+
+function factorial(n) {
+  if (n === 0) {
+    return 1;
+  } else {
+    return n * factorial(n - 1); //this is calling it's self - 1
+  }
+}
+
+console.log("The factorial of 5 is:", factorial(5));
+
+function collatz(n) {
+  var sequence = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [n];
+
+  if (n === 1) {
+    return "Sequence took ".concat(sequence.length, " steps. It was ").concat(sequence);
+  }
+
+  if (n % 2 === 0) {
+    n = n / 2;
+  } else {
+    n = 3 * n + 1;
+  }
+
+  return collatz(n, [].concat(_toConsumableArray(sequence), [n])); //note the use of the spread operator
+}
+
+console.log(collatz(9)); //Callback
+//function to represent something that might take a long time
+
+function wait(message, callback, seconds) {
+  setTimeout(callback, seconds * 1000);
+  console.log(message);
+} //callback function
+
+
+function selfDestruct() {
+  console.log('BOOOOM!');
+} //putting it all together
+
+
+wait('This tape will self-destruct in five seconds ... ', selfDestruct, 5);
+console.log('Hmmm, should I accept this mission or not ... ?'); //Promises
+//"A promise is created using a constructor function. This takes a function called anexecutoras an argument. The executor initializes the promise and starts the asynchronous operation. It also accepts two functions as arguments: the resolve() function is called if the operation is successful, and the reject() function is called if the operation fails. The general layout of a promise can be seen in the code below:"
+// const promiseExample = new Promise( (resolve, reject) => {
+//   // initialization code goes here
+//   if (success) {
+//       resolve(value);
+//   } else {
+//       reject(error);
+//   }
+// });
+// example with dice
+
+var dice = {
+  sides: 20,
+  roll: function roll() {
+    return Math.floor(this.sides * Math.random()) + 1;
+  }
+};
+var promise = new Promise(function (resolve, reject) {
+  var n = dice.roll();
+  setTimeout(function () {
+    n > 1 ? resolve(n) : reject(n);
+  }, n * 1000);
+});
+console.log("you rolled a :", dice.roll());
+console.log(promise); //How do I do something with promise?
+
+promise.then(function (result) {
+  return console.log("Yes! I rolled a ".concat(result));
+}, function (result) {
+  return console.log("Drat! ... I rolled a ".concat(result));
+}); //Functions that return functions
+
+function returnHello() {
+  console.log('returnHello() called');
+  return function () {
+    console.log('Hello World!');
+  };
+}
+
+returnHello();
+var hello = returnHello();
+hello(); //Closure example
+
+function outer() {
+  var outside = 'Outside!';
+
+  function inner() {
+    var inside = 'Inside!';
+    console.log(outside);
+    console.log(inside);
+  }
+
+  console.log(outside);
+  inner();
+}
+
+outer(); // Quiz Ninja Code
+//Random function
+
+function random(a) {
+  var b = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+
+  // if only 1 argument is provided, we need to swap the values of a and b
+  if (b === 1) {
+    var _ref = [b, a];
+    a = _ref[0];
+    b = _ref[1];
+  }
+
+  return Math.floor((b - a + 1) * Math.random()) + a;
+} //shuffle the order of the array
+
+
+function shuffle(array) {
+  for (var i = array.length; i; i--) {
+    var j = random(i) - 1;
+    var _ref2 = [array[j], array[i - 1]];
+    array[i - 1] = _ref2[0];
+    array[j] = _ref2[1];
+  }
+}
 
 var quiz = [{
   name: "Superman",
@@ -202,7 +420,10 @@ var game = {
     }
   },
   ask: function ask(name) {
+    console.log('ask() invoked');
+
     if (this.questions.length > 0) {
+      shuffle(this.questions);
       this.question = this.questions.pop();
       var question = "What is ".concat(this.question.name, "'s real name?");
       view.render(view.question, question);
@@ -282,7 +503,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56750" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64648" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
