@@ -184,18 +184,168 @@ function outer() {
 }
 outer()
 
+//Chapter 13 AJAX
+//fetch method
+// const url = 'https:example.com/data';
+// fetch(url)
+// .then((response) => {
+//     if(response.ok) {
+//         return response;
+//     }
+//     throw Error(response.statusText);
+// })
+// .then( response => // do something with response )
+// .catch( error => console.log('There was an error!') )
+
+//Here is an example of how a JSON response promise would be resolved:
+// fetch(url)
+// .then( response => response.json() ); // transforms the JSON data into a JavaScript object
+// .then( data => console.log(Object.entries(data)) )
+// .catch( error => console.log('There was an error: ', error))
+
+//A constructor function is used to create a new Request object. An example is shown below:
+
+const request = new Request('https://example.com/data', {
+  method: 'GET',
+  mode: 'cors',
+  redirect: 'follow',
+  cache: 'no-cache'
+});
+
+//an example of everything put together
+// const url = 'https:example.com/data';
+// const headers = new Headers({ 'Content-Type': 'text/plain', 'Accept-Charset' : 'utf-8', 'Accept-Encoding':'gzip,deflate' })
+// const request = (url,{
+//     headers: headers
+// })
+// fetch(request)
+// .then( function(response) {
+//     if(response.ok) {
+//         return response;
+//     }
+//     throw Error(response.statusText);
+// })
+// .then( response => // do something with response )
+// .catch( error => console.log('There was an error!') )
+
+//Receiving data code example
+//variables
+const textButton = document.getElementById('number');
+const apiButton = document.getElementById('chuck');
+const outputDiv = document.getElementById('output');
+// URL variables
+const textURL = 'http://numbersapi.com/random';
+const apiURL = 'https://api.chucknorris.io/jokes/random';
+
+//event handlers
+//number fact
+textButton.addEventListener('click', () => {
+  fetch(textURL)
+  .then( response => {
+      outputDiv.innerHTML = 'Waiting for response...';
+  if(response.ok) {
+      return response;
+  }
+      throw Error(response.statusText);
+  })
+  .then( response => response.text() )
+  .then( text => outputDiv.innerText = text )
+  .catch( error => console.log('There was an error:', error))
+},false);
+
+//Chuck Noris
+apiButton.addEventListener('click', () => {
+  fetch(apiURL)
+  .then( response => {
+      outputDiv.innerHTML = 'Waiting for response...';
+  if(response.ok) {
+      return response;
+  }
+  throw Error(response.statusText);
+  })
+  .then( response => response.json() )
+  .then( data => outputDiv.innerText = data.value )
+  .catch( error => console.log('There was an error:', error))
+},false);
+
+
+//Sending Data Code Example
+const form = document.forms['todo'];
+form.addEventListener('submit', addTask, false);
+function addTask(event) {
+    event.preventDefault();
+    const number = form.task.value;
+    const task = {
+        userId: 1,
+        title: form.task.value,
+        completed: false
+    }
+    const data = JSON.stringify(task);
+    const url = 'https://jsonplaceholder.typicode.com/todos';
+    const headers = new Headers({
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    });
+    const request = new Request(url,
+    {
+        method: 'POST',
+        header: headers,
+        body: data
+    }
+    )
+    fetch(request)
+    .then( response => response.json() )
+    .then( task => console.log(`Task saved with an id of ${task.id}`) )
+    .catch( error => console.log('There was an error:', error))
+}
+
+//Same Code using FormData
+const form = document.forms['todo'];
+form.addEventListener('submit', addTask, false);
+function addTask(event) {
+    event.preventDefault();
+    const task = new FormData(form);
+    const url = `http://echo.jsontest.com/id/1/title/${form.task.value}`;
+    const headers = new Headers({
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    });
+    const request = new Request(url,
+    {
+        method: 'POST',
+        mode: 'cors',
+        header: headers,
+        body: JSON.stringify(task)
+    }
+    )
+    fetch(request)
+    .then( response => response.json() )
+    .then( data => console.log(`${data.title} saved with an id of ${data.id}`) )
+    .catch( error => console.log('There was an error:', error))
+}
 
 
 // Quiz Ninja Code
-//Random function
+//AJAX example from chapter 13
+const url = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/123941/questions.json';
+
+fetch(url)
+  .then(res => res.json())
+  .then(quiz => {
+    view.start.addEventListener('click', () => game.start(quiz.questions), false);
+    view.response.addEventListener('click', (event) => game.check(event), false);
+});
+
+//Function examples from chapter 11
+// Utility functions
 function random(a,b=1) {
-  // if only 1 argument is provided, we need to swap the values of a and b
+// if only 1 argument is provided, we need to swap the values of a and b
   if (b === 1) {
-      [a,b] = [b,a];
+	  [a,b] = [b,a];
   }
   return Math.floor((b-a+1) * Math.random()) + a;
 }
-//shuffle the order of the array
+
 function shuffle(array) {
   for (let i = array.length; i; i--) {
       let j = random(i)-1;
@@ -203,11 +353,6 @@ function shuffle(array) {
   }
 }
 
-const quiz = [
-  { name: "Superman",realName: "Clark Kent" },
-  { name: "Wonderwoman",realName: "Diana Prince" },
-  { name: "Batman",realName: "Bruce Wayne" },
-];
 // View Object
 const view = {
   score: document.querySelector('#score strong'),
@@ -229,29 +374,28 @@ const view = {
   hide(element){
     element.style.display = 'none';
   },
-  resetForm(){
-    this.response.answer.value = '';
-    this.response.answer.focus();
-  },
   setup(){
-  	this.show(this.question);
-  	this.show(this.response);
-  	this.show(this.result);
-  	this.hide(this.start);
-  	this.render(this.score,game.score);
-  	this.render(this.result,'');
-  	this.render(this.info,'');
-  	this.resetForm();
+    this.show(this.question);
+    this.show(this.response);
+    this.show(this.result);
+    this.hide(this.start);
+    this.render(this.score,game.score);
+    this.render(this.result,'');
+    this.render(this.info,'');
   },
   teardown(){
     this.hide(this.question);
     this.hide(this.response);
     this.show(this.start);
+  },
+  buttons(array){
+    return array.map(value => `<button>${value}</button>`).join('');
   }
 };
 
 const game = {
   start(quiz){
+    console.log('start() invoked');
     this.score = 0;
     this.questions = [...quiz];
     view.setup();
@@ -262,53 +406,48 @@ const game = {
   countdown() {
     game.secondsRemaining--;
     view.render(view.timer,game.secondsRemaining);
-      if(game.secondsRemaining < 0) {
+      if(game.secondsRemaining <= 0) {
         game.gameOver();
       }
   },
   ask(name){
     console.log('ask() invoked');
-    if(this.questions.length > 0) {
-    shuffle(this.questions);
-    this.question = this.questions.pop();
-    const question = `What is ${this.question.name}'s real name?`;
-    view.render(view.question,question);
-}
+    if(this.questions.length > 2) {
+      shuffle(this.questions);
+      this.question = this.questions.pop();
+      const options = [this.questions[0].realName, this.questions[1].realName, this.question.realName];
+      shuffle(options);
+      const question = `What is ${this.question.name}'s real name?`;
+      view.render(view.question,question);
+      view.render(view.response,view.buttons(options));
+    }
     else {
       this.gameOver();
     }
   },
   check(event){
-    event.preventDefault();
-    const response = view.response.answer.value;
+    console.log('check(event) invoked');
+    const response = event.target.textContent;
     const answer = this.question.realName;
     if(response === answer){
+      console.log('correct');
       view.render(view.result,'Correct!',{'class':'correct'});
       this.score++;
       view.render(view.score,this.score);
     } else {
+      console.log('wrong');
       view.render(view.result,`Wrong! The correct answer was ${answer}`,{'class':'wrong'});
     }
-    view.resetForm();
     this.ask();
   },
   gameOver(){
+    console.log('gameOver() invoked');
     view.render(view.info,`Game Over, you scored ${this.score} point${this.score !== 1 ? 's' : ''}`);
     view.teardown();
     clearInterval(this.timer);
   }
 }
 
-view.start.addEventListener('click', () => game.start(quiz), false);
-view.response.addEventListener('submit', (event) => game.check(event), false);
-view.hide(view.response);
-
-
-// NEW QUIZ NINJA CODE!!!!!!!!
-console.log('start() invoked');
-console.log('ask() invoked');
-console.log('check(event) invoked');
-console.log('gameOver() invoked');
 
 
 // end quiz Ninja!

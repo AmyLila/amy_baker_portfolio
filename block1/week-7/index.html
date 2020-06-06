@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Amy Baker WDD 330 | Week 5 </title>
+    <title>Amy Baker WDD 330 | Week 7 </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description"content="WDD 330 Week Seven Notes">
@@ -68,17 +68,25 @@
       <!-- Chapter 13  -->
       <section>
         <h2>Chapter 13 Ajax</h2>
-        <ul>
-          <li>Clients and servers</li>
-
-          <li> A brief history of Ajax</li>
-            
+        <ul>  
           <li>Communicating with the server using the Fetch API</li>
+          <p>"The Fetch API provides a global fetch() method that only has one mandatory argument, which is the URL of the resource you wish to fetch."</p>
             
           <li>Receiving data with Ajax</li>
+          <h3>Code Example</h3>
+          <button id='number'>Number Fact</button>
+          <button id='chuck'>Chuck Norris Fact</button>
+          <div id='output'>
+             Ajax response will appear here
+          </div>
             
           <li>Sending data with Ajax</li>
-            
+          <h3>Code Example</h3>
+          <title>To Do List</title>
+            <form id='todo' action='https://jsonplaceholder.typicode.com/todos' method='POST'>
+                <input type='text' name='task'  placeholder='Add Task' autofocus required>
+                <button type='submit'>Add Task</button>
+            </form>
           <li>Form data</li>
         </ul>
 
