@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Amy Baker WDD 330 | Week 5 </title>
+    <title>Amy Baker WDD 330 | Week 7 </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description"content="WDD 330 Week Four Notes">
+    <meta name="description"content="WDD 330 Week Seven Notes">
     <link rel="stylesheet" href="style.css">
   </head> 
     <header>
-        <h1>Week 5</h1>
+        <h1>Week 7</h1>
     </header>
     <main>
-      <!-- Chapter 10 notes and code examples -->
+      <!-- Chapter 11 notes and code examples -->
       <section>
         <h2>Chapter 11 Further Functions</h2>
-        <div>
           <ul>
             <li>
               <h3>Function properties and methods</h3>
@@ -63,9 +62,37 @@
               <h3>Closures</h3>
               <p>"A closure is a reference to a variable that was created inside the scope of another function, but is then kept alive and used in another part of the program."</p>
             </li>
-          </ul>
-          
-      </div>
+          </ul>     
+      </section>
+
+      <!-- Chapter 13  -->
+      <section>
+        <h2>Chapter 13 Ajax</h2>
+        <p>Note: Most of my notes for this chapter are code examples in the js file</p>
+        <ul>  
+          <li>Communicating with the server using the Fetch API</li>
+          <p>"The Fetch API provides a global fetch() method that only has one mandatory argument, which is the URL of the resource you wish to fetch."</p>
+            
+          <li>Receiving data with Ajax</li>
+          <h3>Code Example</h3>
+          <button id='number'>Number Fact</button>
+          <button id='chuck'>Chuck Norris Fact</button>
+          <div id='output'>
+             Ajax response will appear here
+          </div>
+            
+          <li>Sending data with Ajax</li>
+          <h3>Code Example</h3>
+          <title>To Do List</title>
+            <form id='todo' action='https://jsonplaceholder.typicode.com/todos' method='POST'>
+                <input type='text' name='task'  placeholder='Add Task' autofocus required>
+                <button type='submit'>Add Task</button>
+            </form>
+          <li>Form data</li>
+        </ul>
+
+      </section>
+
       <!-- Code Examples -->
       <div>
         <h3>Code Examples</h3>
@@ -73,7 +100,7 @@
         <section class='dojo'>
           <div class='quiz-body'>
           
-            <h1>Quiz Ninja!</h1>
+            <h1>Quiz Ninja! Chapter 11</h1>
             <div id='timer'>Time: <strong>20</strong></div>
             <div id='score'>Score: <strong>0</strong></div>
        
@@ -88,7 +115,7 @@
         </section>
         
       </div>
-      </section>
+      
 
     </main>
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
