@@ -1,3 +1,5 @@
+/* Note: The code examples are at the bottom of this page */
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -128,31 +130,7 @@ div{
   display: none;
 }
 
-/* Quiz Ninja Styling */
-.quiz-body{
-  background: rgba(255,255,255,1);
-  margin: 150px 33%;
-  padding: 10px 20px 50px 20px;
-  -webkit-box-shadow: 4px 4px 11px 3px rgba(0,0,0,0.3);
-  -moz-box-shadow: 4px 4px 11px 3px rgba(0,0,0,0.3);
-  box-shadow: 4px 4px 11px 3px rgba(0,0,0,0.3);
-}
-#question {
-  font-size: 24px;
-}
-#result{
-  color: #fff;
-  margin: 0.2em 0;
-  width: 100%;
-  text-align: center;
-}
-.correct {
-  background-color: #0c0;
-}
-.wrong {
-  color: #fff;
-  background-color: #c00;
-}
+
 /* -------------------------------- 
 
 xBasic style
@@ -168,5 +146,79 @@ html * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.transform{
+  display:flex;
+  
+}
+/* Chapter 8 Code Examples */
+#transform_rotate{
+  height:200px;
+  width:200px;
+  background-color: #7fffd4;
+  padding:.5rem;
 
+}
+#transform_rotate h3, #transform_rotate p{
+  text-align: center;
+}
+#transform_rotate:hover{
+  transform: rotate(10deg);
+}
 
+#transform_scale{
+  height:200px;
+  width:200px;
+  background-color: #7fffd4;
+  padding:.5rem;
+
+}
+#transform_scale h3, #transform_scale p{
+  text-align: center;
+
+}
+#transform_scale:hover{
+  transform: scale(1.5, 0.25);
+}
+
+#transform_translate{
+  height:200px;
+  width:200px;
+  background-color: #7fffd4;
+  padding:.5rem;
+  
+}
+#transform_translate h3, #transform_translate p{
+  text-align: center;
+}
+#transform_translate:hover{
+  transform: translate(45px, -45px);
+}
+
+#transform_skew{
+  height:200px;
+  width:200px;
+  background-color: #7fffd4;
+  padding:.5rem;
+  
+}
+#transform_skew h3, #transform_skew p{
+  text-align: center;
+}
+#transform_skew:hover{
+  transform: skew(15deg, 4deg);
+}
+
+#transform_combo{
+  height:200px;
+  width:200px;
+  background-color: #7fffd4;
+  padding:.5rem;
+  
+}
+#transform_combo p{
+  text-align: center;
+}
+#transform_combo:hover{
+  transform:rotate(-45deg) translate(100px, 60px) scale(1.5) skew(-25deg, -5deg);
+  
+}
