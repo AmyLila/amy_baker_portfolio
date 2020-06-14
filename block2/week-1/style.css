@@ -146,7 +146,7 @@ html * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.transform, .transition{
+.transform, .transition, .animations, .canvas, .svg{
   display:flex;
   
 }
@@ -280,4 +280,39 @@ html * {
 #transition3.move{
   border-radius: 25px;
   transform: rotate(360deg) translate(200px, 0px);
+}
+
+/* animation examples */
+#bubble{
+  height:200px;
+  width:200px;
+  padding:.5rem;
+  background-color: #7fffd4;
+  -webkit-animation: animateDiv 6s ease-out 3;
+  animation: animateDiv 6s linear 3;
+}
+
+
+@keyframes animateDiv {
+  100% {
+    border-radius: 50%;
+    transform: translate(100px, -500px) scale(3.5);
+    opacity: 0;
+    filter: blur(5px);
+  }
+  0% {
+    border-radius: 0;
+    transform: translate(0,0) scale(1);
+    opacity: 1;
+    filter: blur(5px)
+  }
+
+}
+
+/* Begin chapter 12 */
+/* canvas styling  */
+
+.myCanvas {
+  margin:1rem;
+  border: solid 2px #7fffd4;
 }
