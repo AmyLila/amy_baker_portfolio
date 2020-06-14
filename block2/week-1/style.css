@@ -146,7 +146,7 @@ html * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.transform{
+.transform, .transition{
   display:flex;
   
 }
@@ -221,4 +221,63 @@ html * {
 #transform_combo:hover{
   transform:rotate(-45deg) translate(100px, 60px) scale(1.5) skew(-25deg, -5deg);
   
+}
+
+/* Transition examples */
+
+#transition1{
+  height:200px;
+  width:200px;
+  padding:.5rem;
+  transition: all 1.5s ease-out;
+}
+#transition1 h4{
+  text-align: center;
+}
+#transition1.still{
+  background-color: #7fffd4;
+  transform: rotate(0);
+}
+#transition1.move{
+  background-color: rgb(128,0,128);
+  transform: rotate(360deg);
+}
+
+#transition2{
+  height:200px;
+  width:200px;
+  padding:.5rem;
+  background-color: #7fffd4;
+  transition: all 1.5s ease-out;
+}
+#transition2 h4{
+  text-align: center;
+}
+#transition2.still{
+  border-radius: 0;
+  transform: scale(1);
+}
+#transition2.move{
+  border-radius: 50%;
+  transform: scale(.5);
+}
+
+#transition3{
+  height:200px;
+  width:200px;
+  padding:.5rem;
+  background-color: #7fffd4;
+  transition: all 1.5s ease-out;
+}
+#transition3 h4{
+  text-align: center;
+}
+#transition3.still{
+  border-radius: 0;
+  transform: rotate(0) translate(0px, 0px);
+  
+}
+#transition3.move{
+  border-radius: 25px;
+  transform: rotate(360deg) translate(200px, 0px);
 }
