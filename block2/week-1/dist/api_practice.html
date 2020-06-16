@@ -16,6 +16,17 @@
   transition3.addEventListener('click', changeClass, false);
 };
 
+function test() {
+  var earth = document.getElementById("earth");
+
+  if (earth.className == 'show') {
+    earth.className = "earth";
+  } else {
+    earth.className = "show";
+    helloAPODV2();
+  }
+}
+
 function changeClass() {
   if (this.className == 'move') {
     this.className = 'still';
@@ -27,34 +38,27 @@ function changeClass() {
 var Apod_URL = 'https://api.nasa.gov/planetary/apod';
 var apiKey = 'DHWf9NoDJKU9m25RKvQoNiv7ftd9jDzJsWVBVkdV';
 
-function helloAPOD() {
-  var request = new XMLHttpRequest();
-  request.open('GET', Apod_URL + '?api_key=' + apiKey, true);
-  request.addEventListener('load', function () {
-    if (request.status >= 200 && request.status < 400) {
-      var response = JSON.parse(request.responseText);
-      console.log(response);
-      document.getElementById('original').innerHTML = response.explanation;
-      document.getElementById('originalImg').src = response.url;
-    } else {
-      console.log("Error in network request: " + request.statusText);
-    }
-  });
-  request.send(null);
-}
-
 function helloAPODV2() {
-  fetch(Apod_URL + '?api_key=' + apiKey, {
+  fetch(Apod_URL + '?date=2020-06-13&api_key=' + apiKey, {
     method: 'GET'
   }).then(function (response) {
     return response.json();
   }).then(function (json) {
     document.getElementById('fetch').innerHTML = json.explanation;
     document.getElementById('fetchImg').src = json.url;
+    document.querySelector('#player').src = json.url;
     console.log(json);
+    var earth = document.getElementById("earth");
+    earth.className = "earth";
+
+    if (json.media_type == "image") {
+      console.log("image");
+    } else {
+      console.log("video");
+    }
   }).catch(function (error) {
     return console.error('error:', error);
-  });
+  }); //index of  json.url.indexOf('.jpg') if offset is >= 0 found a jpeg !-1 
 }</script>
 <style>.transition{
   display:flex;
@@ -76,6 +80,9 @@ function helloAPODV2() {
 #transition1.move{
   background-color: rgb(128,0,128);
   transform: rotate(360deg);
+}
+.earth{
+    display: none;
 }</style>
 
 
@@ -84,18 +91,20 @@ function helloAPODV2() {
     </header>
     <main>
         <section class="transition">
-          <div id="transition1" class="still"><h4>Click Me</h4></div>
+          <div id="transition1" class="still" onclick="test()"><h4>Click Me</h4></div>
           <div id="transition2" class="still"><h4>Click Me</h4></div>
           <div id="transition3" class="still"><h4>Click Me</h4></div>
         </section>
         <section>
-            <h2>Callback Practice</h2>
-              <button onclick="helloAPOD()">Original AJAX Request</button>
-              <div id="original"></div>
-              <img src="" id="originalImg">
+            <div id="earth" class="earth"><img src="/394.2d1728b6.png" id="spinnerImg"> </div>
+        </section>
+        <section>
+            <h2>Image Of The Day</h2>
               <button onclick="helloAPODV2()">This one uses fetch</button>
               <div id="fetch"></div>
-              <img src="" id="fetchImg">     
+              <img src="" id="fetchImg"> 
+              <iframe id="player" type="text/html" width="640" height="390" src="" frameborder="0">
+            </iframe>    
           </section>
     </main>
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
