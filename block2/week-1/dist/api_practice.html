@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Amy Baker WDD 330 | Week 8 </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="WDD 330 Week Four Notes">
+    <link rel="stylesheet" href="/style.e308ff8e.css">
+  <script src="/style.e308ff8e.js"></script></head> 
+  <script>window.onload = function () {
+  var transition1 = document.getElementById('transition1');
+  var transition2 = document.getElementById('transition2');
+  var transition3 = document.getElementById('transition3');
+  transition1.addEventListener('click', changeClass, false);
+  transition2.addEventListener('click', changeClass, false);
+  transition3.addEventListener('click', changeClass, false);
+};
+
+function changeClass() {
+  if (this.className == 'move') {
+    this.className = 'still';
+  } else if (this.className == 'still') {
+    this.className = 'move';
+  }
+}
+
+var Apod_URL = 'https://api.nasa.gov/planetary/apod';
+var apiKey = 'DHWf9NoDJKU9m25RKvQoNiv7ftd9jDzJsWVBVkdV';
+
+function helloAPOD() {
+  var request = new XMLHttpRequest();
+  request.open('GET', Apod_URL + '?api_key=' + apiKey, true);
+  request.addEventListener('load', function () {
+    if (request.status >= 200 && request.status < 400) {
+      var response = JSON.parse(request.responseText);
+      console.log(response);
+      document.getElementById('original').innerHTML = response.explanation;
+      document.getElementById('originalImg').src = response.url;
+    } else {
+      console.log("Error in network request: " + request.statusText);
+    }
+  });
+  request.send(null);
+}
+
+function helloAPODV2() {
+  fetch(Apod_URL + '?api_key=' + apiKey, {
+    method: 'GET'
+  }).then(function (response) {
+    return response.json();
+  }).then(function (json) {
+    document.getElementById('fetch').innerHTML = json.explanation;
+    document.getElementById('fetchImg').src = json.url;
+    console.log(json);
+  }).catch(function (error) {
+    return console.error('error:', error);
+  });
+}</script>
+<style>.transition{
+  display:flex;
+  
+}
+#transition1{
+  height:200px;
+  width:200px;
+  padding:.5rem;
+  transition: all 1.5s ease-out;
+}
+#transition1 h4{
+  text-align: center;
+}
+#transition1.still{
+  background-color: #7fffd4;
+  transform: rotate(0);
+}
+#transition1.move{
+  background-color: rgb(128,0,128);
+  transform: rotate(360deg);
+}</style>
+
+
+    <header>
+        <h1>Week 8</h1>
+    </header>
+    <main>
+        <section class="transition">
+          <div id="transition1" class="still"><h4>Click Me</h4></div>
+          <div id="transition2" class="still"><h4>Click Me</h4></div>
+          <div id="transition3" class="still"><h4>Click Me</h4></div>
+        </section>
+        <section>
+            <h2>Callback Practice</h2>
+              <button onclick="helloAPOD()">Original AJAX Request</button>
+              <div id="original"></div>
+              <img src="" id="originalImg">
+              <button onclick="helloAPODV2()">This one uses fetch</button>
+              <div id="fetch"></div>
+              <img src="" id="fetchImg">     
+          </section>
+    </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script src="/scripts.b71a6038.js"></script>
+  
+</html>
