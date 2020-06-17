@@ -41,7 +41,7 @@ var Apod_URL = 'https://api.nasa.gov/planetary/apod';
 var apiKey = 'DHWf9NoDJKU9m25RKvQoNiv7ftd9jDzJsWVBVkdV';
 
 function helloAPODV2() {
-  fetch(Apod_URL + '?date=2020-06-13&api_key=' + apiKey, {
+  fetch(Apod_URL + '?api_key=' + apiKey, {
     method: 'GET'
   }).then(function (response) {
     return response.json();
