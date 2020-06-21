@@ -30,7 +30,6 @@ fetch(url)
     view.response.addEventListener('click', (event) => game.check(event), false);
 });
 
-//Function examples from chapter 11
 // Utility functions
 function random(a,b=1) {
 // if only 1 argument is provided, we need to swap the values of a and b
@@ -56,6 +55,7 @@ const view = {
   start: document.querySelector('#start'),
   response: document.querySelector('#response'),
   timer: document.querySelector('#timer strong'),
+  hiScore: document.querySelector('#hiScore strong'),
   render(target,content,attributes) {
       for(const key in attributes) {
         target.setAttribute(key, attributes[key]);
@@ -142,8 +142,6 @@ const game = {
     view.teardown();
     clearInterval(this.timer);
   },
-
-
   hiScore(){
     const hi = localStorage.getItem('highScore') || 0;
     if(this.score > hi || hi === 0) {

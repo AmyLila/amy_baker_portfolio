@@ -159,8 +159,7 @@ fetch(url).then(function (res) {
   view.response.addEventListener('click', function (event) {
     return game.check(event);
   }, false);
-}); //Function examples from chapter 11
-// Utility functions
+}); // Utility functions
 
 function random(a) {
   var b = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
@@ -193,6 +192,7 @@ var view = {
   start: document.querySelector('#start'),
   response: document.querySelector('#response'),
   timer: document.querySelector('#timer strong'),
+  hiScore: document.querySelector('#hiScore strong'),
   render: function render(target, content, attributes) {
     for (var key in attributes) {
       target.setAttribute(key, attributes[key]);
