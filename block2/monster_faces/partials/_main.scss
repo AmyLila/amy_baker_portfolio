@@ -6,7 +6,6 @@ Main Styling
 
 // Layout for the block sections
 .body_container, .face_container{
-  margin:0 auto;
   border-radius: 10px;
   max-width: 200%;
   display: flex;
@@ -18,7 +17,8 @@ Main Styling
   overflow: scroll;
   background-color: #7fffd4;
   @include MQ(L){
-    width: 85%;
+    margin:0 auto;
+    max-width: 85%;
 }
 }
 
