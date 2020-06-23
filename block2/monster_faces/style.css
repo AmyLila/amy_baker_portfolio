@@ -1,5 +1,3 @@
-/* Note: The code examples are at the bottom of this page */
-
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -33,9 +31,7 @@ footer, header, hgroup, menu, nav, section, main {
 }
 
 body {
-  max-width: 80%;
   line-height: 1;
-  margin:0 auto;
 }
 
 ol, ul {
@@ -58,7 +54,21 @@ table {
 }
 
 /*end reset.scss*/
+/* -------------------------------- 
 
+Colors
+
+-------------------------------- */
+/* -------------------------------- 
+
+Fonts
+
+-------------------------------- */
+/* -------------------------------- 
+
+xTypography 
+
+-------------------------------- */
 body {
   font-family: "Open+Sans", sans-serif;
 }
@@ -80,35 +90,19 @@ h2 {
   font-weight: 300;
   font-size: 2rem;
   padding: 0 1rem;
-  color:#26211F;
 }
 
-h3,h4,h5 {
+h3 {
   font-family: "Merriweather", cursive;
   font-size: 1.5rem;
   font-weight: 300;
   color: #9BB1BF;
-  padding: 1rem 1rem .5rem 1rem;
+  padding: 1rem;
 }
-h4{
-  font-size: 1.3rem;
-}
-h5{
-  font-size: 1.1rem;
-}
+
 p {
-  color: #26211F;
-  padding:1rem;
-}
-li{
-  padding:0 1rem;
-}
-button{
-  padding:.5rem;
-  margin:.5rem 1rem;
-  border-radius: 5px;
-  background-color: #9BB1BF;
-  color: #26211F;
+  color: #9BB1BF;
+  padding-top: 0.2rem;
 }
 
 a {
@@ -123,16 +117,14 @@ a:hover {
   color: #9BB1BF;
 }
 
-div{
-  margin:1rem;
+footer p, footer a {
+  font-size: 0.9rem;
+  color: #DFEBF2;
 }
-/* Wireframe Styling */
-.picture{
-  max-width: 50%;
-  margin: .5rem auto;
+footer a:hover {
+  font-size: 1.2em;
+  color: #26211F;
 }
-
-
 
 /* -------------------------------- 
 
@@ -149,3 +141,85 @@ html * {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+header {
+  width: 100%;
+}
+
+li {
+  padding: 0.5rem 1rem;
+}
+
+footer {
+  width: 100%;
+}
+
+/* -------------------------------- 
+
+Header
+
+-------------------------------- */
+header {
+  background-color: #9BB1BF;
+}
+
+/* -------------------------------- 
+
+Main Styling
+
+-------------------------------- */
+.body_container, .face_container {
+  border-radius: 10px;
+  max-width: 200%;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-items: center;
+  margin: 1rem;
+  padding: 0;
+  overflow: scroll;
+  background-color: #7fffd4;
+}
+@media only screen and (min-width: 50em) {
+  .body_container, .face_container {
+    width: 85%;
+  }
+}
+
+.body, .face {
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
+#blueBody {
+  background-color: #23eaf9;
+}
+
+#greenBody {
+  background-color: #48f923;
+}
+
+#orangeBody {
+  background-color: #f9ac23;
+}
+
+#yellowBody {
+  background-color: #fcee21;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* -------------------------------- 
+
+footer
+
+-------------------------------- */
+footer {
+  background-color: #9BB1BF;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+/*# sourceMappingURL=style.css.map */

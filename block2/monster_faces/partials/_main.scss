@@ -5,8 +5,20 @@ Main Styling
 -------------------------------- */
 
 // Layout for the block sections
-.container{
-  display:flex;
-  flex-flow: row wrap;
+.body_container, .face_container{
+  margin:0 auto;
+  border-radius: 10px;
+  max-width: 200%;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-items: center;
+  margin: 1rem;
+  padding: 0;
+  overflow: scroll;
+  background-color: #7fffd4;
+  @include MQ(L){
+    width: 85%;
+}
 }
 

@@ -1,0 +1,27 @@
+//Body Styling
+.body, .face{
+    border-radius: 10px;
+    margin: 0 auto;
+}
+// blue body styling
+#blueBody{
+    background-color: $blue-monster;
+}
+
+// green body styling
+#greenBody{
+    background-color: $green-monster;
+}
+
+// orange body styling
+#orangeBody{
+    background-color: $orange-monster;
+}
+
+// yellow body styling
+#yellowBody{
+    background-color: $yellow-monster;
+}
+img{
+    max-width: 100%;
+}
