@@ -13,26 +13,31 @@
     </header>
     <main>
         <!-- Top section where monster elements are displayed and chosen -->
+        <h2>Choose A Body</h2>
         <section class="body_container">
-          <ul class="todo_list">
-            <!-- li's are done with JavaScript class name is todo_item -->
-            <!-- find cute close and submit buttons -->
-          </ul>
-          <div class="bottomButtons">
-            <button id="all" type="button">All</button>
-            <button id="active" type="button">Active</button>
-            <button id="completed" type="button">Completed</button>
-          </div>
+            <div id="blueBody" class="body"></div>
+            <div id="greenBody" class="body"></div>
+            <div id="orangeBody" class="body"></div>
+            <div id="yellowBody" class="body"></div>
         </section>
+
+        <h2>Choose A Face</h2>
+        <section class="face_container">
+            <div id="face1" class="face"></div>
+            <div id="face2" class="face"></div>
+            <div id="face3" class="face"></div>
+            <div id="face4" class="face"></div>
+        </section>
+
+        <h2>Here's Your Monster</h2>
+        <section class="results"></section>
     </main>
-    <!-- Bottom section where input is recieved -->
+    <!-- Bottom section say thanks for playing and reset the monster -->
     <footer>
       <!-- ToDo Input -->
-      <div class="todo_input">
-        <form class="toDo">
-          <input type="text" id="task" name="task" autofocus="" placeholder="Your Task" required="">
-          <button id="submit" type="submit"><p>You've Got This!</p></button>
-        </form>
+      <div class="reset_monster">
+          <h3>Thanks for playing!</h3>
+          <button id="submit" type="submit"><p>Create A New Monster</p></button>
       </div>
       <!-- End ToDo Input -->
     </footer>
