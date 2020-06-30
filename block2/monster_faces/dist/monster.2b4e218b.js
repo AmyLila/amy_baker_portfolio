@@ -120,8 +120,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"scripts/monster.js":[function(require,module,exports) {
 // get monster info from the JSON file
 var monsterURL = 'https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/data/monster.json';
+console.log("I am working");
 
 function makeMonster() {
+  console.log("Monster Function Working");
   fetch(monsterURL, {
     method: 'GET'
   }).then(function (response) {
@@ -130,6 +132,12 @@ function makeMonster() {
     console.log(jsonObject); //temporary checking for valid response and data parsing
 
     var monster = jsonObject['monsters'];
+
+    for (var i = 0; i < monster.length; i++) {
+      if (monster[i].color == "green") {
+        console.log("Green Working");
+      }
+    }
   }).catch(function (error) {
     return console.error('error:', error);
   });

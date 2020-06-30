@@ -154,6 +154,10 @@ footer {
   max-width: 100%;
 }
 
+button {
+  background-color: brown;
+}
+
 /* -------------------------------- 
 
 Header
