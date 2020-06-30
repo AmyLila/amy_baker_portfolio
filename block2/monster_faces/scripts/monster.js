@@ -2,7 +2,7 @@
 var monsterURL = 'https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/data/monster.json';
 let createMonster = document.getElementById("makeMonster");
 //createMonster.addEventListener("click", makeMonster, false)
-createMonster.addEventListener("click", () => makeMonster(yellow, 1));
+createMonster.addEventListener("click", () => makeMonster("yellow", 1));
 console.log("I am working")
 
 //To Do: Make a color argument and change the event listener so it works
@@ -15,7 +15,7 @@ function makeMonster(color, face_number) {
         const monster = json['monsters'];
         console.log(monster)
         for (let i = 0; i < monster.length; i++ ) {
-            if (monster[i].color == "yellow") {
+            if (monster[i].color == color) {
                 console.log("yellow works")
                 
                 let monsterImage = document.createElement('img');

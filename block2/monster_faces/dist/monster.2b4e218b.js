@@ -123,7 +123,7 @@ var monsterURL = 'https://shakerbaker78.github.io./amy_baker_portfolio/block2/mo
 var createMonster = document.getElementById("makeMonster"); //createMonster.addEventListener("click", makeMonster, false)
 
 createMonster.addEventListener("click", function () {
-  return makeMonster(yellow, 1);
+  return makeMonster("yellow", 1);
 });
 console.log("I am working"); //To Do: Make a color argument and change the event listener so it works
 
@@ -139,7 +139,7 @@ function makeMonster(color, face_number) {
     console.log(monster);
 
     for (var i = 0; i < monster.length; i++) {
-      if (monster[i].color == "yellow") {
+      if (monster[i].color == color) {
         console.log("yellow works");
         var monsterImage = document.createElement('img');
         monsterImage.setAttribute('src', monster[i].body);
