@@ -119,23 +119,21 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   return newRequire;
 })({"scripts/monster.js":[function(require,module,exports) {
 // get monster info from the JSON file
-var monsterURL = "block2/monster_faces/data/monster.json";
-fetch(monsterURL).then(function (response) {
-  return response.json();
-}).then(function (jsonObject) {
-  console.log(jsonObject); //temporary checking for valid response and data parsing
+var monsterURL = 'https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/data/monster.json';
 
-  var monster = jsonObject['monsters'];
+function makeMonster() {
+  fetch(monsterURL, {
+    method: 'GET'
+  }).then(function (response) {
+    return response.json();
+  }).then(function (json) {
+    console.log(jsonObject); //temporary checking for valid response and data parsing
 
-  for (var i = 0; i < monster.length; i++) {
-    if (monster[i].color == "green") {
-      console.log("json green works"); // document.getElementById("name").textContent = temple[i].name;
-      // document.getElementById("dedicated").textContent = temple[i].dedicated;
-    }
-  }
-}); // create a monster object
-// const monster = {
-// };
+    var monster = jsonObject['monsters'];
+  }).catch(function (error) {
+    return console.error('error:', error);
+  });
+}
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
