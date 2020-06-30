@@ -117,21 +117,26 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"scripts/webfonts.js":[function(require,module,exports) {
-WebFont.load({
-  google: {
-    families: ['Arvo', 'Open+Sans', 'Merriweather', 'Special+Elite']
+})({"scripts/monster.js":[function(require,module,exports) {
+// get monster info from the JSON file
+var monsterURL = "block2/monster_faces/data/monster.json";
+fetch(monsterURL).then(function (response) {
+  return response.json();
+}).then(function (jsonObject) {
+  console.log(jsonObject); //temporary checking for valid response and data parsing
+
+  var monster = jsonObject['monsters'];
+
+  for (var i = 0; i < monster.length; i++) {
+    if (monster[i].color == "green") {
+      console.log("json green works"); // document.getElementById("name").textContent = temple[i].name;
+      // document.getElementById("dedicated").textContent = temple[i].dedicated;
+    }
   }
-});
-},{}],"scripts/main.js":[function(require,module,exports) {
-"use strict";
-
-var fonts = _interopRequireWildcard(require("./webfonts.js"));
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-},{"./webfonts.js":"scripts/webfonts.js"}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+}); // create a monster object
+// const monster = {
+// };
+},{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -335,5 +340,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","scripts/main.js"], null)
-//# sourceMappingURL=/main.d8ebb8d6.js.map
+},{}]},{},["../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","scripts/monster.js"], null)
+//# sourceMappingURL=/monster.2b4e218b.js.map

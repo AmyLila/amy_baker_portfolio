@@ -1,26 +1,24 @@
 // get monster info from the JSON file
-const monsterURL = "block2/monster_faces/data/monster.json";
+/Users/Abundance/school-files/WDD_330/portfolio/block2/monster_faces/data/monster.json
+const monsterURL = "https://shakerbaker78.github.io./temple-inn/data/temple-info.json";
 fetch(monsterURL)
   .then(function (response) {
     return response.json();
   })
   .then(function (jsonObject) {
+    console.log(jsonObject); //temporary checking for valid response and data parsing
+    const monster = jsonObject['monsters'];
     
-    const temple = jsonObject['temples'];
+    
 
-    for (let i = 0; i < temple.length; i++ ) {
-                  if (temple[i].name == "Rome Italy Temple")
+    for (let i = 0; i < monster.length; i++ ) {
+                  if (monster[i].color == "green")
                   {  
+                      console.log("json green works")
                     
-    document.getElementById("name").textContent = temple[i].name;
-    document.getElementById("dedicated").textContent = temple[i].dedicated;
-    document.getElementById("address1").textContent = temple[i].address1;
-    document.getElementById("address2").textContent = temple[i].address2;
-    document.getElementById("address3").textContent = temple[i].address3;
-    document.getElementById("phone").textContent = temple[i].phone;
+    // document.getElementById("name").textContent = temple[i].name;
+    // document.getElementById("dedicated").textContent = temple[i].dedicated;
 
-    var linkTest = document.getElementById("link");
-    linkTest.href= temple[i].link;
                 
    
 
@@ -28,6 +26,6 @@ fetch(monsterURL)
 }
 });
 // create a monster object
-const monster = {
+// const monster = {
 
-};
+// };
