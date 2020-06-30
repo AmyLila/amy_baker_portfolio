@@ -2,7 +2,7 @@
 var monsterURL = 'https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/data/monster.json';
 let createMonster = document.getElementById("makeMonster");
 //createMonster.addEventListener("click", makeMonster, false)
-createMonster.addEventListener("click", () => makeMonster("yellow", 1));
+createMonster.addEventListener("click", () => makeMonster("yellow", face1));
 console.log("I am working")
 
 //To Do: Make a color argument and change the event listener so it works
@@ -27,7 +27,7 @@ function makeMonster(color, face_number) {
                 let monsterFace = document.createElement('img');
                 //How can I use the number input to call the correct face? 
                 monsterFace.setAttribute('src', monster[i].face1);
-                monsterFace.setAttribute('alt',"face" + face_number );
+                monsterFace.setAttribute('alt',"face " + face_number );
 
                 document.querySelector('.results').appendChild(monsterFace);
                 
