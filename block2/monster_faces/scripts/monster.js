@@ -2,7 +2,7 @@
 var monsterURL = 'https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/data/monster.json';
 let createMonster = document.getElementById("makeMonster");
 //createMonster.addEventListener("click", makeMonster, false)
-createMonster.addEventListener("click", () => makeMonster("green", 3));
+createMonster.addEventListener("click", () => makeMonster("orange", 1));
 console.log("I am working")
 
 // make a monster function to call the correct pictures.

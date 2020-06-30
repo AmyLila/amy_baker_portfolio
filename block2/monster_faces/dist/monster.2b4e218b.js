@@ -123,7 +123,7 @@ var monsterURL = 'https://shakerbaker78.github.io./amy_baker_portfolio/block2/mo
 var createMonster = document.getElementById("makeMonster"); //createMonster.addEventListener("click", makeMonster, false)
 
 createMonster.addEventListener("click", function () {
-  return makeMonster("green", 3);
+  return makeMonster("orange", 1);
 });
 console.log("I am working"); // make a monster function to call the correct pictures.
 //Function takes a color and face number parameter
