@@ -158,6 +158,12 @@ button {
   background-color: brown;
 }
 
+#makeMonster {
+  width: 150px;
+  height: 75px;
+  background-color: crimson;
+}
+
 /* -------------------------------- 
 
 Header
