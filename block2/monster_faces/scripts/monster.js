@@ -23,6 +23,13 @@ function makeMonster(color, face_number) {
                 monsterImage.setAttribute('alt', monster[i].color);
 
                 document.querySelector('.results').appendChild(monsterImage);
+
+                let monsterFace = document.createElement('img');
+                //How can I use the number input to call the correct face? 
+                monsterFace.setAttribute('src', monster[i].face1);
+                monsterFace.setAttribute('alt',"face" + face_number );
+
+                document.querySelector('.results').appendChild(monsterFace);
                 
             }
             
