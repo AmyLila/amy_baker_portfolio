@@ -146,9 +146,9 @@ function makeMonster(color, face_number) {
         console.log("color works"); //dislay the correct colored body
 
         var monsterImage = document.createElement('img');
+        monsterImage.setAttribute('class', 'monsterBody');
         monsterImage.setAttribute('src', monster[i].body);
         monsterImage.setAttribute('alt', monster[i].color);
-        monsterImage.setAttribute('class', 'monsterBody');
         document.querySelector('.results').appendChild(monsterImage);
         var faces = monster[i].faces; //Iterate throught he faces aray and find the correct face
 
@@ -158,9 +158,9 @@ function makeMonster(color, face_number) {
             console.log(faces[j]); //Add the correct face to the page
 
             var monsterFace = document.createElement('img');
+            monsterFace.setAttribute('class', 'monsterFace');
             monsterFace.setAttribute('src', faces[j]);
             monsterFace.setAttribute('alt', "face " + (face_number + 1));
-            monsterImage.setAttribute('class', 'monsterFace');
             document.querySelector('.results').appendChild(monsterFace);
           }
         }
