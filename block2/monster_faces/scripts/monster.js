@@ -1,5 +1,3 @@
-const { yellow } = require("color-name");
-
 // get monster info from the JSON file
 var monsterURL = 'https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/data/monster.json';
 let createMonster = document.getElementById("makeMonster");
