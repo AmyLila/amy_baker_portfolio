@@ -29,6 +29,7 @@ function makeMonster(color, face_number) {
                 let monsterImage = document.createElement('img');
                 monsterImage.setAttribute('src', monster[i].body);
                 monsterImage.setAttribute('alt', monster[i].color);
+                monsterImage.setAttribute('class', 'monsterBody');
                 document.querySelector('.results').appendChild(monsterImage);
 
                 
@@ -43,6 +44,7 @@ function makeMonster(color, face_number) {
                         let monsterFace = document.createElement('img');
                         monsterFace.setAttribute('src', faces[j]);
                         monsterFace.setAttribute('alt',"face " + (face_number + 1));
+                        monsterImage.setAttribute('class', 'monsterFace');
                         document.querySelector('.results').appendChild(monsterFace);
                     }
                 

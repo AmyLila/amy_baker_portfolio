@@ -148,6 +148,7 @@ function makeMonster(color, face_number) {
         var monsterImage = document.createElement('img');
         monsterImage.setAttribute('src', monster[i].body);
         monsterImage.setAttribute('alt', monster[i].color);
+        monsterImage.setAttribute('class', 'monsterBody');
         document.querySelector('.results').appendChild(monsterImage);
         var faces = monster[i].faces; //Iterate throught he faces aray and find the correct face
 
@@ -159,6 +160,7 @@ function makeMonster(color, face_number) {
             var monsterFace = document.createElement('img');
             monsterFace.setAttribute('src', faces[j]);
             monsterFace.setAttribute('alt', "face " + (face_number + 1));
+            monsterImage.setAttribute('class', 'monsterFace');
             document.querySelector('.results').appendChild(monsterFace);
           }
         }
