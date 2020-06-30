@@ -1,6 +1,5 @@
 // get monster info from the JSON file
-/Users/Abundance/school-files/WDD_330/portfolio/block2/monster_faces/data/monster.json
-const monsterURL = "https://shakerbaker78.github.io./temple-inn/data/temple-info.json";
+const monsterURL = "block2/monster_faces/data/monster.json";
 fetch(monsterURL)
   .then(function (response) {
     return response.json();
