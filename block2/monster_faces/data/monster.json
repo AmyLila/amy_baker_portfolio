@@ -3,10 +3,12 @@
   
     {
         "color": "blue",
-        "face1": "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/blue/blue_face01.png",
-        "face2": "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/blue/blue_face02.png",
-        "face3": "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/blue/blue_face03.png",
-        "face4": "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/blue/blue_face04.png",
+        "faces" : [
+            "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/blue/blue_face01.png",
+            "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/blue/blue_face02.png",
+            "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/blue/blue_face03.png",
+            "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/blue/blue_face04.png"
+        ],
         "body": "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/blue/blue_full_monster_blank.png"
        
       },
@@ -14,10 +16,12 @@
 
     {
         "color": "green",
-        "face1": "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/green/green_face01.png",
-        "face2": "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/green/green_face02.png",
-        "face3": "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/green/green_face03.png",
-        "face4": "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/green/green_face04.png",
+        "faces" : [
+            "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/green/green_face01.png",
+            "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/green/green_face02.png",
+            "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/green/green_face03.png",
+            "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/green/green_face04.png"
+        ],
         "body": "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/green/monster_body_green.png"        
         },
 
@@ -25,10 +29,12 @@
 
     {
         "color": "orange",
-        "face1": "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/orange/orange_face01.png",
-        "face2": "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/orange/orange_face02.png",
-        "face3": "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/orange/orange_face03.png",
-        "face4": "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/orange/orange_face04.png",
+        "faces" : [
+            "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/orange/orange_face01.png",
+            "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/orange/orange_face02.png",
+            "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/orange/orange_face03.png",
+            "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/orange/orange_face04.png"
+        ],
         "body": "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/orange/orange_full_monster_blank.png"        
        },
 
@@ -41,10 +47,6 @@
             "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/yellow/yellow_face03.png",
             "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/yellow/yellow_face04.png"
         ],
-        "face1": "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/yellow/yellow_face01.png",
-        "face2": "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/yellow/yellow_face02.png",
-        "face3": "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/yellow/yellow_face03.png",
-        "face4": "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/yellow/yellow_face04.png",
         "body": "https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/images/yellow/yellow_full_monster_blank.png"      
     }
   
