@@ -140,7 +140,7 @@ function makeMonster(color, face_number) {
 
     for (var i = 0; i < monster.length; i++) {
       if (monster[i].color == color) {
-        console.log("yellow works");
+        console.log("color works");
         var monsterImage = document.createElement('img');
         monsterImage.setAttribute('src', monster[i].body);
         monsterImage.setAttribute('alt', monster[i].color);

@@ -16,7 +16,7 @@ function makeMonster(color, face_number) {
         console.log(monster)
         for (let i = 0; i < monster.length; i++ ) {
             if (monster[i].color == color) {
-                console.log("yellow works")
+                console.log("color works")
                 
                 let monsterImage = document.createElement('img');
                 monsterImage.setAttribute('src', monster[i].body);
