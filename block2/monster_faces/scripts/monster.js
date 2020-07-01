@@ -18,7 +18,7 @@ function makeMonster(color, face_number) {
 
         //Create a monster object
         const monster = json['monsters'];
-        console.log(monster)
+        console.log(typeof(monster))
 
         //Iterate through the monster object and match the color 
         for (let i = 0; i < monster.length; i++ ) {
