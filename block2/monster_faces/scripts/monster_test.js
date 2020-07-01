@@ -31,10 +31,11 @@ console.log("I am working")
         // loop through all items in the bodies object and display the bodies (that sounds so morbid!)
         const face_container = document.querySelector(`.face_container`);
         const allFaces = monster.filter(monster => monster.color == color);
+        console.log(typeof(allFaces))
         console.log(allFaces)
 
 // I think I am doing the array wrong and need to push each item maybe use map?
-        const face = allFaces.faces
+        const face = allFaces[0].faces
         console.log(face)
         //Iterate throught he faces aray and find the correct face
         for (let j = 0; j < face.length; j++){
@@ -47,16 +48,16 @@ console.log("I am working")
                 monsterFace.setAttribute('class', 'monsterFace');
                 monsterFace.setAttribute('src', face[j]);
                 monsterFace.setAttribute('alt',"face " + (j + 1));
-                document.querySelector('.results').appendChild(monsterFace);
+                document.querySelector('.face_container').appendChild(monsterFace);
             
         
         }
         // Add the list items to the html
-        face_container.innerHTML = face;
+        //face_container.innerHTML = face;
         
         console.log(face)
 
         }
-    displayFaces("yellow")
+    displayFaces("orange")
 
     })

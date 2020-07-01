@@ -153,9 +153,10 @@ fetch(monsterURL, {
     var allFaces = monster.filter(function (monster) {
       return monster.color == color;
     });
+    console.log(_typeof(allFaces));
     console.log(allFaces); // I think I am doing the array wrong and need to push each item maybe use map?
 
-    var face = allFaces.faces;
+    var face = allFaces[0].faces;
     console.log(face); //Iterate throught he faces aray and find the correct face
 
     for (var j = 0; j < face.length; j++) {
@@ -166,15 +167,15 @@ fetch(monsterURL, {
       monsterFace.setAttribute('class', 'monsterFace');
       monsterFace.setAttribute('src', face[j]);
       monsterFace.setAttribute('alt', "face " + (j + 1));
-      document.querySelector('.results').appendChild(monsterFace);
+      document.querySelector('.face_container').appendChild(monsterFace);
     } // Add the list items to the html
+    //face_container.innerHTML = face;
 
 
-    face_container.innerHTML = face;
     console.log(face);
   }
 
-  displayFaces("yellow");
+  displayFaces("orange");
 });
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
