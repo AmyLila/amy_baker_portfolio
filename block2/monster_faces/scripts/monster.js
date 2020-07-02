@@ -10,7 +10,6 @@ const createMonster = document.getElementById("makeMonster");
     .then(json => {
         //Create a monster object
         const monster = json['monsters'];
-        console.log(typeof(monster))
 
     // display all the body choices    
     function displayBodies(){
@@ -41,13 +40,9 @@ const createMonster = document.getElementById("makeMonster");
 
         // create a faces object with all of the faces of one color in it.
         const face = allFaces[0].faces
-        console.log(typeof(face))
 
         //Iterate throught he faces aray and find the correct face
         for (let j = 0; j < face.length; j++){
-            
-                console.log("faces works")
-                console.log(face[j])
             
                 //Add the divs that hold the face images
                 let faceDiv = document.createElement('div')
@@ -69,21 +64,13 @@ const createMonster = document.getElementById("makeMonster");
     //Call display faces (should I move this to the HTML onload?)
     displayFaces("yellow")
 
-//listen for a click and then display the monster
-    createMonster.addEventListener("click", () => chooseBody("blue"));
-    createMonster.addEventListener("click", () => chooseFace("yellow", 3));
-
-
-
-    
+  
     // make a monster function to call the correct body. This will also pass in the color variable for the faces
     //Function takes a color and face number parameter
     function chooseBody(color) {
-    console.log("Monster Function Working");
 
         //filter the monster object and match the selected color 
         const chosenBody = filterColor(color)
-        console.log(chosenBody);
 
         //Make a div to hold the body
         let bodyDiv = document.createElement('div')
@@ -110,8 +97,6 @@ const createMonster = document.getElementById("makeMonster");
         //Iterate through the faces aray and find the correct face
         for (let j = 0; j < face.length; j++){
             if (j == face_number) {
-                console.log("faces works")
-                console.log(face[j])
 
                 //Make a div to hold the body
                 let faceDiv = document.createElement('div')
@@ -128,6 +113,13 @@ const createMonster = document.getElementById("makeMonster");
         
         }//end for loop
     }// end choose face
+
+    //Event listeners
+    //listen for a click and then display the monster
+    createMonster.addEventListener("click", () => chooseBody("blue"));
+    createMonster.addEventListener("click", () => chooseFace("yellow", 3));
+
+
 
 
     //still need a click function for the body, 

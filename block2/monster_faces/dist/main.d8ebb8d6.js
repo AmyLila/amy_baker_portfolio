@@ -118,8 +118,6 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"scripts/monster.js":[function(require,module,exports) {
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 //global Variables
 var monsterURL = 'https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/data/monster.json';
 var createMonster = document.getElementById("makeMonster"); // get monster info from the JSON file
@@ -131,8 +129,7 @@ fetch(monsterURL, {
   return response.json();
 }).then(function (json) {
   //Create a monster object
-  var monster = json['monsters'];
-  console.log(_typeof(monster)); // display all the body choices    
+  var monster = json['monsters']; // display all the body choices    
 
   function displayBodies() {
     // loop through all items in the bodies object and display the bodies (that sounds so morbid!)
@@ -159,13 +156,10 @@ fetch(monsterURL, {
     //filter the monster file to an object with only the values from the selected color
     var allFaces = filterColor(color); // create a faces object with all of the faces of one color in it.
 
-    var face = allFaces[0].faces;
-    console.log(_typeof(face)); //Iterate throught he faces aray and find the correct face
+    var face = allFaces[0].faces; //Iterate throught he faces aray and find the correct face
 
     for (var j = 0; j < face.length; j++) {
-      console.log("faces works");
-      console.log(face[j]); //Add the divs that hold the face images
-
+      //Add the divs that hold the face images
       var faceDiv = document.createElement('div');
       faceDiv.setAttribute('class', 'face');
       faceDiv.setAttribute('id', 'face' + [j]);
@@ -182,21 +176,12 @@ fetch(monsterURL, {
   //Call display faces (should I move this to the HTML onload?)
 
 
-  displayFaces("yellow"); //listen for a click and then display the monster
-
-  createMonster.addEventListener("click", function () {
-    return chooseBody("blue");
-  });
-  createMonster.addEventListener("click", function () {
-    return chooseFace("yellow", 3);
-  }); // make a monster function to call the correct body. This will also pass in the color variable for the faces
+  displayFaces("yellow"); // make a monster function to call the correct body. This will also pass in the color variable for the faces
   //Function takes a color and face number parameter
 
   function chooseBody(color) {
-    console.log("Monster Function Working"); //filter the monster object and match the selected color 
-
-    var chosenBody = filterColor(color);
-    console.log(chosenBody); //Make a div to hold the body
+    //filter the monster object and match the selected color 
+    var chosenBody = filterColor(color); //Make a div to hold the body
 
     var bodyDiv = document.createElement('div');
     bodyDiv.setAttribute('class', 'chosenBody');
@@ -217,9 +202,7 @@ fetch(monsterURL, {
 
     for (var j = 0; j < face.length; j++) {
       if (j == face_number) {
-        console.log("faces works");
-        console.log(face[j]); //Make a div to hold the body
-
+        //Make a div to hold the body
         var faceDiv = document.createElement('div');
         faceDiv.setAttribute('class', 'chosenface');
         document.querySelector('.results').appendChild(faceDiv); //Add the correct face to the page
@@ -234,13 +217,21 @@ fetch(monsterURL, {
     } //end for loop
 
   } // end choose face
-  //still need a click function for the body, 
+  //Event listeners
+  //listen for a click and then display the monster
+
+
+  createMonster.addEventListener("click", function () {
+    return chooseBody("blue");
+  });
+  createMonster.addEventListener("click", function () {
+    return chooseFace("yellow", 3);
+  }); //still need a click function for the body, 
   //it will call the correct face set and call 
   //the display body function with the correct 
   //color and all the correct color to the faces function
   //Also need a click face function that will call the choose face function and pass in the correct number
   //if div one is clicked display face 1 etc.
-
 }); //end Anonymous
 },{}],"scripts/webfonts.js":[function(require,module,exports) {
 WebFont.load({
