@@ -117,7 +117,132 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"scripts/webfonts.js":[function(require,module,exports) {
+})({"scripts/monster.js":[function(require,module,exports) {
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+//global Variables
+var monsterURL = 'https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/data/monster.json';
+var createMonster = document.getElementById("makeMonster"); // get monster info from the JSON file
+// fetch the local json data
+
+fetch(monsterURL, {
+  method: 'GET'
+}).then(function (response) {
+  return response.json();
+}).then(function (json) {
+  //Create a monster object
+  var monster = json['monsters'];
+  console.log(_typeof(monster)); // display all the body choices    
+
+  function displayBodies() {
+    // loop through all items in the bodies object and display the bodies (that sounds so morbid!)
+    var body_container = document.querySelector(".body_container");
+    var bodies = monster.map(function (body) {
+      return "<div class = \"body\" id = \"".concat(body.color, "Body\">\n        <img class \"monsterBody\" src = \"").concat(body.body, "\" alt = \"").concat(body.color, " Body\">\n        </div>");
+    }).join(""); // Add the list items to the html
+
+    body_container.innerHTML = bodies;
+  } //End Display Bodies Function
+  // Call display bodies    
+
+
+  displayBodies(); //function to filter the monster object by color. 
+
+  function filterColor(color) {
+    return monster.filter(function (monster) {
+      return monster.color == color;
+    });
+  } // Display all the faces of a given color
+
+
+  function displayFaces(color) {
+    //filter the monster file to an object with only the values from the selected color
+    var allFaces = filterColor(color); // create a faces object with all of the faces of one color in it.
+
+    var face = allFaces[0].faces;
+    console.log(_typeof(face)); //Iterate throught he faces aray and find the correct face
+
+    for (var j = 0; j < face.length; j++) {
+      console.log("faces works");
+      console.log(face[j]); //Add the divs that hold the face images
+
+      var faceDiv = document.createElement('div');
+      faceDiv.setAttribute('class', 'face');
+      faceDiv.setAttribute('id', 'face' + [j]);
+      document.querySelector('.face_container').appendChild(faceDiv); //Add the face images
+
+      var monsterFace = document.createElement('img');
+      monsterFace.setAttribute('class', 'monsterFace');
+      monsterFace.setAttribute('src', face[j]);
+      monsterFace.setAttribute('alt', "face " + (j + 1));
+      document.querySelector('#face' + [j]).appendChild(monsterFace);
+    } // End for loop        
+
+  } // End Display Faces Function
+  //Call display faces (should I move this to the HTML onload?)
+
+
+  displayFaces("yellow"); //listen for a click and then display the monster
+
+  createMonster.addEventListener("click", function () {
+    return chooseBody("blue");
+  });
+  createMonster.addEventListener("click", function () {
+    return chooseFace("yellow", 3);
+  }); // make a monster function to call the correct body. This will also pass in the color variable for the faces
+  //Function takes a color and face number parameter
+
+  function chooseBody(color) {
+    console.log("Monster Function Working"); //filter the monster object and match the selected color 
+
+    var chosenBody = filterColor(color);
+    console.log(chosenBody); //Make a div to hold the body
+
+    var bodyDiv = document.createElement('div');
+    bodyDiv.setAttribute('class', 'chosenBody');
+    bodyDiv.setAttribute('id', 'body' + chosenBody[0].color);
+    document.querySelector('.results').appendChild(bodyDiv); //dislay the correct colored body
+
+    var monsterImage = document.createElement('img');
+    monsterImage.setAttribute('class', 'monsterBody');
+    monsterImage.setAttribute('src', chosenBody[0].body);
+    monsterImage.setAttribute('alt', chosenBody[0].color + " Body");
+    document.querySelector('.chosenBody').appendChild(monsterImage);
+  } //End Choose Body Function
+
+
+  function chooseFace(color, face_number) {
+    var faces = filterColor(color);
+    var face = faces[0].faces; //Iterate through the faces aray and find the correct face
+
+    for (var j = 0; j < face.length; j++) {
+      if (j == face_number) {
+        console.log("faces works");
+        console.log(face[j]); //Make a div to hold the body
+
+        var faceDiv = document.createElement('div');
+        faceDiv.setAttribute('class', 'chosenface');
+        document.querySelector('.results').appendChild(faceDiv); //Add the correct face to the page
+
+        var monsterFace = document.createElement('img');
+        monsterFace.setAttribute('class', 'monsterFace');
+        monsterFace.setAttribute('src', face[j]);
+        monsterFace.setAttribute('alt', "face " + (face_number + 1));
+        document.querySelector('.chosenface').appendChild(monsterFace);
+      } //end if statement
+
+    } //end for loop
+
+  } // end choose face
+  //still need a click function for the body, 
+  //it will call the correct face set and call 
+  //the display body function with the correct 
+  //color and all the correct color to the faces function
+  //Also need a click face function that will call the choose face function and pass in the correct number
+  //if div one is clicked display face 1 etc.
+
+}); //end Anonymous
+},{}],"scripts/webfonts.js":[function(require,module,exports) {
 WebFont.load({
   google: {
     families: ['Arvo', 'Open+Sans', 'Merriweather', 'Special+Elite']
@@ -126,12 +251,14 @@ WebFont.load({
 },{}],"scripts/main.js":[function(require,module,exports) {
 "use strict";
 
+var monster = _interopRequireWildcard(require("./monster.js"));
+
 var fonts = _interopRequireWildcard(require("./webfonts.js"));
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-},{"./webfonts.js":"scripts/webfonts.js"}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./monster.js":"scripts/monster.js","./webfonts.js":"scripts/webfonts.js"}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -159,7 +286,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60078" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62943" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

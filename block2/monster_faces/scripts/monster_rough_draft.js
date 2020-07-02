@@ -1,8 +1,24 @@
+// get monster info from the JSON file
+var monsterURL = 'https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/data/monster.json';
+let createMonster = document.getElementById("makeMonster");
+//createMonster.addEventListener("click", makeMonster, false)
+createMonster.addEventListener("click", () => makeMonster("orange", 1));
+console.log("I am working")
+
 // make a monster function to call the correct pictures.
 //Function takes a color and face number parameter
 function makeMonster(color, face_number) {
     console.log("Monster Function Working")
 
+    // fetch the local json data
+    fetch(monsterURL, {method: 'GET'})
+    .then(response => response.json())
+    .then(json => {
+        console.log(json);
+
+        //Create a monster object
+        const monster = json['monsters'];
+        console.log(typeof(monster))
 
         //Iterate through the monster object and match the color 
         for (let i = 0; i < monster.length; i++ ) {
@@ -38,7 +54,8 @@ function makeMonster(color, face_number) {
             }
             
         }
-    }
+    })
 
 
+}
 

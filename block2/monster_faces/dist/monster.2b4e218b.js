@@ -118,58 +118,136 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"scripts/monster.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.createMonster = exports.monsterURL = void 0;
+
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-// get monster info from the JSON file
+//global Variables
 var monsterURL = 'https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/data/monster.json';
-var createMonster = document.getElementById("makeMonster"); //createMonster.addEventListener("click", makeMonster, false)
+exports.monsterURL = monsterURL;
+var createMonster = document.getElementById("makeMonster"); //export function monster() {
+// get monster info from the JSON file
+// fetch the local json data
 
-createMonster.addEventListener("click", function () {
-  return makeMonster("orange", 1);
-});
-console.log("I am working"); // make a monster function to call the correct pictures.
-//Function takes a color and face number parameter
+exports.createMonster = createMonster;
+fetch(monsterURL, {
+  method: 'GET'
+}).then(function (response) {
+  return response.json();
+}).then(function (json) {
+  //Create a monster object
+  var monster = json['monsters'];
+  console.log(_typeof(monster)); // display all the body choices    
 
-function makeMonster(color, face_number) {
-  console.log("Monster Function Working"); // fetch the local json data
+  function displayBodies() {
+    // loop through all items in the bodies object and display the bodies (that sounds so morbid!)
+    var body_container = document.querySelector(".body_container");
+    var bodies = monster.map(function (body) {
+      return "<div class = \"body\" id = \"".concat(body.color, "Body\">\n        <img class \"monsterBody\" src = \"").concat(body.body, "\" alt = \"").concat(body.color, " Body\">\n        </div>");
+    }).join(""); // Add the list items to the html
 
-  fetch(monsterURL, {
-    method: 'GET'
-  }).then(function (response) {
-    return response.json();
-  }).then(function (json) {
-    console.log(json); //Create a monster object
+    body_container.innerHTML = bodies;
+  } //End Display Bodies Function
+  // Call display bodies    
 
-    var monster = json['monsters'];
-    console.log(_typeof(monster)); //Iterate through the monster object and match the color 
 
-    for (var i = 0; i < monster.length; i++) {
-      if (monster[i].color == color) {
-        console.log("color works"); //dislay the correct colored body
+  displayBodies(); //function to filter the monster object by color. 
 
-        var monsterImage = document.createElement('img');
-        monsterImage.setAttribute('class', 'monsterBody');
-        monsterImage.setAttribute('src', monster[i].body);
-        monsterImage.setAttribute('alt', monster[i].color);
-        document.querySelector('.results').appendChild(monsterImage);
-        var faces = monster[i].faces; //Iterate throught he faces aray and find the correct face
+  function filterColor(color) {
+    return monster.filter(function (monster) {
+      return monster.color == color;
+    });
+  } // Display all the faces of a given color
 
-        for (var j = 0; j < faces.length; j++) {
-          if (j == face_number) {
-            console.log("faces works");
-            console.log(faces[j]); //Add the correct face to the page
 
-            var monsterFace = document.createElement('img');
-            monsterFace.setAttribute('class', 'monsterFace');
-            monsterFace.setAttribute('src', faces[j]);
-            monsterFace.setAttribute('alt', "face " + (face_number + 1));
-            document.querySelector('.results').appendChild(monsterFace);
-          }
-        }
-      }
-    }
+  function displayFaces(color) {
+    //filter the monster file to an object with only the values from the selected color
+    var allFaces = filterColor(color); // create a faces object with all of the faces of one color in it.
+
+    var face = allFaces[0].faces;
+    console.log(_typeof(face)); //Iterate throught he faces aray and find the correct face
+
+    for (var j = 0; j < face.length; j++) {
+      console.log("faces works");
+      console.log(face[j]); //Add the divs that hold the face images
+
+      var faceDiv = document.createElement('div');
+      faceDiv.setAttribute('class', 'face');
+      faceDiv.setAttribute('id', 'face' + [j]);
+      document.querySelector('.face_container').appendChild(faceDiv); //Add the face images
+
+      var monsterFace = document.createElement('img');
+      monsterFace.setAttribute('class', 'monsterFace');
+      monsterFace.setAttribute('src', face[j]);
+      monsterFace.setAttribute('alt', "face " + (j + 1));
+      document.querySelector('#face' + [j]).appendChild(monsterFace);
+    } // End for loop        
+
+  } // End Display Faces Function
+  //Call display faces (should I move this to the HTML onload?)
+
+
+  displayFaces("orange"); //listen for a click and then display the monster
+
+  createMonster.addEventListener("click", function () {
+    return chooseBody("orange");
   });
-}
+  createMonster.addEventListener("click", function () {
+    return chooseFace("green", 1);
+  }); // make a monster function to call the correct body. This will also pass in the color variable for the faces
+  //Function takes a color and face number parameter
+
+  function chooseBody(color) {
+    console.log("Monster Function Working"); //filter the monster object and match the selected color 
+
+    var chosenBody = filterColor(color);
+    console.log(chosenBody); //Make a div to hold the body
+
+    var bodyDiv = document.createElement('div');
+    bodyDiv.setAttribute('class', 'chosenBody');
+    bodyDiv.setAttribute('id', 'body' + chosenBody[0].color);
+    document.querySelector('.results').appendChild(bodyDiv); //dislay the correct colored body
+
+    var monsterImage = document.createElement('img');
+    monsterImage.setAttribute('class', 'monsterBody');
+    monsterImage.setAttribute('src', chosenBody[0].body);
+    monsterImage.setAttribute('alt', chosenBody[0].color + " Body");
+    document.querySelector('.chosenBody').appendChild(monsterImage);
+  } //End Choose Body Function
+
+
+  function chooseFace(color, face_number) {
+    var faces = filterColor(color);
+    var face = faces[0].faces; //Iterate through the faces aray and find the correct face
+
+    for (var j = 0; j < face.length; j++) {
+      if (j == face_number) {
+        console.log("faces works");
+        console.log(face[j]); //Make a div to hold the body
+
+        var faceDiv = document.createElement('div');
+        faceDiv.setAttribute('class', 'chosenface');
+        document.querySelector('.results').appendChild(faceDiv); //Add the correct face to the page
+
+        var monsterFace = document.createElement('img');
+        monsterFace.setAttribute('class', 'monsterFace');
+        monsterFace.setAttribute('src', face[j]);
+        monsterFace.setAttribute('alt', "face " + (face_number + 1));
+        document.querySelector('.chosenface').appendChild(monsterFace);
+      } //end if statement
+
+    } //end for loop
+
+  } // end choose face
+
+}); //end Anonymous
+//}//end monster
+//export {monster}
 },{}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -198,7 +276,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60078" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62943" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
