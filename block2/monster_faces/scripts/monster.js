@@ -71,17 +71,18 @@ const createMonster = document.getElementById("makeMonster");
 
         //filter the monster object and match the selected color 
         const chosenBody = filterColor(color)
-
+        //Move this div to the html
         //Make a div to hold the body
         let bodyDiv = document.createElement('div')
         bodyDiv.setAttribute('class', 'chosenBody')
         bodyDiv.setAttribute('id', 'body' + chosenBody[0].color );
         document.querySelector('.results').appendChild(bodyDiv)
 
-                
+        //I wonder if this will just work may be I need to clear the div here and then add the image
+        //use replace child or remove child        
         //dislay the correct colored body
         let monsterImage = document.createElement('img');
-        monsterImage.setAttribute('class', 'monsterBody');
+        monsterImage.setAttribute('class', 'variableBody');
         monsterImage.setAttribute('src', chosenBody[0].body);
         monsterImage.setAttribute('alt', chosenBody[0].color + " Body");
         document.querySelector('.chosenBody').appendChild(monsterImage);
@@ -105,7 +106,7 @@ const createMonster = document.getElementById("makeMonster");
             
                 //Add the correct face to the page
                 let monsterFace = document.createElement('img');
-                monsterFace.setAttribute('class', 'monsterFace');
+                monsterFace.setAttribute('class', 'variableFace');
                 monsterFace.setAttribute('src', face[j]);
                 monsterFace.setAttribute('alt',"face " + (face_number + 1));
                 document.querySelector('.chosenface').appendChild(monsterFace);
