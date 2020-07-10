@@ -1,13 +1,19 @@
 
 //global Variables
 const monsterURL = 'https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/data/monster.json';
+
+const bodyButtons = document.querySelector(`.body_container`);
+
+const face_container = document.querySelector(`.face_container`)
+
 const createMonster = document.getElementById("makeMonster");
 
+
 // get monster info from the JSON file
-    // fetch the local json data
-    fetch(monsterURL, {method: 'GET'})
-    .then(response => response.json())
-    .then(json => {
+// fetch the local json data
+fetch(monsterURL, {method: 'GET'})
+.then(response => response.json())
+.then(json => {
         //Create a monster object
         const monster = json['monsters'];
 
@@ -16,8 +22,8 @@ const createMonster = document.getElementById("makeMonster");
         // loop through all items in the bodies object and display the bodies (that sounds so morbid!)
         const body_container = document.querySelector(`.body_container`);
         const bodies = monster.map(body => 
-        `<div class = "body" id = "${body.color}Body">
-        <img class "monsterBody" src = "${body.body}" alt = "${body.color} Body">
+        `<div class = "body">
+        <img class "monsterBody" id = "${body.color}Body" src = "${body.body}" alt = "${body.color} Body">
         </div>`).join(``);
 
         // Add the list items to the html
@@ -34,6 +40,7 @@ const createMonster = document.getElementById("makeMonster");
 
     // Display all the faces of a given color
     function displayFaces(color){
+        const face_container = document.querySelector(`.face_container`);
        
         //filter the monster file to an object with only the values from the selected color
         const allFaces = filterColor(color);
@@ -41,25 +48,26 @@ const createMonster = document.getElementById("makeMonster");
         // create a faces object with all of the faces of one color in it.
         const face = allFaces[0].faces
 
-        //Iterate throught he faces aray and find the correct face
+        //Iterate throught the faces aray and find the correct face
         for (let j = 0; j < face.length; j++){
-            
+ 
                 //Add the divs that hold the face images
                 let faceDiv = document.createElement('div')
                 faceDiv.setAttribute('class', 'face')
                 faceDiv.setAttribute('id', 'face' + [j]);
-                document.querySelector('.face_container').appendChild(faceDiv)
+                face_container.appendChild(faceDiv)
 
                 //Add the face images
                 let monsterFace = document.createElement('img');
                 monsterFace.setAttribute('class', 'monsterFace');
+                monsterFace.setAttribute('id', 'faceImg' + [j]);
                 monsterFace.setAttribute('src', face[j]);
                 monsterFace.setAttribute('alt',"face " + (j + 1));
                 document.querySelector('#face' + [j]).appendChild(monsterFace);
             
         
         }// End for loop        
-
+    
     }// End Display Faces Function
     //Call display faces (should I move this to the HTML onload?)
     displayFaces("yellow")
@@ -68,24 +76,26 @@ const createMonster = document.getElementById("makeMonster");
     // make a monster function to call the correct body. This will also pass in the color variable for the faces
     //Function takes a color and face number parameter
     function chooseBody(color) {
+        const bodyDiv = document.querySelector('.chosenBody');
+    
+        // Remove the current child of bodyDiv
+        if (bodyDiv.hasChildNodes()) {
+            bodyDiv.removeChild(bodyDiv.childNodes[0]);
+        }
+          
 
         //filter the monster object and match the selected color 
         const chosenBody = filterColor(color)
-        //Move this div to the html
-        //Make a div to hold the body
-        let bodyDiv = document.createElement('div')
-        bodyDiv.setAttribute('class', 'chosenBody')
-        bodyDiv.setAttribute('id', 'body' + chosenBody[0].color );
-        document.querySelector('.results').appendChild(bodyDiv)
 
-        //I wonder if this will just work may be I need to clear the div here and then add the image
-        //use replace child or remove child        
+
+        bodyDiv.setAttribute('id', 'body' + chosenBody[0].color );
+      
         //dislay the correct colored body
         let monsterImage = document.createElement('img');
         monsterImage.setAttribute('class', 'variableBody');
         monsterImage.setAttribute('src', chosenBody[0].body);
         monsterImage.setAttribute('alt', chosenBody[0].color + " Body");
-        document.querySelector('.chosenBody').appendChild(monsterImage);
+        bodyDiv.appendChild(monsterImage);
             
             
     } //End Choose Body Function
@@ -95,21 +105,24 @@ const createMonster = document.getElementById("makeMonster");
     function chooseFace(color,face_number){
         const faces = filterColor(color)
         const face = faces[0].faces
+        const faceDiv = document.querySelector('.chosenFace');
+
+        // Remove the current child of faceDiv
+        if (faceDiv.hasChildNodes()) {
+            faceDiv.removeChild(faceDiv.childNodes[0]);
+        }
+
         //Iterate through the faces aray and find the correct face
         for (let j = 0; j < face.length; j++){
             if (j == face_number) {
 
-                //Make a div to hold the body
-                let faceDiv = document.createElement('div')
-                faceDiv.setAttribute('class', 'chosenface')
-                document.querySelector('.results').appendChild(faceDiv)
-            
+
                 //Add the correct face to the page
                 let monsterFace = document.createElement('img');
                 monsterFace.setAttribute('class', 'variableFace');
                 monsterFace.setAttribute('src', face[j]);
                 monsterFace.setAttribute('alt',"face " + (face_number + 1));
-                document.querySelector('.chosenface').appendChild(monsterFace);
+                document.querySelector('.chosenFace').appendChild(monsterFace);
             }//end if statement
         
         }//end for loop
@@ -117,9 +130,77 @@ const createMonster = document.getElementById("makeMonster");
 
     //Event listeners
     //listen for a click and then display the monster
-    createMonster.addEventListener("click", () => chooseBody("blue"));
-    createMonster.addEventListener("click", () => chooseFace("yellow", 3));
+    createMonster.addEventListener("click", () => chooseBody("green"));
+    createMonster.addEventListener("click", () => chooseFace("orange", 0));
 
+// This listens for any clicks on the monster body pictures and displays the body and the matching faces. 
+bodyButtons.addEventListener("click", function(event){
+    if(event.target.matches("#blueBody")) {
+        chooseBody("blue");
+        //Remove the existing content in the face container
+        while(face_container.firstChild) {
+            face_container.removeChild(face_container.firstChild);
+        }
+        displayFaces("blue")
+        clickFace("blue")
+    
+    };
+    if(event.target.matches("#greenBody")) {
+        chooseBody("green");
+        //Remove the existing content in the face container
+        while(face_container.firstChild) {
+            face_container.removeChild(face_container.firstChild);
+        }
+        displayFaces("green")
+        clickFace("green")
+        
+
+    };
+    if(event.target.matches("#yellowBody")) {
+        chooseBody("yellow");
+        //Remove the existing content in the face container
+        while(face_container.firstChild) {
+            face_container.removeChild(face_container.firstChild);
+        }
+        displayFaces("yellow")
+        clickFace("yellow")
+        
+    };
+    if(event.target.matches("#orangeBody")) {
+        chooseBody("orange");
+        //Remove the existing content in the face container
+        while(face_container.firstChild) {
+            face_container.removeChild(face_container.firstChild);
+        }
+        displayFaces("orange")
+        clickFace("orange")
+        
+    };
+}); // End the body buttons
+
+
+function clickFace(color){
+    // This listens for any clicks on the monster body pictures and displays the body and the matching faces. 
+    face_container.addEventListener("click", function(event){
+        if(event.target.matches("#faceImg0")) {
+            chooseFace(color, 0)
+        
+        };
+        if(event.target.matches("#faceImg1")) {
+            chooseFace(color, 1)
+            
+
+        };
+        if(event.target.matches("#faceImg2")) {
+            chooseFace(color, 2)
+            
+        };
+        if(event.target.matches("#faceImg3")) {
+            chooseFace(color, 3)
+            
+        };
+    }); // End the face buttons
+};
 
 
 

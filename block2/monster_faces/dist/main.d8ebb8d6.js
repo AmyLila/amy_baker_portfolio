@@ -120,6 +120,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"scripts/monster.js":[function(require,module,exports) {
 //global Variables
 var monsterURL = 'https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/data/monster.json';
+var bodyButtons = document.querySelector(".body_container");
+var face_container = document.querySelector(".face_container");
 var createMonster = document.getElementById("makeMonster"); // get monster info from the JSON file
 // fetch the local json data
 
@@ -135,7 +137,7 @@ fetch(monsterURL, {
     // loop through all items in the bodies object and display the bodies (that sounds so morbid!)
     var body_container = document.querySelector(".body_container");
     var bodies = monster.map(function (body) {
-      return "<div class = \"body\" id = \"".concat(body.color, "Body\">\n        <img class \"monsterBody\" src = \"").concat(body.body, "\" alt = \"").concat(body.color, " Body\">\n        </div>");
+      return "<div class = \"body\">\n        <img class \"monsterBody\" id = \"".concat(body.color, "Body\" src = \"").concat(body.body, "\" alt = \"").concat(body.color, " Body\">\n        </div>");
     }).join(""); // Add the list items to the html
 
     body_container.innerHTML = bodies;
@@ -153,20 +155,22 @@ fetch(monsterURL, {
 
 
   function displayFaces(color) {
-    //filter the monster file to an object with only the values from the selected color
+    var face_container = document.querySelector(".face_container"); //filter the monster file to an object with only the values from the selected color
+
     var allFaces = filterColor(color); // create a faces object with all of the faces of one color in it.
 
-    var face = allFaces[0].faces; //Iterate throught he faces aray and find the correct face
+    var face = allFaces[0].faces; //Iterate throught the faces aray and find the correct face
 
     for (var j = 0; j < face.length; j++) {
       //Add the divs that hold the face images
       var faceDiv = document.createElement('div');
       faceDiv.setAttribute('class', 'face');
       faceDiv.setAttribute('id', 'face' + [j]);
-      document.querySelector('.face_container').appendChild(faceDiv); //Add the face images
+      face_container.appendChild(faceDiv); //Add the face images
 
       var monsterFace = document.createElement('img');
       monsterFace.setAttribute('class', 'monsterFace');
+      monsterFace.setAttribute('id', 'faceImg' + [j]);
       monsterFace.setAttribute('src', face[j]);
       monsterFace.setAttribute('alt', "face " + (j + 1));
       document.querySelector('#face' + [j]).appendChild(monsterFace);
@@ -180,38 +184,42 @@ fetch(monsterURL, {
   //Function takes a color and face number parameter
 
   function chooseBody(color) {
-    //filter the monster object and match the selected color 
-    var chosenBody = filterColor(color); //Make a div to hold the body
+    var bodyDiv = document.querySelector('.chosenBody'); // Remove the current child of bodyDiv
 
-    var bodyDiv = document.createElement('div');
-    bodyDiv.setAttribute('class', 'chosenBody');
-    bodyDiv.setAttribute('id', 'body' + chosenBody[0].color);
-    document.querySelector('.results').appendChild(bodyDiv); //dislay the correct colored body
+    if (bodyDiv.hasChildNodes()) {
+      bodyDiv.removeChild(bodyDiv.childNodes[0]);
+    } //filter the monster object and match the selected color 
+
+
+    var chosenBody = filterColor(color);
+    bodyDiv.setAttribute('id', 'body' + chosenBody[0].color); //dislay the correct colored body
 
     var monsterImage = document.createElement('img');
-    monsterImage.setAttribute('class', 'monsterBody');
+    monsterImage.setAttribute('class', 'variableBody');
     monsterImage.setAttribute('src', chosenBody[0].body);
     monsterImage.setAttribute('alt', chosenBody[0].color + " Body");
-    document.querySelector('.chosenBody').appendChild(monsterImage);
+    bodyDiv.appendChild(monsterImage);
   } //End Choose Body Function
 
 
   function chooseFace(color, face_number) {
     var faces = filterColor(color);
-    var face = faces[0].faces; //Iterate through the faces aray and find the correct face
+    var face = faces[0].faces;
+    var faceDiv = document.querySelector('.chosenFace'); // Remove the current child of faceDiv
+
+    if (faceDiv.hasChildNodes()) {
+      faceDiv.removeChild(faceDiv.childNodes[0]);
+    } //Iterate through the faces aray and find the correct face
+
 
     for (var j = 0; j < face.length; j++) {
       if (j == face_number) {
-        //Make a div to hold the body
-        var faceDiv = document.createElement('div');
-        faceDiv.setAttribute('class', 'chosenface');
-        document.querySelector('.results').appendChild(faceDiv); //Add the correct face to the page
-
+        //Add the correct face to the page
         var monsterFace = document.createElement('img');
-        monsterFace.setAttribute('class', 'monsterFace');
+        monsterFace.setAttribute('class', 'variableFace');
         monsterFace.setAttribute('src', face[j]);
         monsterFace.setAttribute('alt', "face " + (face_number + 1));
-        document.querySelector('.chosenface').appendChild(monsterFace);
+        document.querySelector('.chosenFace').appendChild(monsterFace);
       } //end if statement
 
     } //end for loop
@@ -222,11 +230,96 @@ fetch(monsterURL, {
 
 
   createMonster.addEventListener("click", function () {
-    return chooseBody("blue");
+    return chooseBody("green");
   });
   createMonster.addEventListener("click", function () {
-    return chooseFace("yellow", 3);
-  }); //still need a click function for the body, 
+    return chooseFace("orange", 0);
+  }); // This listens for any clicks on the monster body pictures and displays the body and the matching faces. 
+
+  bodyButtons.addEventListener("click", function (event) {
+    if (event.target.matches("#blueBody")) {
+      chooseBody("blue"); //Remove the existing content in the face container
+
+      while (face_container.firstChild) {
+        face_container.removeChild(face_container.firstChild);
+      }
+
+      displayFaces("blue");
+      clickFace("blue");
+    }
+
+    ;
+
+    if (event.target.matches("#greenBody")) {
+      chooseBody("green"); //Remove the existing content in the face container
+
+      while (face_container.firstChild) {
+        face_container.removeChild(face_container.firstChild);
+      }
+
+      displayFaces("green");
+      clickFace("green");
+    }
+
+    ;
+
+    if (event.target.matches("#yellowBody")) {
+      chooseBody("yellow"); //Remove the existing content in the face container
+
+      while (face_container.firstChild) {
+        face_container.removeChild(face_container.firstChild);
+      }
+
+      displayFaces("yellow");
+      clickFace("yellow");
+    }
+
+    ;
+
+    if (event.target.matches("#orangeBody")) {
+      chooseBody("orange"); //Remove the existing content in the face container
+
+      while (face_container.firstChild) {
+        face_container.removeChild(face_container.firstChild);
+      }
+
+      displayFaces("orange");
+      clickFace("orange");
+    }
+
+    ;
+  }); // End the body buttons
+
+  function clickFace(color) {
+    // This listens for any clicks on the monster body pictures and displays the body and the matching faces. 
+    face_container.addEventListener("click", function (event) {
+      if (event.target.matches("#faceImg0")) {
+        chooseFace(color, 0);
+      }
+
+      ;
+
+      if (event.target.matches("#faceImg1")) {
+        chooseFace(color, 1);
+      }
+
+      ;
+
+      if (event.target.matches("#faceImg2")) {
+        chooseFace(color, 2);
+      }
+
+      ;
+
+      if (event.target.matches("#faceImg3")) {
+        chooseFace(color, 3);
+      }
+
+      ;
+    }); // End the face buttons
+  }
+
+  ; //still need a click function for the body, 
   //it will call the correct face set and call 
   //the display body function with the correct 
   //color and all the correct color to the faces function
@@ -277,7 +370,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62943" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52586" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

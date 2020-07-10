@@ -35,6 +35,7 @@ tasks.addEventListener("click", function(event){
 bottomButtons.addEventListener("click", function(event){
     if(event.target.matches("#all")) {
         displayTasks(toDoList);
+        
     };
     if(event.target.matches("#active")) {
         filterNotFinished();
