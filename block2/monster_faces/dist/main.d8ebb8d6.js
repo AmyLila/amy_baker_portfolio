@@ -137,7 +137,7 @@ fetch(monsterURL, {
     // loop through all items in the bodies object and display the bodies (that sounds so morbid!)
     var body_container = document.querySelector(".body_container");
     var bodies = monster.map(function (body) {
-      return "<div class = \"body\">\n        <img class \"monsterBody\" id = \"".concat(body.color, "Body\" src = \"").concat(body.body, "\" alt = \"").concat(body.color, " Body\">\n        </div>");
+      return "<div class = \"body\" id = \"".concat(body.color, "Body\">\n        <img class \"monsterBody\" id = \"").concat(body.color, "BodyImg\" src = \"").concat(body.body, "\" alt = \"").concat(body.color, " Body\">\n        </div>");
     }).join(""); // Add the list items to the html
 
     body_container.innerHTML = bodies;
@@ -237,7 +237,7 @@ fetch(monsterURL, {
   }); // This listens for any clicks on the monster body pictures and displays the body and the matching faces. 
 
   bodyButtons.addEventListener("click", function (event) {
-    if (event.target.matches("#blueBody")) {
+    if (event.target.matches("#blueBodyImg")) {
       chooseBody("blue"); //Remove the existing content in the face container
 
       while (face_container.firstChild) {
@@ -250,7 +250,7 @@ fetch(monsterURL, {
 
     ;
 
-    if (event.target.matches("#greenBody")) {
+    if (event.target.matches("#greenBodyImg")) {
       chooseBody("green"); //Remove the existing content in the face container
 
       while (face_container.firstChild) {
@@ -263,7 +263,7 @@ fetch(monsterURL, {
 
     ;
 
-    if (event.target.matches("#yellowBody")) {
+    if (event.target.matches("#yellowBodyImg")) {
       chooseBody("yellow"); //Remove the existing content in the face container
 
       while (face_container.firstChild) {
@@ -276,7 +276,7 @@ fetch(monsterURL, {
 
     ;
 
-    if (event.target.matches("#orangeBody")) {
+    if (event.target.matches("#orangeBodyImg")) {
       chooseBody("orange"); //Remove the existing content in the face container
 
       while (face_container.firstChild) {
@@ -289,9 +289,10 @@ fetch(monsterURL, {
 
     ;
   }); // End the body buttons
+  // This listens for any clicks on the monster body pictures and displays the body and the matching faces.
+  // It takes color as a parameter
 
   function clickFace(color) {
-    // This listens for any clicks on the monster body pictures and displays the body and the matching faces. 
     face_container.addEventListener("click", function (event) {
       if (event.target.matches("#faceImg0")) {
         chooseFace(color, 0);
@@ -370,7 +371,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52586" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50794" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

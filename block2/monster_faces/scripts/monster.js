@@ -22,8 +22,8 @@ fetch(monsterURL, {method: 'GET'})
         // loop through all items in the bodies object and display the bodies (that sounds so morbid!)
         const body_container = document.querySelector(`.body_container`);
         const bodies = monster.map(body => 
-        `<div class = "body">
-        <img class "monsterBody" id = "${body.color}Body" src = "${body.body}" alt = "${body.color} Body">
+        `<div class = "body" id = "${body.color}Body">
+        <img class "monsterBody" id = "${body.color}BodyImg" src = "${body.body}" alt = "${body.color} Body">
         </div>`).join(``);
 
         // Add the list items to the html
@@ -135,7 +135,7 @@ fetch(monsterURL, {method: 'GET'})
 
 // This listens for any clicks on the monster body pictures and displays the body and the matching faces. 
 bodyButtons.addEventListener("click", function(event){
-    if(event.target.matches("#blueBody")) {
+    if(event.target.matches("#blueBodyImg")) {
         chooseBody("blue");
         //Remove the existing content in the face container
         while(face_container.firstChild) {
@@ -145,7 +145,7 @@ bodyButtons.addEventListener("click", function(event){
         clickFace("blue")
     
     };
-    if(event.target.matches("#greenBody")) {
+    if(event.target.matches("#greenBodyImg")) {
         chooseBody("green");
         //Remove the existing content in the face container
         while(face_container.firstChild) {
@@ -156,7 +156,7 @@ bodyButtons.addEventListener("click", function(event){
         
 
     };
-    if(event.target.matches("#yellowBody")) {
+    if(event.target.matches("#yellowBodyImg")) {
         chooseBody("yellow");
         //Remove the existing content in the face container
         while(face_container.firstChild) {
@@ -166,7 +166,7 @@ bodyButtons.addEventListener("click", function(event){
         clickFace("yellow")
         
     };
-    if(event.target.matches("#orangeBody")) {
+    if(event.target.matches("#orangeBodyImg")) {
         chooseBody("orange");
         //Remove the existing content in the face container
         while(face_container.firstChild) {
@@ -178,9 +178,10 @@ bodyButtons.addEventListener("click", function(event){
     };
 }); // End the body buttons
 
-
+// This listens for any clicks on the monster body pictures and displays the body and the matching faces.
+// It takes color as a parameter
 function clickFace(color){
-    // This listens for any clicks on the monster body pictures and displays the body and the matching faces. 
+ 
     face_container.addEventListener("click", function(event){
         if(event.target.matches("#faceImg0")) {
             chooseFace(color, 0)
