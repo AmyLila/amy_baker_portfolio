@@ -1,37 +1,35 @@
 
 //global Variables
 const monsterURL = 'https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/data/monster.json';
-
-const bodyButtons = document.querySelector(`.body_container`);
-
-const face_container = document.querySelector(`.face_container`)
-
 const createMonster = document.getElementById("makeMonster");
-
+const monster = []
 
 // get monster info from the JSON file
 // fetch the local json data
+function getData(){
 fetch(monsterURL, {method: 'GET'})
 .then(response => response.json())
 .then(json => {
         //Create a monster object
-        const monster = json['monsters'];
+        monster = json['monsters'];
 
-    // display all the body choices    
-    function displayBodies(){
-        // loop through all items in the bodies object and display the bodies (that sounds so morbid!)
-        const body_container = document.querySelector(`.body_container`);
-        const bodies = monster.map(body => 
-        `<div class = "body" id = "${body.color}Body">
-        <img class "monsterBody" id = "${body.color}BodyImg" src = "${body.body}" alt = "${body.color} Body">
-        </div>`).join(``);
+    })//end Anonymous
+}//end Anonymous
+// display all the body choices    
+function displayBodies(){
+    // loop through all items in the bodies object and display the bodies (that sounds so morbid!)
+    const body_container = document.querySelector(`.body_container`);
+    const bodies = monster.map(body => 
+    `<div class = "body" id = "${body.color}Body">
+    <img class "monsterBody" id = "${body.color}BodyImg" src = "${body.body}" alt = "${body.color} Body">
+    </div>`).join(``);
 
-        // Add the list items to the html
-        body_container.innerHTML = bodies;
+    // Add the list items to the html
+    body_container.innerHTML = bodies;
 
-    }//End Display Bodies Function
-    // Call display bodies    
-    displayBodies()
+ }//End Display Bodies Function
+// Call display bodies    
+ displayBodies()
 
     //function to filter the monster object by color. 
     function filterColor(color){
@@ -128,80 +126,10 @@ fetch(monsterURL, {method: 'GET'})
         }//end for loop
     }// end choose face
 
-    //Event listeners
-    //listen for a click and then display the monster
-    createMonster.addEventListener("click", () => chooseBody("green"));
-    createMonster.addEventListener("click", () => chooseFace("orange", 0));
 
-// This listens for any clicks on the monster body pictures and displays the body and the matching faces. 
-bodyButtons.addEventListener("click", function(event){
-    if(event.target.matches("#blueBodyImg")) {
-        chooseBody("blue");
-        //Remove the existing content in the face container
-        while(face_container.firstChild) {
-            face_container.removeChild(face_container.firstChild);
-        }
-        displayFaces("blue")
-        clickFace("blue")
-    
-    };
-    if(event.target.matches("#greenBodyImg")) {
-        chooseBody("green");
-        //Remove the existing content in the face container
-        while(face_container.firstChild) {
-            face_container.removeChild(face_container.firstChild);
-        }
-        displayFaces("green")
-        clickFace("green")
-        
 
-    };
-    if(event.target.matches("#yellowBodyImg")) {
-        chooseBody("yellow");
-        //Remove the existing content in the face container
-        while(face_container.firstChild) {
-            face_container.removeChild(face_container.firstChild);
-        }
-        displayFaces("yellow")
-        clickFace("yellow")
-        
-    };
-    if(event.target.matches("#orangeBodyImg")) {
-        chooseBody("orange");
-        //Remove the existing content in the face container
-        while(face_container.firstChild) {
-            face_container.removeChild(face_container.firstChild);
-        }
-        displayFaces("orange")
-        clickFace("orange")
-        
-    };
-}); // End the body buttons
 
-// This listens for any clicks on the monster body pictures and displays the body and the matching faces.
-// It takes color as a parameter
-function clickFace(color){
- 
-    face_container.addEventListener("click", function(event){
-        if(event.target.matches("#faceImg0")) {
-            chooseFace(color, 0)
-        
-        };
-        if(event.target.matches("#faceImg1")) {
-            chooseFace(color, 1)
-            
 
-        };
-        if(event.target.matches("#faceImg2")) {
-            chooseFace(color, 2)
-            
-        };
-        if(event.target.matches("#faceImg3")) {
-            chooseFace(color, 3)
-            
-        };
-    }); // End the face buttons
-};
 
 
 
@@ -213,6 +141,6 @@ function clickFace(color){
     //Also need a click face function that will call the choose face function and pass in the correct number
     //if div one is clicked display face 1 etc.
 
-})//end Anonymous
 
 
+// write an export statement here
