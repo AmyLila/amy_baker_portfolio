@@ -257,6 +257,101 @@ Main Styling
   }
 }
 
+.results {
+  margin: 0.5rem auto;
+  padding: 1rem;
+  background-color: darkmagenta;
+  max-width: 80%;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 0.25fr 1fr 0.25fr;
+}
+
+.chosenBody {
+  max-width: 100%;
+  grid-area: 1/2;
+}
+.chosenBody img {
+  max-width: 100%;
+}
+
+.chosenFace {
+  max-width: 50%;
+  margin: 0 auto;
+  grid-area: 1/2;
+  display: grid;
+}
+@media only screen and (min-width: 46.8em) {
+  .chosenFace {
+    max-width: 70%;
+  }
+}
+@media only screen and (min-width: 50em) {
+  .chosenFace {
+    max-width: 100%;
+  }
+}
+.chosenFace img {
+  max-width: 80%;
+  justify-self: center;
+  align-self: center;
+  margin-bottom: 1rem;
+}
+@media only screen and (min-width: 46.8em) {
+  .chosenFace img {
+    max-width: 75%;
+    margin-bottom: 2rem;
+  }
+}
+@media only screen and (min-width: 50em) {
+  .chosenFace img {
+    max-width: 100%;
+  }
+}
+.chosenFace .variableFace1 {
+  max-width: 100%;
+  margin-bottom: 3rem;
+}
+@media only screen and (min-width: 46.8em) {
+  .chosenFace .variableFace1 {
+    max-width: 70%;
+    margin-bottom: 4rem;
+  }
+}
+@media only screen and (min-width: 50em) {
+  .chosenFace .variableFace1 {
+    max-width: 80%;
+  }
+}
+.chosenFace .variableFace3 {
+  max-width: 85%;
+}
+@media only screen and (min-width: 46.8em) {
+  .chosenFace .variableFace3 {
+    max-width: 65%;
+  }
+}
+@media only screen and (min-width: 50em) {
+  .chosenFace .variableFace3 {
+    max-width: 85%;
+  }
+}
+.chosenFace .variableFace4 {
+  max-width: 65%;
+  margin-bottom: 1.5rem;
+}
+@media only screen and (min-width: 46.8em) {
+  .chosenFace .variableFace4 {
+    max-width: 70%;
+    margin-bottom: 2rem;
+  }
+}
+@media only screen and (min-width: 50em) {
+  .chosenFace .variableFace4 {
+    max-width: 100%;
+  }
+}
+
 /* -------------------------------- 
 
 footer

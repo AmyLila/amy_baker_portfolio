@@ -2,19 +2,19 @@
 //global Variables
 const monsterURL = 'https://shakerbaker78.github.io./amy_baker_portfolio/block2/monster_faces/data/monster.json';
 const createMonster = document.getElementById("makeMonster");
-const monster = []
+
 
 // get monster info from the JSON file
 // fetch the local json data
-function getData(){
+
 fetch(monsterURL, {method: 'GET'})
 .then(response => response.json())
 .then(json => {
         //Create a monster object
-        monster = json['monsters'];
+        const monster = json['monsters'];
+        
 
-    })//end Anonymous
-}//end Anonymous
+
 // display all the body choices    
 function displayBodies(){
     // loop through all items in the bodies object and display the bodies (that sounds so morbid!)
@@ -117,7 +117,7 @@ function displayBodies(){
 
                 //Add the correct face to the page
                 let monsterFace = document.createElement('img');
-                monsterFace.setAttribute('class', 'variableFace');
+                monsterFace.setAttribute('class', 'variableFace' + (face_number + 1));
                 monsterFace.setAttribute('src', face[j]);
                 monsterFace.setAttribute('alt',"face " + (face_number + 1));
                 document.querySelector('.chosenFace').appendChild(monsterFace);
@@ -127,20 +127,79 @@ function displayBodies(){
     }// end choose face
 
 
+//Event Listeners
+    const bodyButtons = document.querySelector(`.body_container`);
+    const face_container = document.querySelector(`.face_container`)
+    
+    // This listens for any clicks on the monster body pictures and displays the body and the matching faces. 
+    bodyButtons.addEventListener("click", function(event){
+        if(event.target.matches("#blueBodyImg")) {
+            chooseBody("blue");
+            //Remove the existing content in the face container
+            while(face_container.firstChild) {
+                face_container.removeChild(face_container.firstChild);
+            }
+            displayFaces("blue")
+            clickFace("blue")
+        
+        };
+        if(event.target.matches("#greenBodyImg")) {
+            chooseBody("green");
+            //Remove the existing content in the face container
+            while(face_container.firstChild) {
+                face_container.removeChild(face_container.firstChild);
+            }
+            displayFaces("green")
+            clickFace("green")
+            
+    
+        };
+        if(event.target.matches("#yellowBodyImg")) {
+            chooseBody("yellow");
+            //Remove the existing content in the face container
+            while(face_container.firstChild) {
+                face_container.removeChild(face_container.firstChild);
+            }
+            displayFaces("yellow")
+            clickFace("yellow")
+            
+        };
+        if(event.target.matches("#orangeBodyImg")) {
+            chooseBody("orange");
+            //Remove the existing content in the face container
+            while(face_container.firstChild) {
+                face_container.removeChild(face_container.firstChild);
+            }
+            displayFaces("orange")
+            clickFace("orange")
+            
+        };
+    }); // End the body buttons
+    
+    
+    // This listens for any clicks on the monster body pictures and displays the body and the matching faces.
+    // It takes color as a parameter
+    function clickFace(color){
+     
+        face_container.addEventListener("click", function(event){
+            if(event.target.matches("#faceImg0")) {
+                chooseFace(color, 0)
+            
+            };
+            if(event.target.matches("#faceImg1")) {
+                chooseFace(color, 1)
+                
+    
+            };
+            if(event.target.matches("#faceImg2")) {
+                chooseFace(color, 2)
+                
+            };
+            if(event.target.matches("#faceImg3")) {
+                chooseFace(color, 3)
+                
+            };
+        }); // End the face buttons
+    };
 
-
-
-
-
-
-    //still need a click function for the body, 
-    //it will call the correct face set and call 
-    //the display body function with the correct 
-    //color and all the correct color to the faces function
-
-    //Also need a click face function that will call the choose face function and pass in the correct number
-    //if div one is clicked display face 1 etc.
-
-
-
-// write an export statement here
+}); // End Fetch Response
