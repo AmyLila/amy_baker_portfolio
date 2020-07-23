@@ -90,7 +90,8 @@ function displayBodies(){
       
         //dislay the correct colored body
         let monsterImage = document.createElement('img');
-        monsterImage.setAttribute('class', 'variableBody');
+        monsterImage.setAttribute('class', 'still');
+        monsterImage.setAttribute('id', 'moveBody');
         monsterImage.setAttribute('src', chosenBody[0].body);
         monsterImage.setAttribute('alt', chosenBody[0].color + " Body");
         bodyDiv.appendChild(monsterImage);
@@ -117,7 +118,8 @@ function displayBodies(){
 
                 //Add the correct face to the page
                 let monsterFace = document.createElement('img');
-                monsterFace.setAttribute('class', 'variableFace' + (face_number + 1));
+                monsterFace.setAttribute('class', 'still');
+                monsterFace.setAttribute('id', 'moveFace');
                 monsterFace.setAttribute('src', face[j]);
                 monsterFace.setAttribute('alt',"face " + (face_number + 1));
                 document.querySelector('.chosenFace').appendChild(monsterFace);

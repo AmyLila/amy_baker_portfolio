@@ -1,0 +1,13 @@
+#moveBody, #moveFace{
+    transition: all 1.5s ease-out;
+  }
+
+  #moveBody.still, #moveFace.still{
+    border-radius: 0;
+    transform: rotate(0) translate(0px, 0px);
+    
+  }
+  #moveBody.move, #moveFace.move{
+    border-radius: 25px;
+    transform: rotate(360deg) translate(200px, 0px) scale(.8);
+  }

@@ -158,7 +158,7 @@ button {
   background-color: brown;
 }
 
-#makeMonster {
+#transition1 {
   width: 150px;
   height: 75px;
   background-color: crimson;
@@ -194,6 +194,20 @@ Main Styling
     margin: 1rem auto;
     max-width: 85%;
   }
+}
+
+#moveBody, #moveFace {
+  transition: all 1.5s ease-out;
+}
+
+#moveBody.still, #moveFace.still {
+  border-radius: 0;
+  transform: rotate(0) translate(0px, 0px);
+}
+
+#moveBody.move, #moveFace.move {
+  border-radius: 25px;
+  transform: rotate(360deg) translate(200px, 0px) scale(0.8);
 }
 
 .body, .face {

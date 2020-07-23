@@ -193,7 +193,8 @@ fetch(monsterURL, {
     bodyDiv.setAttribute('id', 'body' + chosenBody[0].color); //dislay the correct colored body
 
     var monsterImage = document.createElement('img');
-    monsterImage.setAttribute('class', 'variableBody');
+    monsterImage.setAttribute('class', 'still');
+    monsterImage.setAttribute('id', 'moveBody');
     monsterImage.setAttribute('src', chosenBody[0].body);
     monsterImage.setAttribute('alt', chosenBody[0].color + " Body");
     bodyDiv.appendChild(monsterImage);
@@ -214,7 +215,8 @@ fetch(monsterURL, {
       if (j == face_number) {
         //Add the correct face to the page
         var monsterFace = document.createElement('img');
-        monsterFace.setAttribute('class', 'variableFace' + (face_number + 1));
+        monsterFace.setAttribute('class', 'still');
+        monsterFace.setAttribute('id', 'moveFace');
         monsterFace.setAttribute('src', face[j]);
         monsterFace.setAttribute('alt', "face " + (face_number + 1));
         document.querySelector('.chosenFace').appendChild(monsterFace);
@@ -321,6 +323,28 @@ WebFont.load({
     families: ['Arvo', 'Open+Sans', 'Merriweather', 'Special+Elite']
   }
 });
+},{}],"scripts/animations.js":[function(require,module,exports) {
+window.onload = function () {
+  var transition1 = document.getElementById('transition1');
+  var transition2 = document.getElementById('transition2');
+  var transition3 = document.getElementById('transition3');
+  transition1.addEventListener('click', changeClass, false);
+  transition2.addEventListener('click', changeClass, false);
+  transition3.addEventListener('click', changeClass, false);
+};
+
+function changeClass() {
+  var a = document.getElementById('moveBody');
+  var b = document.getElementById('moveFace');
+
+  if (a.className == 'move') {
+    a.className = 'still';
+    b.className = 'still';
+  } else if (a.className == 'still') {
+    a.className = 'move';
+    b.className = 'move';
+  }
+}
 },{}],"scripts/main.js":[function(require,module,exports) {
 "use strict";
 
@@ -328,10 +352,12 @@ var monster = _interopRequireWildcard(require("./monster.js"));
 
 var fonts = _interopRequireWildcard(require("./webfonts.js"));
 
+var animations = _interopRequireWildcard(require("./animations.js"));
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-},{"./monster.js":"scripts/monster.js","./webfonts.js":"scripts/webfonts.js"}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./monster.js":"scripts/monster.js","./webfonts.js":"scripts/webfonts.js","./animations.js":"scripts/animations.js"}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
