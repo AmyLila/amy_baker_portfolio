@@ -327,22 +327,29 @@ WebFont.load({
 window.onload = function () {
   var transition1 = document.getElementById('transition1');
   var transition2 = document.getElementById('transition2');
-  var transition3 = document.getElementById('transition3');
-  transition1.addEventListener('click', changeClass, false);
-  transition2.addEventListener('click', changeClass, false);
-  transition3.addEventListener('click', changeClass, false);
+  var transition3 = document.getElementById('transition3'); // transition1.addEventListener('click', changeClass, false);
+
+  transition1.addEventListener('click', function () {
+    return changeClass("shrink");
+  });
+  transition2.addEventListener('click', function () {
+    return changeClass("bounce");
+  });
+  transition3.addEventListener('click', function () {
+    return changeClass("grow");
+  });
 };
 
-function changeClass() {
+function changeClass(name) {
   var a = document.getElementById('moveBody');
   var b = document.getElementById('moveFace');
 
-  if (a.className == 'move') {
+  if (a.className == name) {
     a.className = 'still';
     b.className = 'still';
   } else if (a.className == 'still') {
-    a.className = 'move';
-    b.className = 'move';
+    a.className = name;
+    b.className = name;
   }
 }
 },{}],"scripts/main.js":[function(require,module,exports) {

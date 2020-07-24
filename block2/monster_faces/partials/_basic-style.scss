@@ -20,15 +20,24 @@ header {
 li{
 	padding:.5rem 1rem;
 }
-footer{
-	max-width:100%;
-}
-button{
-	background-color: brown;
-}
-#transition1{
+
+.button{
 	width:150px;
 	height:75px;
-	background-color: crimson;
+	flex: 1 1 auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+#transition1{
+	background-color:$blue-monster;
+}
+
+#transition2{
+	background-color:$yellow-monster ;
+}
+
+#transition3{
+	background-color:$green-monster;
 }
 //end basic-styles.scss 

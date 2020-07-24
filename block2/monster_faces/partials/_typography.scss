@@ -16,10 +16,11 @@ xTypography
 body{
   font-family: $primary-font;
 }
-h1,
+
+
 h2 {
   font-family: $display-font;
-  color: $color-accent;
+  color: $color-med;
 }
 
 h1 {
@@ -27,6 +28,8 @@ h1 {
   font-weight: 300;
   line-height: 1.2;
   padding:1rem;
+  color: $color-accent;
+  font-family: $display-font;
 
 }
 
