@@ -221,7 +221,7 @@ main {
 
 #moveBody.bounce, #moveFace.bounce {
   transition: all 1.5s ease-out;
-  -webkit-animation: bounce 6s ease-out 3;
+  -webkit-animation: bounce 1.5s cubic-bezier(0.28, 0.84, 0.42, 1) infinite;
   animation: bounce 1.5s cubic-bezier(0.28, 0.84, 0.42, 1) infinite;
 }
 
