@@ -30,7 +30,7 @@ function submitTask(event){
     //event.currentTarget.task.value = ``;
     document.getElementById(`task`).value = ``;
 
-    //Create a custom task sumbitted event 
+    //Create a custom task sumbitted event (This is a custom event listener)
     toDoForm.dispatchEvent(new CustomEvent("tasksSubmitted"));
 } //End Submit task function
 
@@ -52,7 +52,7 @@ function displayTasks(arrayName){
 
 // removes tasks from the list
 function deleteItem(id){
-    //This filters the array into checked and not checked and delete the checked ones
+    //This filters the array into checked and not checked and deletes the checked ones
     toDoList = toDoList.filter(toDo => toDo.id !== id);
 
     //Event that calls display tasks and save to local storage
@@ -89,6 +89,3 @@ function filterNotFinished(){
 
 
 export { submitTask,displayTasks, deleteItem, completedTasks, filterFinished, filterNotFinished};
-
-
-
